@@ -136,10 +136,12 @@
       <div class="a_inner">
         <div class="l1_a">
           <div class="a_title">ABC анализ</div>
-          <div class="btn_more_a">
-            Подробнее
-            <img src="../assets/images/btn_more.svg" alt="">
-          </div>
+          <NuxtLink to="/analyze">
+            <div class="btn_more_a">
+              Подробнее
+              <img src="../assets/images/btn_more.svg" alt="">
+            </div>
+          </NuxtLink>
         </div>
         <div class="a_stat">
           <div class="a_stat_bl">

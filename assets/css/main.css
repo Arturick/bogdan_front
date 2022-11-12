@@ -7,7 +7,9 @@ body,
   height: 100%;
 }
 
-
+*{
+  flex-wrap: wrap;
+}
 
 /* header  */
 .header {
@@ -1019,7 +1021,7 @@ input {
   justify-content: space-between;
   padding-left: 1rem;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .chart_view {
@@ -1028,6 +1030,7 @@ input {
 
 .ch_gr{
   color: #989999;
+  font-weight: 500;
 }
 
 .chart_cont{
@@ -1302,7 +1305,7 @@ input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-right: 7rem;
+  margin-right: 0.8rem;
   margin-left: 1rem;
 }
 
@@ -1399,11 +1402,14 @@ input {
 
 .i_price {
   width: 125px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .arrow_r {
-  position: absolute;
-  margin-left: 85rem;
+  position: relative;
+  /* margin-left: 85rem; */
 }
 
 .l3_sales {
@@ -1417,7 +1423,11 @@ input {
 }
 
 .p_commis {
-  width: 70px;
+  height: 20px;
+  width: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .i_bad {

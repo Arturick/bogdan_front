@@ -31,6 +31,9 @@
                         <div class="p_price">Логистика к  клиенту (руб)</div>
                         <div class="p_bad">Штрафы</div>
                         <div class="p_commis">Комиссия</div>
+                        <label class="menu__btn" for="menu__toggle">
+                            <span><img class="bur_sh" src="../../assets/images/shest.svg" alt=""></span>
+                        </label>
                     </div>
                     <div class="table_info">
                         <div class="table_inner">
@@ -109,9 +112,7 @@
                 </div>
                 <div class="hamburger-menu">
                     <input id="menu__toggle" type="checkbox" />
-                    <label class="menu__btn" for="menu__toggle">
-                        <span><img class="bur_sh" src="../../assets/images/shest.svg" alt=""></span>
-                    </label>
+                    
                     <ul class="menu__box">
                         <li><input type="checkbox" name="" id="" checked><span>Бренд</span></li>
                         <li><input type="checkbox" name="" id="" checked><span>Дата</span></li>
@@ -160,9 +161,7 @@
         .menu__btn {
             display: flex;
             align-items: center;
-            position: fixed;
-            top: 20px;
-            right: 20px;
+            position: relative;
     
             width: 26px;
             height: 26px;
@@ -187,14 +186,14 @@
             display: block;
             position: fixed;
             visibility: hidden;
-            top: 0;
+            bottom: 0;
             right: -100%;
     
-            width: 300px;
+            width: 200px;
             height: 100%;
     
             margin: 0;
-            padding: 8rem 2rem;
+            padding: 1rem 1rem;
     
             list-style: none;
     

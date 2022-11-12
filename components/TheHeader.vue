@@ -9,7 +9,7 @@
                           <img src="../assets/images/Logo_txt.svg" alt="">
                         </NuxtLink>
 
-                        <div class="md:pt-7 md:justify-between">
+                        <div>
                             <input id="burger" type="checkbox" name="burger" v-model="burger"/>
                             <label class="burger" for="burger">
                                 <span class="burger__bar"></span>
