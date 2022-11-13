@@ -31,7 +31,7 @@
                         <div class="p_price">Логистика к  клиенту (руб)</div>
                         <div class="p_bad">Штрафы</div>
                         <div class="p_commis">Комиссия</div>
-                        <label class="menu__btn" for="menu__toggle">
+                        <label class="menu__btn1" for="menu__toggle1">
                             <span><img class="bur_sh" src="../../assets/images/shest.svg" alt=""></span>
                         </label>
                     </div>
@@ -110,10 +110,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="hamburger-menu">
-                    <input id="menu__toggle" type="checkbox" />
+                <div class="hamburger-menu1">
+                    <input id="menu__toggle1" type="checkbox" />
                     
-                    <ul class="menu__box">
+                    <ul class="menu__box1">
                         <li><input type="checkbox" name="" id="" checked><span>Бренд</span></li>
                         <li><input type="checkbox" name="" id="" checked><span>Дата</span></li>
                         <li><input type="checkbox" name="" id="" checked><span>Фото</span></li>
@@ -137,28 +137,28 @@
     </div>
 </template>
 <style scoped>
-#menu__toggle {
+#menu__toggle1 {
             opacity: 0;
         }
     
-        #menu__toggle:checked~.menu__btn>span {
+        #menu__toggle1:checked~.menu__btn1>span {
             transform: rotate(0);
         }
     
-        #menu__toggle:checked~.menu__btn>span::before {
+        #menu__toggle1:checked~.menu__btn1>span::before {
             transform: rotate(0);
         }
     
-        #menu__toggle:checked~.menu__btn>span::after {
+        #menu__toggle1:checked~.menu__btn1>span::after {
             transform: rotate(0);
         }
     
-        #menu__toggle:checked~.menu__box {
+        #menu__toggle1:checked~.menu__box1 {
             visibility: visible;
             right: 0;
         }
     
-        .menu__btn {
+        .menu__btn1 {
             display: flex;
             align-items: center;
             position: relative;
@@ -167,22 +167,22 @@
             height: 26px;
     
             cursor: pointer;
-            z-index: 1;
+            z-index: 13;
         }
     
         
     
-        .menu__btn>span::before {
+        .menu__btn1>span::before {
             content: '';
             top: -8px;
         }
     
-        .menu__btn>span::after {
+        .menu__btn1>span::after {
             content: '';
             top: 8px;
         }
     
-        .menu__box {
+        .menu__box1 {
             display: block;
             position: fixed;
             visibility: hidden;
@@ -191,9 +191,10 @@
     
             width: 200px;
             height: 100%;
+            z-index: 11;
     
             margin: 0;
-            padding: 1rem 1rem;
+            padding: 5rem 1rem;
     
             list-style: none;
     
@@ -204,13 +205,13 @@
             transition: all .3s;
         }
 
-        .menu__box span{
+        .menu__box1 span{
             padding-left: 1rem;
             font-size: 13px;
             font-weight: 700;
         }
     
-        .menu__item {
+        /* .menu__item {
             display: block;
             padding: 12px 24px;
     
@@ -222,7 +223,7 @@
             text-decoration: none;
     
             transition: all .3s;
-        }
+        } */
 
         .bur_sh{
             height: 1.5rem;

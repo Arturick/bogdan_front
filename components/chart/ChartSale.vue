@@ -120,7 +120,8 @@ export default {
     user-select: none;
 }
 
-.checkbox-google .checkbox-google-switch {
+.checkbox-google input+.checkbox-google-switch {
+    background: #9ABEF7;
     display: inline-block;
     width: 36px;
     height: 14px;
@@ -128,11 +129,14 @@ export default {
     position: relative;
     top: 6px;
     vertical-align: top;
-    background: #9f9f9f;
     transition: .2s;
 }
 
-.checkbox-google .checkbox-google-switch:before {
+.checkbox-google input+.checkbox-google-switch:before {
+    background: #1a73e8;
+    border-radius: 50%;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    transition: .15s;
     content: '';
     display: inline-block;
     width: 20px;
@@ -140,13 +144,21 @@ export default {
     position: absolute;
     top: -3px;
     left: -1px;
-    background: #fff;
-    border-radius: 50%;
-    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    transform: translateX(18px);
+}
+
+.apexcharts-inactive-legend .checkbox-google .checkbox-google-switch {
+    background: #9f9f9f;
     transition: .15s;
 }
 
-.checkbox-google input[type=checkbox] {
+.apexcharts-inactive-legend .checkbox-google .checkbox-google-switch:before {
+    background: #fff;
+    transform: translateX(0);
+    transition: .15s;
+}
+
+.checkbox-google input {
     display: block;
     width: 0;
     height: 0;
@@ -155,59 +167,13 @@ export default {
     opacity: 0;
 }
 
-.checkbox-google input[type=checkbox]:checked+.checkbox-google-switch {
-    background: #9ABEF7;
-}
-
-.checkbox-google input[type=checkbox]:checked+.checkbox-google-switch:before {
-    background: #1a73e8;
-    transform: translateX(18px);
-}
-
-/* Hover */
-.checkbox-google input[type="checkbox"]:not(:disabled)+.checkbox-google-switch {
-    cursor: pointer;
-    border-color: rgba(0, 0, 0, .3);
-}
-
-/* Active/Focus */
-.checkbox-google input[type="checkbox"]:not(:disabled):active+.checkbox-google-switch:before,
-.checkbox-google input[type="checkbox"]:not(:disabled):focus+.checkbox-google-switch:before {
-    animation: checkbox-active-on 0.5s forwards linear;
-}
-
-@keyframes checkbox-active-on {
-    0% {
-        box-shadow: 0 0 0 0 rgba(212, 212, 212, 0);
-    }
-
-    99% {
-        box-shadow: 0 0 0 10px rgba(212, 212, 212, 0.5);
-    }
-}
-
-.checkbox-google input[type="checkbox"]:not(:disabled):checked:active+.checkbox-google-switch:before,
-.checkbox-google input[type="checkbox"]:not(:disabled):checked:focus+.checkbox-google-switch:before {
-    animation: checkbox-active-off 0.5s forwards linear;
-}
-
-@keyframes checkbox-active-off {
-    0% {
-        box-shadow: 0 0 0 0 rgba(154, 190, 247, 0);
-    }
-
-    99% {
-        box-shadow: 0 0 0 10px rgba(154, 190, 247, 0.5);
-    }
-}
-
 /* Disabled */
-.checkbox-google input[type=checkbox]:disabled+.checkbox-google-switch {
+/* .checkbox-google input:disabled+.checkbox-google-switch {
     filter: grayscale(60%);
     border-color: rgba(0, 0, 0, .1);
 }
 
-.checkbox-google input[type=checkbox]:disabled+.checkbox-google-switch:before {
+.checkbox-google input:disabled+.checkbox-google-switch:before {
     background: #eee;
-}
+} */
 </style>
