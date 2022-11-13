@@ -26,81 +26,83 @@
                     <ChartSale :categories="chart.categories" :series="chart.series"></ChartSale>
                 </div>
             </div>
-            <div class="table_down_a2">
-                <div class="tda2_params">
-                    <span>Запрос</span>
-                    <span>Частотность WB</span>
-                    <span>Товаров на WB</span>
-                    <span>25.07</span>
-                    <span>25.07</span>
-                    <span>25.07</span>
-                    <span>25.07</span>
-                    <span>25.07</span>
-                    <span>25.07</span>
-                    <span>25.07</span>
-                </div>
-                <div class="tda2_inner">
-                    <div class="tda2_line">
-                        <span class="tda2_1">Футболка женская</span>
-                        <span>150</span>
-                        <span>150</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                    </div>
-                    <div class="tda2_line">
-                        <span class="tda2_1">Футболка женская</span>
-                        <span>150</span>
-                        <span>150</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                    </div>
-                    <div class="tda2_line">
-                        <span class="tda2_1">Футболка женская</span>
-                        <span>150</span>
-                        <span>150</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                    </div>
-                    <div class="tda2_line">
-                        <span class="tda2_1">Футболка женская</span>
-                        <span>150</span>
-                        <span>150</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                    </div>
-                    <div class="tda2_line">
-                        <span class="tda2_1">Футболка женская</span>
-                        <span>150</span>
-                        <span>150</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                        <span>77</span>
-                    </div>
-                </div>
+            <div class="t2_low_ue_cont">
+              <div class="table_down_a2">
+                  <div class="tda2_params">
+                      <span>Запрос</span>
+                      <span>Частотность WB</span>
+                      <span>Товаров на WB</span>
+                      <span>25.07</span>
+                      <span>25.07</span>
+                      <span>25.07</span>
+                      <span>25.07</span>
+                      <span>25.07</span>
+                      <span>25.07</span>
+                      <span>25.07</span>
+                  </div>
+                  <div class="tda2_inner">
+                      <div class="tda2_line">
+                          <span class="tda2_1">Футболка женская</span>
+                          <span>150</span>
+                          <span>150</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                      </div>
+                      <div class="tda2_line">
+                          <span class="tda2_1">Футболка женская</span>
+                          <span>150</span>
+                          <span>150</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                      </div>
+                      <div class="tda2_line">
+                          <span class="tda2_1">Футболка женская</span>
+                          <span>150</span>
+                          <span>150</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                      </div>
+                      <div class="tda2_line">
+                          <span class="tda2_1">Футболка женская</span>
+                          <span>150</span>
+                          <span>150</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                      </div>
+                      <div class="tda2_line">
+                          <span class="tda2_1">Футболка женская</span>
+                          <span>150</span>
+                          <span>150</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                          <span>77</span>
+                      </div>
+                  </div>
+              </div>
             </div>
         </div>
      </div>

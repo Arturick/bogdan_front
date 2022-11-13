@@ -141,3 +141,96 @@
     -webkit-text-size-adjust: none;
   }
 }
+
+@media screen and (max-device-width: 1023px){
+	.table_sales{
+		width: 1024px;
+		
+	}
+	.l2_sales,.l3_sales{
+		overflow: scroll;
+	}
+
+	.a_stat{
+		flex-direction: column;
+		justify-content: flex-start;
+	}
+
+	.table_md{
+		width: 1024px;
+	}
+	.table_down_a2{
+		width: 1024px;
+	}
+
+	.table_new_wrap{
+		overflow: scroll;
+	}
+
+	.t2_low_ue_cont{
+		overflow: scroll;
+	}
+	
+}
+
+@media screen and (max-device-width: 1535px){
+	.comparison_prs{
+		flex-direction: column;
+		align-items: flex-start;
+		width: 100%;
+	}
+
+	.comp_my,.comp_other{
+		width: 100%;
+		overflow: scroll;
+	}
+
+	.table_new_wrap{
+		width: 100%;
+	}
+}
+
+@media screen and (max-device-width: 1279px){
+	.news_orders_line{
+	  flex-direction: column;
+	  width: 100%;
+	}
+
+	.table_sales{
+		overflow: scroll;
+		/* width: 100%; */
+	}
+
+	.news_main,.orders_main{
+		width: 100%;
+	}
+	.table_down_a2{
+		margin-top: 2rem;
+	}
+
+	.graf_infoPr_a2{
+		flex-direction: column;
+		justify-content: flex-start;
+	}
+
+	.infoPr_a2,.graf_a2{
+		width: 100%;
+		justify-content: flex-start;
+		margin-bottom: 1rem;
+	}
+  }
+
+  @media screen and (max-device-width: 767px){
+	
+	.news_main,.orders_main{
+		height: auto;
+	}
+	.u_titles{
+		flex-direction: column;
+		justify-content: flex-start;
+	}
+	/* *{
+		flex-wrap: wrap;
+	} */
+  }
+

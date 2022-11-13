@@ -375,62 +375,64 @@
                 </div>
                 <div class="btn_u">Добавить</div>
             </div>
-            <div class="t2_low_ue">
-                <div class="t_menu_ue">
-                    <span>Дата занесения</span>
-                    <span>Название расхода</span>
-                    <span>Число</span>
-                    <span>Постоянный</span>
-                    <span>Когда вычетать</span>
-                </div>
-                <div class="t_line_ue2">
-                    <div class="tline_ue2_inner">
-                        <span>12.01.22</span>
-                        <span>Налог с продаж</span>
-                        <span>13</span>
-                        <span>Да</span>
-                        <span>Cуммы продажи</span>
-                        <span>&#215;</span>
+            <div class="t2_low_ue_cont">
+                <div class="t2_low_ue">
+                    <div class="t_menu_ue">
+                        <span>Дата занесения</span>
+                        <span>Название расхода</span>
+                        <span>Число</span>
+                        <span>Постоянный</span>
+                        <span>Когда вычетать</span>
                     </div>
-                </div>
-                <div class="t_line_ue2">
-                    <div class="tline_ue2_inner">
-                        <span>12.01.22</span>
-                        <span>Налог с продаж</span>
-                        <span>130 000 руб</span>
-                        <span>Нет</span>
-                        <span>Из прибыли</span>
-                        <span>&#215;</span>
+                    <div class="t_line_ue2">
+                        <div class="tline_ue2_inner">
+                            <span>12.01.22</span>
+                            <span>Налог с продаж</span>
+                            <span>13</span>
+                            <span>Да</span>
+                            <span>Cуммы продажи</span>
+                            <span>&#215;</span>
+                        </div>
                     </div>
-                </div>
-                <div class="t_line_ue2">
-                    <div class="tline_ue2_inner">
-                        <span>12.01.22</span>
-                        <span>Логистика товара</span>
-                        <span>130 000 руб</span>
-                        <span>Нет</span>
-                        <span>Из прибыли</span>
-                        <span>&#215;</span>
+                    <div class="t_line_ue2">
+                        <div class="tline_ue2_inner">
+                            <span>12.01.22</span>
+                            <span>Налог с продаж</span>
+                            <span>130 000 руб</span>
+                            <span>Нет</span>
+                            <span>Из прибыли</span>
+                            <span>&#215;</span>
+                        </div>
                     </div>
-                </div>
-                <div class="t_line_ue2">
-                    <div class="tline_ue2_inner">
-                        <span></span>
-                        <span><input type="text"></span>
-                        <span><input type="text"></span>
-                        <span class="sel_tue2">
-                            <select>
-                                <option></option>
-                            </select>
-                            <img src="../../assets/images/arr_d.svg" alt="">
-                        </span>
-                        <span class="sel_tue2"> 
-                            <select>
-                                <option></option>
-                            </select>
-                            <img src="../../assets/images/arr_d.svg" alt="">
-                        </span>
-                        <span>&#215;</span>
+                    <div class="t_line_ue2">
+                        <div class="tline_ue2_inner">
+                            <span>12.01.22</span>
+                            <span>Логистика товара</span>
+                            <span>130 000 руб</span>
+                            <span>Нет</span>
+                            <span>Из прибыли</span>
+                            <span>&#215;</span>
+                        </div>
+                    </div>
+                    <div class="t_line_ue2">
+                        <div class="tline_ue2_inner">
+                            <span></span>
+                            <span><input type="text"></span>
+                            <span><input type="text"></span>
+                            <span class="sel_tue2">
+                                <select>
+                                    <option></option>
+                                </select>
+                                <img src="../../assets/images/arr_d.svg" alt="">
+                            </span>
+                            <span class="sel_tue2"> 
+                                <select>
+                                    <option></option>
+                                </select>
+                                <img src="../../assets/images/arr_d.svg" alt="">
+                            </span>
+                            <span>&#215;</span>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -7,9 +7,9 @@ body,
   height: 100%;
 }
 
-*{
+/* *{
   flex-wrap: wrap;
-}
+} */
 
 /* header  */
 .header {
@@ -1305,8 +1305,12 @@ input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-right: 0.8rem;
+  margin-right: 2rem;
   margin-left: 1rem;
+}
+
+.t2_low_ue_cont{
+  width: 100%;
 }
 
 .p_brand {
@@ -1349,7 +1353,7 @@ input {
 }
 
 .table_inner {
-  padding-right: 7rem;
+  padding-right: 2rem;
   padding-left: 1rem;
 }
 
