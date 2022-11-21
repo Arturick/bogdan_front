@@ -20,20 +20,22 @@
                         <div class="btn_more_a">ПО API</div>
                         <div class="btn_more_a">Добавить</div>
                     </div>
-                    <div class="minTable_my">
-                        <div class="minTable_my_params">
-                            <div class="minTable_my_param">Фото</div>
-                            <div class="minTable_my_param">Бренд</div>
-                            <div class="minTable_my_param">Артикул</div>
-                            <div class="minTable_my_param">Цена WB</div>
-                        </div>
-                        <div class="line_pr_myMin">
-                            <div class="myMin_inner">
-                                <span><img src="../../assets/images/pr_img.svg" alt="">
-                                </span>
-                                <span>BRAND</span>
-                                <span>78858215</span>
-                                <span>271 ₽</span>
+                    <div class="table_cont_md">
+                        <div class="minTable_my">
+                            <div class="minTable_my_params">
+                                <div class="minTable_my_param">Фото</div>
+                                <div class="minTable_my_param">Бренд</div>
+                                <div class="minTable_my_param">Артикул</div>
+                                <div class="minTable_my_param">Цена WB</div>
+                            </div>
+                            <div class="line_pr_myMin">
+                                <div class="myMin_inner">
+                                    <span><img src="../../assets/images/pr_img.svg" alt="">
+                                    </span>
+                                    <span>BRAND</span>
+                                    <span>78858215</span>
+                                    <span>271 ₽</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -46,20 +48,22 @@
                         <input type="text" class="inp_my_comp" placeholder="Введите артикул или ссылку на товар">
                         <div class="btn_more_a">Добавить</div>
                     </div>
-                    <div class="minTable_my">
-                        <div class="minTable_my_params">
-                            <div class="minTable_my_param">Фото</div>
-                            <div class="minTable_my_param">Бренд</div>
-                            <div class="minTable_my_param">Артикул</div>
-                            <div class="minTable_my_param">Цена WB</div>
-                        </div>
-                        <div class="line_pr_myMin">
-                            <div class="myMin_inner">
-                                <span><img src="../../assets/images/pr_img.svg" alt="">
-                                </span>
-                                <span>BRAND</span>
-                                <span>78858215</span>
-                                <span>271 ₽</span>
+                    <div class="table_cont_md">
+                        <div class="minTable_my">
+                            <div class="minTable_my_params">
+                                <div class="minTable_my_param">Фото</div>
+                                <div class="minTable_my_param">Бренд</div>
+                                <div class="minTable_my_param">Артикул</div>
+                                <div class="minTable_my_param">Цена WB</div>
+                            </div>
+                            <div class="line_pr_myMin">
+                                <div class="myMin_inner">
+                                    <span><img src="../../assets/images/pr_img.svg" alt="">
+                                    </span>
+                                    <span>BRAND</span>
+                                    <span>78858215</span>
+                                    <span>271 ₽</span>
+                                </div>
                             </div>
                         </div>
                     </div>

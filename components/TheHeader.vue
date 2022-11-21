@@ -309,6 +309,10 @@ export default {
   background-color: #CFD8DC;
 } */
 
+.menu__box li{
+  margin-top: 1rem;
+}
+
 @media screen and (max-device-width: 768px){
   .menu__btn{
     display: flex;

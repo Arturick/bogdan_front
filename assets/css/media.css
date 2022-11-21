@@ -49,6 +49,12 @@
 		max-height: 0px;
 		overflow: hidden;
 	}
+
+	.btns_inps_my{
+		width: 100%;
+		flex-wrap: wrap;
+		padding-top: 1rem;
+	}
 }
 
 @media only screen and (max-width : 600px) {
@@ -89,6 +95,12 @@
 
 	.progress__wrap:before {
 		display: none;
+	}
+
+	.l2_title_btn{
+		width: 100%;
+		flex-wrap: wrap;
+		padding-bottom: 1rem;
 	}
 
 }
@@ -136,10 +148,22 @@
 	/**/
 }
 
-@media screen and (max-device-width: 480px){
-  body{
-    -webkit-text-size-adjust: none;
-  }
+@media screen and (max-device-width: 480px) {
+	body {
+		-webkit-text-size-adjust: none;
+	}
+
+	.comp_my {
+		width: 100%;
+	}
+	
+	.low_props_md{
+		justify-content: space-between;
+	}
+
+	.inp_Ue{
+		width: 100%;
+	}
 }
 
 @media screen and (max-device-width: 1023px){
@@ -147,9 +171,9 @@
 		width: 1024px;
 		
 	}
-	.l2_sales,.l3_sales{
+	/* .l2_sales,.l3_sales{
 		overflow: scroll;
-	}
+	} */
 
 	.a_stat{
 		flex-direction: column;
@@ -170,6 +194,10 @@
 	.t2_low_ue_cont{
 		overflow: scroll;
 	}
+
+	.yPr_block{
+		width: 70%;
+	}
 	
 }
 
@@ -181,12 +209,37 @@
 	}
 
 	.comp_my,.comp_other{
-		width: 100%;
-		overflow: scroll;
+		width: 70%;
+		
 	}
 
 	.table_new_wrap{
 		width: 100%;
+	}
+}
+
+
+
+@media screen and (max-device-width: 737px){
+	.btn_more_a{
+		margin-top: 1rem;
+	}
+
+	.infoPr_a2{
+		justify-content: space-between;
+		flex-wrap: wrap;
+		height: auto;
+	}
+
+
+	.graf_a2{
+		height: 250px;
+	}
+}
+
+@media screen and (max-device-width: 513px){
+	.infoPr_txt_a2{
+		margin-left: 0rem;
 	}
 }
 
@@ -222,6 +275,13 @@
 		justify-content: flex-start;
 		margin-bottom: 1rem;
 	}
+
+	.graf_infoPr_a2{
+		height: auto;
+	}
+	.infoPr_txt_a2{
+		margin-left: 1rem;
+	}
   }
 
   @media screen and (max-device-width: 767px){
@@ -245,6 +305,14 @@
 
 	.chart_inner{
 		flex-direction: column;
+	}
+  }
+
+  @media screen and (max-device-width: 499px){
+	.sales_params{
+		width: 100%;
+		flex-wrap: wrap;
+		padding-bottom: 1rem;
 	}
   }
 

@@ -22,176 +22,182 @@
                     <span>Тип продаж: FBS</span>
                 </div>
             </div>
-            <div class="table_c2">
-                <div class="tc2_params">
-                    <span>Бренд</span>
-                    <span>Фото</span>
-                    <span>Артикул</span>
-                    <span>Цена</span>
-                    <span>Запрос</span>
-                    <span>Частотность WB</span>
-                    <span>Товаров на WB</span>
-                    <span>25.07</span>
-                </div>
-                <div class="tablec2">
-                    <div class="table_c2_inner">
-                        <div class="table_c2_line">
-                            <div>
-                                <img src="../../assets/images/logo_brand.svg" alt="">
-                            </div>
-                            <div>
-                                <img src="../../assets/images/pr_img.svg" alt="">
-                            </div>
-                            <div>78858215</div>
-                            <div>271 ₽</div>
-                            <div>Футболка женская</div>
-                            <div>150</div>
-                            <div>150</div>
-                            <div>77</div>
-                        </div>
-                        <div class="table_c2_line">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div>Футболка оверсайз</div>
-                            <div>150</div>
-                            <div>150</div>
-                            <div>77</div>
-                        </div>
-                        <div class="table_c2_line">
-                            <div>
-                                
-                            </div>
-                            <div>
-                                
-                            </div>
-                            <div></div>
-                            <div></div>
-                            <div>Футболка женская оверсайз</div>
-                            <div>150</div>
-                            <div>150</div>
-                            <div>77</div>
-                        </div>
-                        <div class="table_c2_line">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div>Футболка женская</div>
-                            <div>150</div>
-                            <div>150</div>
-                            <div>77</div>
-                        </div>
-                        <div class="table_c2_line">
-                            <div>
-                            </div>
-                            <div>
-                            </div>
-                            <div></div>
-                            <div></div>
-                            <div>Футболка женская</div>
-                            <div>150</div>
-                            <div>150</div>
-                            <div>77</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="table_c3">
-                    <div class="yPr_title">Ваш товар</div>
-                    <div class="yPr_block">
-                        <img src="../../assets/images/pr_img.svg" alt="">
-                        <div class="yPr_txt">
-                            <span>Продавец: ИП Михалюк Н. С.</span>
-                            <span>SKU: 78858215</span>
-                            <span>Бренд: Nenaglyada</span>
-                            <span>Тип продаж: FBS</span>
-                        </div>
-                    </div>
                 <div class="table_c2">
-                <div class="tc2_params">
-                    <span>Бренд</span>
-                    <span>Фото</span>
-                    <span>Артикул</span>
-                    <span>Цена</span>
-                    <span>Запрос</span>
-                    <span>Частотность WB</span>
-                    <span>Товаров на WB</span>
-                    <span>25.07</span>
-                </div>
-                <div class="tablec2">
-                    <div class="table_c2_inner">
-                        <div class="table_c2_line">
-                            <div>
-                                <img src="../../assets/images/logo_brand.svg" alt="">
+                    <div class="table_cont_md">
+                        <div class="tcomp_con">
+                            <div class="tc2_params">
+                                <span>Бренд</span>
+                                <span>Фото</span>
+                                <span>Артикул</span>
+                                <span>Цена</span>
+                                <span>Запрос</span>
+                                <span>Частотность WB</span>
+                                <span>Товаров на WB</span>
+                                <span>25.07</span>
                             </div>
-                            <div>
-                                <img src="../../assets/images/pr_img.svg" alt="">
+                            <div class="tablec2">
+                                <div class="table_c2_inner">
+                                    <div class="table_c2_line">
+                                        <div>
+                                            <img src="../../assets/images/logo_brand.svg" alt="">
+                                        </div>
+                                        <div>
+                                            <img src="../../assets/images/pr_img.svg" alt="">
+                                        </div>
+                                        <div>78858215</div>
+                                        <div>271 ₽</div>
+                                        <div>Футболка женская</div>
+                                        <div>150</div>
+                                        <div>150</div>
+                                        <div>77</div>
+                                    </div>
+                                    <div class="table_c2_line">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div>Футболка оверсайз</div>
+                                        <div>150</div>
+                                        <div>150</div>
+                                        <div>77</div>
+                                    </div>
+                                    <div class="table_c2_line">
+                                        <div>
+                                            
+                                        </div>
+                                        <div>
+                                            
+                                        </div>
+                                        <div></div>
+                                        <div></div>
+                                        <div>Футболка женская оверсайз</div>
+                                        <div>150</div>
+                                        <div>150</div>
+                                        <div>77</div>
+                                    </div>
+                                    <div class="table_c2_line">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div>Футболка женская</div>
+                                        <div>150</div>
+                                        <div>150</div>
+                                        <div>77</div>
+                                    </div>
+                                    <div class="table_c2_line">
+                                        <div>
+                                        </div>
+                                        <div>
+                                        </div>
+                                        <div></div>
+                                        <div></div>
+                                        <div>Футболка женская</div>
+                                        <div>150</div>
+                                        <div>150</div>
+                                        <div>77</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div>78858215</div>
-                            <div>271 ₽</div>
-                            <div>Футболка женская</div>
-                            <div>150</div>
-                            <div>150</div>
-                            <div>78</div>
                         </div>
-                        <div class="table_c2_line">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div>Футболка оверсайз</div>
-                            <div>150</div>
-                            <div>150</div>
-                            <div>78</div>
+                    </div>
+                    <div class="table_c3">
+                        <div class="yPr_title">Ваш товар</div>
+                        <div class="yPr_block">
+                            <img src="../../assets/images/pr_img.svg" alt="">
+                            <div class="yPr_txt">
+                                <span>Продавец: ИП Михалюк Н. С.</span>
+                                <span>SKU: 78858215</span>
+                                <span>Бренд: Nenaglyada</span>
+                                <span>Тип продаж: FBS</span>
+                            </div>
                         </div>
-                        <div class="table_c2_line">
-                            <div>
-                                
+                    <div class="table_c2">
+                        <div class="tcomp_con">
+                            <div class="tc2_params">
+                                <span>Бренд</span>
+                                <span>Фото</span>
+                                <span>Артикул</span>
+                                <span>Цена</span>
+                                <span>Запрос</span>
+                                <span>Частотность WB</span>
+                                <span>Товаров на WB</span>
+                                <span>25.07</span>
                             </div>
-                            <div>
-                                
+                            <div class="tablec2">
+                                <div class="table_c2_inner">
+                                    <div class="table_c2_line">
+                                        <div>
+                                            <img src="../../assets/images/logo_brand.svg" alt="">
+                                        </div>
+                                        <div>
+                                            <img src="../../assets/images/pr_img.svg" alt="">
+                                        </div>
+                                        <div>78858215</div>
+                                        <div>271 ₽</div>
+                                        <div>Футболка женская</div>
+                                        <div>150</div>
+                                        <div>150</div>
+                                        <div>78</div>
+                                    </div>
+                                    <div class="table_c2_line">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div>Футболка оверсайз</div>
+                                        <div>150</div>
+                                        <div>150</div>
+                                        <div>78</div>
+                                    </div>
+                                    <div class="table_c2_line">
+                                        <div>
+                                            
+                                        </div>
+                                        <div>
+                                            
+                                        </div>
+                                        <div></div>
+                                        <div></div>
+                                        <div>Футболка женская оверсайз</div>
+                                        <div>150</div>
+                                        <div>150</div>
+                                        <div>78</div>
+                                    </div>
+                                    <div class="table_c2_line">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div>Футболка женская</div>
+                                        <div>150</div>
+                                        <div>150</div>
+                                        <div>78</div>
+                                    </div>
+                                    <div class="table_c2_line">
+                                        <div>
+                                        </div>
+                                        <div>
+                                        </div>
+                                        <div></div>
+                                        <div></div>
+                                        <div>Футболка женская</div>
+                                        <div>150</div>
+                                        <div>150</div>
+                                        <div>78</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div></div>
-                            <div></div>
-                            <div>Футболка женская оверсайз</div>
-                            <div>150</div>
-                            <div>150</div>
-                            <div>78</div>
-                        </div>
-                        <div class="table_c2_line">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div>Футболка женская</div>
-                            <div>150</div>
-                            <div>150</div>
-                            <div>78</div>
-                        </div>
-                        <div class="table_c2_line">
-                            <div>
-                            </div>
-                            <div>
-                            </div>
-                            <div></div>
-                            <div></div>
-                            <div>Футболка женская</div>
-                            <div>150</div>
-                            <div>150</div>
-                            <div>78</div>
                         </div>
                     </div>
                 </div>
+                <div class="new_c2_title">Отличия и рекомендации</div>
+                <div class="new_c2_sup">Ваш тоавар по высокочастотным ключевым запросам находиться, выше, Но имеет меньше ключевых<br> слов чем у вашего конкурента, но цена у вашего конкурента ниже. остаток, у вас больше, но ваш<br>  конкурент, торгует по FBO.
                 </div>
-            </div>
-            <div class="new_c2_title">Отличия и рекомендации</div>
-            <div class="new_c2_sup">Ваш тоавар по высокочастотным ключевым запросам находиться, выше, Но имеет меньше ключевых<br> слов чем у вашего конкурента, но цена у вашего конкурента ниже. остаток, у вас больше, но ваш<br>  конкурент, торгует по FBO.
-            </div>
-            <div class="new_c2_sup">
-                Мы рекомендовали бы, отгрузить товары на FBO и по работать с ценой. Для более детально аналите,<br>  обратитесь к нашему менеджеру.
-            </div>
-        </div>
+                <div class="new_c2_sup">
+                    Мы рекомендовали бы, отгрузить товары на FBO и по работать с ценой. Для более детально аналите,<br>  обратитесь к нашему менеджеру.
+                </div>
+                </div>
         <div class="down_btn_c3">
                 <div class="btn_more_a">Заполнить форму</div>
             </div>

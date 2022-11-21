@@ -1,7 +1,7 @@
 body,
 .rate-app {
   font-family: 'Montserrat', sans-serif;
-  background: #F5F5F5;
+  background: #FFFF;
   color: #000;
   font-size: 100%;
   height: 100%;
@@ -720,7 +720,7 @@ body,
 
 body {
   font-family: 'Montserrat', sans-serif;
-  background: #F5F5F5;
+  background: #FFFF;
   color: #000;
   font-size: 100%;
 }
@@ -1565,9 +1565,13 @@ input {
 }
 
 .yPr_block{
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
   width: 30%;
+  align-items: center; */
+  width: 450px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -1589,7 +1593,8 @@ input {
 /* Table c2 */
 
 .table_c2{
-  width: 960px;
+  width: 100%;
+  overflow: scroll;
 }
 
 .tc2_params{
@@ -1664,12 +1669,12 @@ input {
 color: #00A888;}
 
 
-.table_c3 .yPr_block{
+/* .table_c3 .yPr_block{
  width: 45%;
  display: flex;
  justify-content: space-between;
  align-items: center;
-}
+} */
 
 .table_c3 .table_c2_line div:nth-child(8){color: #FF7E7E;}
 
@@ -1939,6 +1944,7 @@ color: #00A888;}
   justify-content: space-between;
   align-items: center;
   width: 80%;
+  flex-wrap: wrap;
 }
 
 .btn_u{
@@ -1966,6 +1972,7 @@ color: #00A888;}
 .u_sup{
   font-size: 13px;
   font-weight: 500;
+  margin-bottom: 1rem;
 }
 
 .table_new_wrap{
@@ -2005,6 +2012,7 @@ color: #00A888;}
   justify-content: space-between;
   align-items: center;
   width: 50%;
+  flex-wrap: wrap;
 }
 
 .ue_sup22{
@@ -2509,6 +2517,32 @@ color: #00A888;}
   color: #000;
   width: 90px;
 }
+
+/* table container */
+
+.table_cont_md{
+  width: 100%;
+  overflow: scroll;
+}
+
+.table_cont_md2 .table_sales{
+  width: 1300px;
+}
+
+.table_cont_md2 .table_inner{
+  padding-right: 7rem;
+}
+
+.table_cont_md2{
+  overflow: scroll;
+  width: 100%;
+}
+
+.tcomp_con{
+  width: 960px;
+}
+
+
 
 
 
