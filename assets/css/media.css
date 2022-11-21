@@ -166,6 +166,32 @@
 	}
 }
 
+
+
+@media screen and (max-device-width: 1535px){
+
+	.btns_inps_my{
+		flex-wrap: wrap;
+	}
+
+	.btn_more_a{
+		margin-top: 0.5rem;
+	}
+
+	.comp_my{
+		width: 45%;
+		
+	}
+
+	.comp_other{
+		width: 40%;
+	}
+
+	.table_new_wrap{
+		width: 100%;
+	}
+}
+
 @media screen and (max-device-width: 1023px){
 	.table_sales{
 		width: 1024px;
@@ -174,6 +200,16 @@
 	/* .l2_sales,.l3_sales{
 		overflow: scroll;
 	} */
+
+	.comparison_prs{
+		flex-direction: column;
+		align-items: flex-start;
+		width: 100%;
+	}
+
+	.comp_my,.comp_other{
+		width: 100%;
+	}
 
 	.a_stat{
 		flex-direction: column;
@@ -199,23 +235,6 @@
 		width: 70%;
 	}
 	
-}
-
-@media screen and (max-device-width: 1535px){
-	.comparison_prs{
-		flex-direction: column;
-		align-items: flex-start;
-		width: 100%;
-	}
-
-	.comp_my,.comp_other{
-		width: 70%;
-		
-	}
-
-	.table_new_wrap{
-		width: 100%;
-	}
 }
 
 
