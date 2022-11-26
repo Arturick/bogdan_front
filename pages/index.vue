@@ -13,13 +13,13 @@
         <div class="chart_inner">
           <div class="chart_info_inn">
             <span class="ch_gr">Количество заказов</span>
-            <span>25 шт.</span>
+            <span>{{this.order.count}}шт</span>
             <span class="ch_gr">Сумма заказов</span>
-            <span>6422 ₽</span>
+            <span>{{this.order.total}}₽</span>
             <span class="ch_gr">Количество продаж</span>
-            <span>25 шт.</span>
+            <span>{{this.product.count}}шт.</span>
             <span class="ch_gr">Сумма продаж</span>
-            <span>6422 ₽</span>
+            <span>{{this.product.total}}₽</span>
           </div>
           <div class="chart_cont">
             <ChartSale :categories="chart.categories" :series="chart.series"></ChartSale>
@@ -31,54 +31,260 @@
       <div class="news_main">
         <div class="news_inner">
           <div class="news_title">Новости</div>
-          <div class="new_main">
-            <div class="new_txt">
-              <div class="new_title">Wildberries ввел платную поставку товаров
+          <div class="news_cont_main">
+            <div class="new_main">
+              <div class="new_txt">
+                <div class="new_title">Wildberries ввел платную поставку товаров
+                </div>
+                <div class="new_sup">
+                  Сегодня утром, поступила новость что wildberries ввел платную поставку на складах в колледино
+                  электросталь и подольск!
+                </div>
               </div>
-              <div class="new_sup">
-                Сегодня утром, поступила новость что wildberries ввел платную поставку на складах в колледино
-                электросталь и подольск!
-              </div>
-            </div>
-            <div class="new_left">
-              <div class="nLeft_time">27.06.2022 20:47</div>
-              <div class="btn_more">
-                Подробнее
-                <img src="../assets/images/btn_more.svg" alt="">
-              </div>
-            </div>
-          </div>
-          <div class="new_main">
-            <div class="new_txt">
-              <div class="new_title">Wildberries ввел платную поставку товаров
-              </div>
-              <div class="new_sup">
-                Сегодня утром, поступила новость что wildberries ввел платную поставку на складах в колледино
-                электросталь и подольск!
+              <div class="new_left">
+                <div class="nLeft_time">27.06.2022 20:47</div>
+                <div class="btn_more">
+                  Подробнее
+                  <img src="../assets/images/btn_more.svg" alt="">
+                </div>
               </div>
             </div>
-            <div class="new_left">
-              <div class="nLeft_time">27.06.2022 20:47</div>
-              <div class="btn_more">
-                Подробнее
-                <img src="../assets/images/btn_more.svg" alt="">
+            <div class="new_main">
+              <div class="new_txt">
+                <div class="new_title">Wildberries ввел платную поставку товаров
+                </div>
+                <div class="new_sup">
+                  Сегодня утром, поступила новость что wildberries ввел платную поставку на складах в колледино
+                  электросталь и подольск!
+                </div>
+              </div>
+              <div class="new_left">
+                <div class="nLeft_time">27.06.2022 20:47</div>
+                <div class="btn_more">
+                  Подробнее
+                  <img src="../assets/images/btn_more.svg" alt="">
+                </div>
               </div>
             </div>
-          </div>
-          <div class="new_main">
-            <div class="new_txt">
-              <div class="new_title">Wildberries ввел платную поставку товаров
+            <div class="new_main">
+              <div class="new_txt">
+                <div class="new_title">Wildberries ввел платную поставку товаров
+                </div>
+                <div class="new_sup">
+                  Сегодня утром, поступила новость что wildberries ввел платную поставку на складах в колледино
+                  электросталь и подольск!
+                </div>
               </div>
-              <div class="new_sup">
-                Сегодня утром, поступила новость что wildberries ввел платную поставку на складах в колледино
-                электросталь и подольск!
+              <div class="new_left">
+                <div class="nLeft_time">27.06.2022 20:47</div>
+                <div class="btn_more">
+                  Подробнее
+                  <img src="../assets/images/btn_more.svg" alt="">
+                </div>
               </div>
             </div>
-            <div class="new_left">
-              <div class="nLeft_time">27.06.2022 20:47</div>
-              <div class="btn_more">
-                Подробнее
-                <img src="../assets/images/btn_more.svg" alt="">
+            <div class="new_main">
+              <div class="new_txt">
+                <div class="new_title">Wildberries ввел платную поставку товаров
+                </div>
+                <div class="new_sup">
+                  Сегодня утром, поступила новость что wildberries ввел платную поставку на складах в колледино
+                  электросталь и подольск!
+                </div>
+              </div>
+              <div class="new_left">
+                <div class="nLeft_time">27.06.2022 20:47</div>
+                <div class="btn_more">
+                  Подробнее
+                  <img src="../assets/images/btn_more.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="new_main">
+              <div class="new_txt">
+                <div class="new_title">Wildberries ввел платную поставку товаров
+                </div>
+                <div class="new_sup">
+                  Сегодня утром, поступила новость что wildberries ввел платную поставку на складах в колледино
+                  электросталь и подольск!
+                </div>
+              </div>
+              <div class="new_left">
+                <div class="nLeft_time">27.06.2022 20:47</div>
+                <div class="btn_more">
+                  Подробнее
+                  <img src="../assets/images/btn_more.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="new_main">
+              <div class="new_txt">
+                <div class="new_title">Wildberries ввел платную поставку товаров
+                </div>
+                <div class="new_sup">
+                  Сегодня утром, поступила новость что wildberries ввел платную поставку на складах в колледино
+                  электросталь и подольск!
+                </div>
+              </div>
+              <div class="new_left">
+                <div class="nLeft_time">27.06.2022 20:47</div>
+                <div class="btn_more">
+                  Подробнее
+                  <img src="../assets/images/btn_more.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="new_main">
+              <div class="new_txt">
+                <div class="new_title">Wildberries ввел платную поставку товаров
+                </div>
+                <div class="new_sup">
+                  Сегодня утром, поступила новость что wildberries ввел платную поставку на складах в колледино
+                  электросталь и подольск!
+                </div>
+              </div>
+              <div class="new_left">
+                <div class="nLeft_time">27.06.2022 20:47</div>
+                <div class="btn_more">
+                  Подробнее
+                  <img src="../assets/images/btn_more.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="new_main">
+              <div class="new_txt">
+                <div class="new_title">Wildberries ввел платную поставку товаров
+                </div>
+                <div class="new_sup">
+                  Сегодня утром, поступила новость что wildberries ввел платную поставку на складах в колледино
+                  электросталь и подольск!
+                </div>
+              </div>
+              <div class="new_left">
+                <div class="nLeft_time">27.06.2022 20:47</div>
+                <div class="btn_more">
+                  Подробнее
+                  <img src="../assets/images/btn_more.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="new_main">
+              <div class="new_txt">
+                <div class="new_title">Wildberries ввел платную поставку товаров
+                </div>
+                <div class="new_sup">
+                  Сегодня утром, поступила новость что wildberries ввел платную поставку на складах в колледино
+                  электросталь и подольск!
+                </div>
+              </div>
+              <div class="new_left">
+                <div class="nLeft_time">27.06.2022 20:47</div>
+                <div class="btn_more">
+                  Подробнее
+                  <img src="../assets/images/btn_more.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="new_main">
+              <div class="new_txt">
+                <div class="new_title">Wildberries ввел платную поставку товаров
+                </div>
+                <div class="new_sup">
+                  Сегодня утром, поступила новость что wildberries ввел платную поставку на складах в колледино
+                  электросталь и подольск!
+                </div>
+              </div>
+              <div class="new_left">
+                <div class="nLeft_time">27.06.2022 20:47</div>
+                <div class="btn_more">
+                  Подробнее
+                  <img src="../assets/images/btn_more.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="new_main">
+              <div class="new_txt">
+                <div class="new_title">Wildberries ввел платную поставку товаров
+                </div>
+                <div class="new_sup">
+                  Сегодня утром, поступила новость что wildberries ввел платную поставку на складах в колледино
+                  электросталь и подольск!
+                </div>
+              </div>
+              <div class="new_left">
+                <div class="nLeft_time">27.06.2022 20:47</div>
+                <div class="btn_more">
+                  Подробнее
+                  <img src="../assets/images/btn_more.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="new_main">
+              <div class="new_txt">
+                <div class="new_title">Wildberries ввел платную поставку товаров
+                </div>
+                <div class="new_sup">
+                  Сегодня утром, поступила новость что wildberries ввел платную поставку на складах в колледино
+                  электросталь и подольск!
+                </div>
+              </div>
+              <div class="new_left">
+                <div class="nLeft_time">27.06.2022 20:47</div>
+                <div class="btn_more">
+                  Подробнее
+                  <img src="../assets/images/btn_more.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="new_main">
+              <div class="new_txt">
+                <div class="new_title">Wildberries ввел платную поставку товаров
+                </div>
+                <div class="new_sup">
+                  Сегодня утром, поступила новость что wildberries ввел платную поставку на складах в колледино
+                  электросталь и подольск!
+                </div>
+              </div>
+              <div class="new_left">
+                <div class="nLeft_time">27.06.2022 20:47</div>
+                <div class="btn_more">
+                  Подробнее
+                  <img src="../assets/images/btn_more.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="new_main">
+              <div class="new_txt">
+                <div class="new_title">Wildberries ввел платную поставку товаров
+                </div>
+                <div class="new_sup">
+                  Сегодня утром, поступила новость что wildberries ввел платную поставку на складах в колледино
+                  электросталь и подольск!
+                </div>
+              </div>
+              <div class="new_left">
+                <div class="nLeft_time">27.06.2022 20:47</div>
+                <div class="btn_more">
+                  Подробнее
+                  <img src="../assets/images/btn_more.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="new_main">
+              <div class="new_txt">
+                <div class="new_title">Wildberries ввел платную поставку товаров
+                </div>
+                <div class="new_sup">
+                  Сегодня утром, поступила новость что wildberries ввел платную поставку на складах в колледино
+                  электросталь и подольск!
+                </div>
+              </div>
+              <div class="new_left">
+                <div class="nLeft_time">27.06.2022 20:47</div>
+                <div class="btn_more">
+                  Подробнее
+                  <img src="../assets/images/btn_more.svg" alt="">
+                </div>
               </div>
             </div>
           </div>
@@ -87,45 +293,20 @@
       <div class="orders_main">
         <div class="orders_inner">
           <div class="orders_title">Лента заказов</div>
-          <div class="order">
-            <div class="order_txt">
-              📦 Товар: «2857588» Заказан.<br>
-              📆 Дата выкупа: 2022-06-27 20:44:38<br>
-              💳 Стоимость товара составила: 2622 ₽<br>
-            </div>
-            <div class="order_left">
-              <div class="nLeft_time">27.06.2022 20:47</div>
-              <div class="btn_more">
-                Подробнее
-                <img src="../assets/images/btn_more.svg" alt="">
+          <div class="1" v-for="product in order.products">
+            <div class="order" v-for="productDate in product">
+
+              <div class="order_txt">
+                📦 Товар: «{{productDate.article}}» Заказан.<br>
+                📆 Дата выкупа: 2022-06-27 20:44:38<br>
+                💳 Стоимость товара составила: {{productDate.price}} ₽<br>
               </div>
-            </div>
-          </div>
-          <div class="order">
-            <div class="order_txt">
-              📦 Товар: «2857588» Заказан.<br>
-              📆 Дата выкупа: 2022-06-27 20:44:38<br>
-              💳 Стоимость товара составила: 2622 ₽<br>
-            </div>
-            <div class="order_left">
-              <div class="nLeft_time">27.06.2022 20:47</div>
-              <div class="btn_more">
-                Подробнее
-                <img src="../assets/images/btn_more.svg" alt="">
-              </div>
-            </div>
-          </div>
-          <div class="order">
-            <div class="order_txt">
-              📦 Товар: «2857588» Заказан.<br>
-              📆 Дата выкупа: 2022-06-27 20:44:38<br>
-              💳 Стоимость товара составила: 2622 ₽<br>
-            </div>
-            <div class="order_left">
-              <div class="nLeft_time">27.06.2022 20:47</div>
-              <div class="btn_more">
-                Подробнее
-                <img src="../assets/images/btn_more.svg" alt="">
+              <div class="order_left">
+                <div class="nLeft_time">{{productDate.date}}</div>
+                <div class="btn_more">
+                  Подробнее
+                  <img src="../assets/images/btn_more.svg" alt="">
+                </div>
               </div>
             </div>
           </div>
@@ -190,7 +371,9 @@ export default {
             name: 'Продажи'
           },
         ],
-      }
+      },
+      product: {count: 0, total: 0, products: {}},
+      order: {count: 0, total: 0, products: {}}
     }
   },
   methods: {
@@ -201,9 +384,25 @@ export default {
         this.loadingResultsInSearch = false
       })
     },
+
+    getStatic(){
+      this.$store.dispatch('request/get_seller_data', {token: "N2NiNGVjMGItZDMxZi00ZDIyLTg0NmEtOTI5MTQ4ODQ3YTBh", dateFrom: "2022-11-01", flag: '0'}).then((x) => {
+        if(x.data.success){
+          this.product = x.data['product'];
+        }
+        console.log(x);
+      });
+      this.$store.dispatch('request/get_order_data', {token: "N2NiNGVjMGItZDMxZi00ZDIyLTg0NmEtOTI5MTQ4ODQ3YTBh", dateFrom: "2022-11-01", flag: '0'}).then((x) => {
+        if(x.data.success){
+          this.order = x.data['product'];
+        }
+        console.log(x);
+      });
+    }
   },
   mounted() {
     this.getPositions()
+    this.getStatic();
   },
 }
 </script>

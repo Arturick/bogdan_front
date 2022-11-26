@@ -12,7 +12,20 @@ export default {
 
   set_timeisout({ commit }, timeIsOut) {
     commit('SET_TIMEISOUT', timeIsOut)
-  },  
+  },
+
+
+//get_economy
+
+  get_economy({ commit }, state) {
+    return new Promise((resolve, reject) => {
+      this.$axios
+        .post('report', state)
+        .then((x) => {
+          resolve(x)
+        })
+    })
+  },
 
 
 
@@ -26,7 +39,25 @@ export default {
     })
   },
 
+  get_seller_data({commit}, state){
+    return new Promise((resolve, reject) => {
+      this.$axios
+        .post('seller', state)
+        .then((x) => {
+          resolve(x)
+        })
+    })
+  },
 
+  get_order_data({commit}, state){
+    return new Promise((resolve, reject) => {
+      this.$axios
+        .post('order', state)
+        .then((x) => {
+          resolve(x)
+        })
+    })
+  },
 
   get_fastinfo({ commit }) {
     return new Promise((resolve, reject) => {
@@ -252,7 +283,7 @@ export default {
           resolve(x)
         })
     })
-  },  
+  },
   dadata_search({ commit }, state) {
     return new Promise((resolve, reject) => {
       this.$axios

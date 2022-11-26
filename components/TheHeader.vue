@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white">
+    <div class="bg-white" style="border-bottom: 2px solid #E2EEFE;">
         <div class="md:container md:mx-auto">
             <div class="md:px-2.5 md:py-7 px-2.5 py-4">
                 <div class="md:flex  md:justify-between up_head_bl">

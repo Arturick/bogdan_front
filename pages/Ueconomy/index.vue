@@ -18,7 +18,7 @@
                 </div>
                 <div class="btn_u">Посмотреть по всем</div>
             </div>
-            <input type="text" class="inp_Ue" placeholder="Поиск по баркоду, артикулу поставщика, бренду"> 
+            <input type="text" class="inp_Ue" placeholder="Поиск по баркоду, артикулу поставщика, бренду">
             <div class="table_new_wrap">
                 <div class="table_md">
                 <div class="tmd_params">
@@ -31,317 +31,25 @@
                             <span>Цена WB</span>
                         </div>
                         <div class="tmd_lines">
+                          <div class="1" v-for="pr in product">
                             <div class="tmd_line">
                                 <div class="tmd_line_inner">
                                     <span>
-                                        <img src="../../assets/images/pr_img.svg" alt="">
+                                        <img :src="pr['img']" alt="">
                                     </span>
-                                    <span>BRAND</span>
-                                    <span>78858215</span>
+                                    <span>{{pr['brand']}}</span>
+                                    <span>{{pr['nm_id']}}</span>
                                     <span>S</span>
-                                    <span>7885821511582</span>
-                                    <span>artikul_12941529</span>
-                                    <span>271 ₽</span>
+                                    <span>{{pr['barcode']}}</span>
+                                    <span>{{pr['nm_id']}}</span>
+                                    <span>{{pr['price']}}</span>
                                     <!--  -->
-                                    <NuxtLink to="/Ueconomy/Ue-sales" >
+                                    <NuxtLink :to="'/Ueconomy/Ue-sales?article=' + pr['nm_id']" >
                                         <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt="">
                                     </NuxtLink>
                                 </div>
                             </div>
-                            <div class="tmd_line">
-                                <div class="tmd_line_inner">
-                                    <span>
-                                        <img src="../../assets/images/pr_img2.svg" alt="">
-                                    </span>
-                                    <span>BRAND</span>
-                                    <span>78858215</span>
-                                    <span>XS</span>
-                                    <span>7885821511582</span>
-                                    <span>artikul_12941529</span>
-                                    <span>271 ₽</span>
-                                    <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt="">
-                                </div>
-                            </div>
-                            <div class="tmd_line">
-                                <div class="tmd_line_inner">
-                                    <span>
-                                        <img src="../../assets/images/pr_img.svg" alt="">
-                                    </span>
-                                    <span>BRAND</span>
-                                    <span>78858215</span>
-                                    <span>L</span>
-                                    <span>7885821511582</span>
-                                    <span>artikul_12941529</span>
-                                    <span>271 ₽</span>
-                                    <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt="">
-                                </div>
-                            </div>
-                            <div class="tmd_line">
-                                <div class="tmd_line_inner">
-                                    <span>
-                                        <img src="../../assets/images/pr_img3.svg" alt="">
-                                    </span>
-                                    <span>BRAND</span>
-                                    <span>78858215</span>
-                                    <span>M</span>
-                                    <span>7885821511582</span>
-                                    <span>artikul_12941529</span>
-                                    <span>271 ₽</span>
-                                    <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt="">
-                                </div>
-                            </div>
-                            <div class="tmd_line">
-                                <div class="tmd_line_inner">
-                                    <span>
-                                        <img src="../../assets/images/pr_img2.svg" alt="">
-                                    </span>
-                                    <span>BRAND</span>
-                                    <span>78858215</span>
-                                    <span>S</span>
-                                    <span>7885821511582</span>
-                                    <span>artikul_12941529</span>
-                                    <span>271 ₽</span>
-                                    <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt=""> 
-                                </div>
-                            </div>
-                            <div class="tmd_line">
-                                <div class="tmd_line_inner">
-                                    <span>
-                                        <img src="../../assets/images/pr_img.svg" alt="">
-                                    </span>
-                                    <span>BRAND</span>
-                                    <span>78858215</span>
-                                    <span>M</span>
-                                    <span>7885821511582</span>
-                                    <span>artikul_12941529</span>
-                                    <span>271 ₽</span>
-                                    <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt=""> 
-                                </div>
-                            </div>
-                            <div class="tmd_line">
-                                <div class="tmd_line_inner">
-                                    <span>
-                                        <img src="../../assets/images/pr_img.svg" alt="">
-                                    </span>
-                                    <span>BRAND</span>
-                                    <span>78858215</span>
-                                    <span>S</span>
-                                    <span>7885821511582</span>
-                                    <span>artikul_12941529</span>
-                                    <span>271 ₽</span>
-                                    <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt=""> 
-                                </div>
-                            </div>
-                            <div class="tmd_line">
-                                <div class="tmd_line_inner">
-                                    <span>
-                                        <img src="../../assets/images/pr_img.svg" alt="">
-                                    </span>
-                                    <span>BRAND</span>
-                                    <span>78858215</span>
-                                    <span>S</span>
-                                    <span>7885821511582</span>
-                                    <span>artikul_12941529</span>
-                                    <span>271 ₽</span>
-                                    <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt=""> 
-                                </div>
-                            </div>
-                            <div class="tmd_line">
-                                <div class="tmd_line_inner">
-                                    <span>
-                                        <img src="../../assets/images/pr_img.svg" alt="">
-                                    </span>
-                                    <span>BRAND</span>
-                                    <span>78858215</span>
-                                    <span>S</span>
-                                    <span>7885821511582</span>
-                                    <span>artikul_12941529</span>
-                                    <span>271 ₽</span>
-                                    <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt=""> 
-                                </div>
-                            </div>
-                            <div class="tmd_line">
-                                <div class="tmd_line_inner">
-                                    <span>
-                                        <img src="../../assets/images/pr_img.svg" alt="">
-                                    </span>
-                                    <span>BRAND</span>
-                                    <span>78858215</span>
-                                    <span>S</span>
-                                    <span>7885821511582</span>
-                                    <span>artikul_12941529</span>
-                                    <span>271 ₽</span>
-                                    <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt=""> 
-                                </div>
-                            </div>
-                            <div class="tmd_line">
-                                <div class="tmd_line_inner">
-                                    <span>
-                                        <img src="../../assets/images/pr_img.svg" alt="">
-                                    </span>
-                                    <span>BRAND</span>
-                                    <span>78858215</span>
-                                    <span>S</span>
-                                    <span>7885821511582</span>
-                                    <span>artikul_12941529</span>
-                                    <span>271 ₽</span>
-                                    <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt=""> 
-                                </div>
-                            </div>
-                            <div class="tmd_line">
-                                <div class="tmd_line_inner">
-                                    <span>
-                                        <img src="../../assets/images/pr_img.svg" alt="">
-                                    </span>
-                                    <span>BRAND</span>
-                                    <span>78858215</span>
-                                    <span>S</span>
-                                    <span>7885821511582</span>
-                                    <span>artikul_12941529</span>
-                                    <span>271 ₽</span>
-                                    <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt=""> 
-                                </div>
-                            </div>
-                            <div class="tmd_line">
-                                <div class="tmd_line_inner">
-                                    <span>
-                                        <img src="../../assets/images/pr_img.svg" alt="">
-                                    </span>
-                                    <span>BRAND</span>
-                                    <span>78858215</span>
-                                    <span>S</span>
-                                    <span>7885821511582</span>
-                                    <span>artikul_12941529</span>
-                                    <span>271 ₽</span>
-                                    <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt=""> 
-                                </div>
-                            </div>
-                            <div class="tmd_line">
-                                <div class="tmd_line_inner">
-                                    <span>
-                                        <img src="../../assets/images/pr_img.svg" alt="">
-                                    </span>
-                                    <span>BRAND</span>
-                                    <span>78858215</span>
-                                    <span>S</span>
-                                    <span>7885821511582</span>
-                                    <span>artikul_12941529</span>
-                                    <span>271 ₽</span>
-                                    <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt=""> 
-                                </div>
-                            </div>
-                            <div class="tmd_line">
-                                <div class="tmd_line_inner">
-                                    <span>
-                                        <img src="../../assets/images/pr_img.svg" alt="">
-                                    </span>
-                                    <span>BRAND</span>
-                                    <span>78858215</span>
-                                    <span>S</span>
-                                    <span>7885821511582</span>
-                                    <span>artikul_12941529</span>
-                                    <span>271 ₽</span>
-                                    <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt=""> 
-                                </div>
-                            </div>
-                            <div class="tmd_line">
-                                <div class="tmd_line_inner">
-                                    <span>
-                                        <img src="../../assets/images/pr_img.svg" alt="">
-                                    </span>
-                                    <span>BRAND</span>
-                                    <span>78858215</span>
-                                    <span>S</span>
-                                    <span>7885821511582</span>
-                                    <span>artikul_12941529</span>
-                                    <span>271 ₽</span>
-                                    <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt=""> 
-                                </div>
-                            </div>
-                            <div class="tmd_line">
-                                <div class="tmd_line_inner">
-                                    <span>
-                                        <img src="../../assets/images/pr_img.svg" alt="">
-                                    </span>
-                                    <span>BRAND</span>
-                                    <span>78858215</span>
-                                    <span>S</span>
-                                    <span>7885821511582</span>
-                                    <span>artikul_12941529</span>
-                                    <span>271 ₽</span>
-                                    <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt=""> 
-                                </div>
-                            </div>
-                            <div class="tmd_line">
-                                <div class="tmd_line_inner">
-                                    <span>
-                                        <img src="../../assets/images/pr_img.svg" alt="">
-                                    </span>
-                                    <span>BRAND</span>
-                                    <span>78858215</span>
-                                    <span>S</span>
-                                    <span>7885821511582</span>
-                                    <span>artikul_12941529</span>
-                                    <span>271 ₽</span>
-                                    <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt=""> 
-                                </div>
-                            </div>
-                            <div class="tmd_line">
-                                <div class="tmd_line_inner">
-                                    <span>
-                                        <img src="../../assets/images/pr_img.svg" alt="">
-                                    </span>
-                                    <span>BRAND</span>
-                                    <span>78858215</span>
-                                    <span>S</span>
-                                    <span>7885821511582</span>
-                                    <span>artikul_12941529</span>
-                                    <span>271 ₽</span>
-                                    <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt=""> 
-                                </div>
-                            </div>
-                            <div class="tmd_line">
-                                <div class="tmd_line_inner">
-                                    <span>
-                                        <img src="../../assets/images/pr_img.svg" alt="">
-                                    </span>
-                                    <span>BRAND</span>
-                                    <span>78858215</span>
-                                    <span>S</span>
-                                    <span>7885821511582</span>
-                                    <span>artikul_12941529</span>
-                                    <span>271 ₽</span>
-                                    <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt=""> 
-                                </div>
-                            </div>
-                            <div class="tmd_line">
-                                <div class="tmd_line_inner">
-                                    <span>
-                                        <img src="../../assets/images/pr_img.svg" alt="">
-                                    </span>
-                                    <span>BRAND</span>
-                                    <span>78858215</span>
-                                    <span>S</span>
-                                    <span>7885821511582</span>
-                                    <span>artikul_12941529</span>
-                                    <span>271 ₽</span>
-                                    <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt=""> 
-                                </div>
-                            </div>
-                            <div class="tmd_line">
-                                <div class="tmd_line_inner">
-                                    <span>
-                                        <img src="../../assets/images/pr_img.svg" alt="">
-                                    </span>
-                                    <span>BRAND</span>
-                                    <span>78858215</span>
-                                    <span>S</span>
-                                    <span>7885821511582</span>
-                                    <span>artikul_12941529</span>
-                                    <span>271 ₽</span>
-                                    <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt=""> 
-                                </div>
-                            </div>
+                          </div>
                         </div>
                     </div>
                     <div class="low_props_md">
@@ -425,7 +133,7 @@
                                 </select>
                                 <img src="../../assets/images/arr_d.svg" alt="">
                             </span>
-                            <span class="sel_tue2"> 
+                            <span class="sel_tue2">
                                 <select>
                                     <option></option>
                                 </select>
@@ -439,3 +147,34 @@
         </div>
     </div>
 </template>
+<script>
+  export default {
+    components: {},
+    data() {
+      return {
+
+        product: {},
+
+      }
+    },
+    methods: {
+      getStatic(){
+        let localDate = new Date();
+        let today = new Date();
+        localDate = new Date(new Date().getTime() - (31 *86400000));
+        localDate = `${localDate.getFullYear()}-${localDate.getMonth()}-${localDate.getDate()}`;
+        today= `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
+        this.$store.dispatch('request/get_economy', {token: "YjY1M2UwNGEtMGJmNS00ZTZhLWFmYWYtMDdhMDc3OTk3ZWU5", dateFrom: localDate, dateTo: today}).then((x) => {
+          if(x.data.success){
+            this.product = x.data['product'];
+          }
+          console.log(this.product);
+        });
+
+      }
+    },
+    mounted() {
+      this.getStatic();
+    },
+  }
+</script>

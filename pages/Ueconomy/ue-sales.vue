@@ -22,10 +22,10 @@
             </div>
             <div class="title_ues">Продажи товара artikul_12941529</div>
             <div class="sales_params">
-                <div class="today">За сегодня</div>
-                <div class="yesterday">Вчера</div>
-                <div class="week">7 дней</div>
-                <div class="month">Месяц</div>
+              <button class="today"  @click="() => {getStatic(1)}">За сегодня</button>
+              <button class="yesterday"  @click="() => {getStatic(2)}">Вчера</button>
+              <button class="week"  @click="() => {getStatic(3)}">7 дней</button>
+              <button class="month"  @click="() => {getStatic(4)}">Месяц</button>
             </div>
             <div class="table_stat_ues">
                 <div class="l1_st_ues">
@@ -84,35 +84,34 @@
                         <span>Цена со скидкой</span>
                     </div>
                 </div>
-                <div class="l3_st_ues">
+                <div v-if="product[article]" class="l3_st_ues">
                     <div class="bl_pr_ues">
                         <span>
-                            <img src="../../assets/images/pr_img.svg" alt="">
+                            <img :src="product[article]['img']" alt="">
                         </span>
-                        <span>BRAND</span>
-                        <span>artikul_12941529</span>
-                        <span>7885821511582</span>
+                        <span>{{product[article]['brand']}}</span>
+                        <span>{{product[article]['nm_id']}}</span>
+                        <span>{{product[article]['barcode']}}</span>
                         <span>78858215</span>
                         <span>S</span>
                         <span>Категория товаров</span>
                         <span></span>
                     </div>
                     <div class="bl_sales_ues">
-                        <span>110 000р</span>
-                        <span>10</span>
-                        <span>90 000</span>
+                        <span>{{product[article]['priceBuy']}}</span>
+                        <span>{{product[article]['countBuy']}}</span>
+                        <span>{{product[article]['priceRetail']}}</span>
                     </div>
                     <div class="bl_returns_ues">
-                        <span>20 000</span>
-                        <span>2</span>
+                      <span>{{product[article]['priceRetail']}}</span>
+                      <span>{{product[article]['countRetail']}}</span>
                     </div>
                     <div class="bl_log_ues">
-                        <span>150р</span>
-                        <span>210р</span>
+                      <span>{{product[article]['logic']}}</span>
                     </div>
                     <div class="bl_com_ues">
                         <span>0р</span>
-                        <span>1000р</span>
+                      <span>{{product[article]['report']}}</span>
                     </div>
                     <div class="bl_exp_ues">
                         <span>-1500р</span>
@@ -126,23 +125,62 @@
                         <span>A кат</span>
                     </div>
                     <div class="bl_price_ues">
-                        <span>15 000р</span>
-                        <span>25%</span>
-                        <span>10 000р</span>
+                      <span>{{product[article]['priceRetail']}}</span>
+                      <span>{{product[article]['discount']}}</span>
+                        <span>{{ +product[article]['price'] -  ((+product[article]['price'] * +product[article]['discount']) / 100)}}</span>
                     </div>
                 </div>
             </div>
-            <div class="txt_ues">
-                Общее количество:  &nbsp;<span>1 артикула, 9 шт</span><br>  
-                Сумма продаж:  &nbsp;<span>110 000₽</span><br>  
-                Возвраты: &nbsp;<span>20 000Р</span><br>  
-                Комиссия: &nbsp;<span>1000р</span><br>   
-                Логистика к клиенту и от клиента: &nbsp;<span>360р</span><br>  
-                Себестоимость товаров: &nbsp;<span>N рублей</span><br>  
-                Прочие статьи расходов: &nbsp;<span>30 000 р</span><br>  
-                <span>Итого: 60 00р</span><br> 
-                <span>ПРИБЫЛЬ С ТОВРАРА: 50 000р</span>
+            <div  v-if="product[article]"  class="txt_ues">
+                Общее количество:  &nbsp;<span>1 артикула, {{product[article]['countBuy']}} шт</span><br>
+                Сумма продаж:  &nbsp;<span>{{product[article]['priceBuy']}}₽</span><br>
+                Возвраты: &nbsp;<span>{{product[article]['priceRetail']}}Р</span><br>
+                Комиссия: &nbsp;<span>1000р</span><br>
+                Логистика к клиенту и от клиента: &nbsp;<span>{{product[article]['logic']}}р</span><br>
+                Себестоимость товаров: &nbsp;<span>N рублей</span><br>
+                <span>Итого: {{+product[article]['priceBuy'] - (+product[article]['logic']) - (+product[article]['priceRetail'])}}₽</span><br>
+                <span>ПРИБЫЛЬ С ТОВРАРА: {{+product[article]['priceBuy'] - (+product[article]['logic']) - (+product[article]['priceRetail'])}}₽</span>
             </div>
         </div>
     </div>
 </template>
+<script>
+  import Button from "../../components/Button";
+  export default {
+    components: {Button},
+    data() {
+      return {
+        product: {},
+        article: this.$route.query.article
+      }
+    },
+    methods: {
+      getStatic(type){
+        let localDate = new Date();
+        let today = new Date();
+        if(type == 3){
+          localDate = new Date(new Date().getTime() - (7 *86400000));
+        } else if(type == 4){
+          localDate = new Date(new Date().getTime() - (31 *86400000));
+        } else if(type == 2){
+          localDate = new Date(new Date().getTime() - (1 *86400000));
+        }
+        localDate = `${localDate.getFullYear()}-${localDate.getMonth()}-${localDate.getDate()}`;
+        today= `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
+
+        this.$store.dispatch('request/get_economy', {token: "YjY1M2UwNGEtMGJmNS00ZTZhLWFmYWYtMDdhMDc3OTk3ZWU5", dateFrom: localDate, dateTo: today, article: this.article}).then((x) => {
+          if(x.data.success){
+            this.product = x.data['product'];
+          }
+          console.log(this.product);
+        });
+      }
+    },
+    mounted() {
+      this.getStatic(4);
+      console.log(this.$route);
+    },
+  }
+</script>
+
+
