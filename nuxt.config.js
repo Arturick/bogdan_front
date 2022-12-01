@@ -102,14 +102,14 @@ export default {
           maxAge: 60 * 60 * 24 * 7,
         },
         endpoints: {
-          login: { url: "/api/sms/check/", method: "post" },
-          logout: { url: "/auth/logout.php", method: "post" },
+          login: { url: "/login", method: "post" },
+          logout: { url: "/logout", method: "post" },
           user: false
         }
       }
     },
   },
   router: {
-    // middleware: ['auth']
+    middleware: ['auth']
   },
 }

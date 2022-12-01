@@ -1306,9 +1306,12 @@ input {
   margin-bottom: 1rem;
 }
 
-.today {
-  color: #195AF6;
+.active_date{
   border-bottom: 3px solid #195AF6;
+  color: #195AF6;
+}
+
+.today {
 }
 
 .table_sales_params {

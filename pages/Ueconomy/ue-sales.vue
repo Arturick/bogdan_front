@@ -84,34 +84,33 @@
                         <span>Цена со скидкой</span>
                     </div>
                 </div>
-                <div v-if="product[article]" class="l3_st_ues">
+                <div v-if="true" class="l3_st_ues">
                     <div class="bl_pr_ues">
                         <span>
-                            <img :src="product[article]['img']" alt="">
+                            <img :src="product['img']" alt="">
                         </span>
-                        <span>{{product[article]['brand']}}</span>
-                        <span>{{product[article]['nm_id']}}</span>
-                        <span>{{product[article]['barcode']}}</span>
+                        <span>{{product['brand']}}</span>
+                        <span>{{product['article']}}</span>
+                        <span>{{product['barcode']}}</span>
                         <span>78858215</span>
-                        <span>S</span>
-                        <span>Категория товаров</span>
+                        <span>{{product['size']}}</span>
                         <span></span>
                     </div>
                     <div class="bl_sales_ues">
-                        <span>{{product[article]['priceBuy']}}</span>
-                        <span>{{product[article]['countBuy']}}</span>
-                        <span>{{product[article]['priceRetail']}}</span>
+                        <span>{{product['price']}}</span>
+                        <span>{{product['countBuy']}}</span>
+                        <span>{{product['price']}}</span>
                     </div>
                     <div class="bl_returns_ues">
-                      <span>{{product[article]['priceRetail']}}</span>
-                      <span>{{product[article]['countRetail']}}</span>
+                      <span>{{product['price']}}</span>
+                      <span>{{product['countRetail']}}</span>
                     </div>
                     <div class="bl_log_ues">
-                      <span>{{product[article]['logic']}}</span>
+                      <span>{{product['logic']}}</span>
                     </div>
                     <div class="bl_com_ues">
                         <span>0р</span>
-                      <span>{{product[article]['report']}}</span>
+                      <span>{{product['com_wb']}}</span>
                     </div>
                     <div class="bl_exp_ues">
                         <span>-1500р</span>
@@ -125,21 +124,21 @@
                         <span>A кат</span>
                     </div>
                     <div class="bl_price_ues">
-                      <span>{{product[article]['priceRetail']}}</span>
-                      <span>{{product[article]['discount']}}</span>
-                        <span>{{ +product[article]['price'] -  ((+product[article]['price'] * +product[article]['discount']) / 100)}}</span>
+                      <span>{{product['priceRetail']}}</span>
+                      <span>{{product['discount']}}</span>
+                        <span>{{ +product['price'] -  ((+product['price'] * +product['discount']) / 100)}}</span>
                     </div>
                 </div>
             </div>
             <div  v-if="product[article]"  class="txt_ues">
-                Общее количество:  &nbsp;<span>1 артикула, {{product[article]['countBuy']}} шт</span><br>
-                Сумма продаж:  &nbsp;<span>{{product[article]['priceBuy']}}₽</span><br>
-                Возвраты: &nbsp;<span>{{product[article]['priceRetail']}}Р</span><br>
+                Общее количество:  &nbsp;<span>1 артикула, {{product['countBuy']}} шт</span><br>
+                Сумма продаж:  &nbsp;<span>{{product['priceBuy']}}₽</span><br>
+                Возвраты: &nbsp;<span>{{product['priceRetail']}}Р</span><br>
                 Комиссия: &nbsp;<span>1000р</span><br>
-                Логистика к клиенту и от клиента: &nbsp;<span>{{product[article]['logic']}}р</span><br>
+                Логистика к клиенту и от клиента: &nbsp;<span>{{product['logic']}}р</span><br>
                 Себестоимость товаров: &nbsp;<span>N рублей</span><br>
-                <span>Итого: {{+product[article]['priceBuy'] - (+product[article]['logic']) - (+product[article]['priceRetail'])}}₽</span><br>
-                <span>ПРИБЫЛЬ С ТОВРАРА: {{+product[article]['priceBuy'] - (+product[article]['logic']) - (+product[article]['priceRetail'])}}₽</span>
+                <span>Итого: {{+product['priceBuy'] - (+product['logic']) - (+product['priceRetail'])}}₽</span><br>
+                <span>ПРИБЫЛЬ С ТОВРАРА: {{+product['priceBuy'] - (+product['logic']) - (+product['priceRetail'])}}₽</span>
             </div>
         </div>
     </div>
@@ -167,10 +166,13 @@
         }
         localDate = `${localDate.getFullYear()}-${localDate.getMonth()}-${localDate.getDate()}`;
         today= `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
-
-        this.$store.dispatch('request/get_economy', {token: "YjY1M2UwNGEtMGJmNS00ZTZhLWFmYWYtMDdhMDc3OTk3ZWU5", dateFrom: localDate, dateTo: today, article: this.article}).then((x) => {
+        let task1 = +window.localStorage.getItem('task1'),
+          token = +window.localStorage.getItem('access');
+        console.log(this.article);
+        this.$store.dispatch('request/get_economy', {task1: task1, access: token, type: 4, article: this.article}).then((x) => {
           if(x.data.success){
-            this.product = x.data['product'];
+            this.product = x.data['product']['products'][0];
+
           }
           console.log(this.product);
         });

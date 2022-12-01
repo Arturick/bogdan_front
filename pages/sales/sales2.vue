@@ -34,78 +34,47 @@
                             </label>
                         </div>
                         <div class="table_info">
-                            <div class="table_inner">
-                                <div class="line_info_sales">
-                                    <div class="i_brand">Nenaglyada</div>
-                                    <div class="i_date">33.03.2033</div>
+                          <div v-if="type == 1">
+                            <div v-for="pr in product.products" class="table_inner">
+
+                              <div class="line_info_sales">
+                                    <div class="i_brand">{{pr['brand']}}</div>
+                                    <div class="i_date">{{pr['date_seller']}}}</div>
                                     <div class="i_img">
-                                        <img src="../../assets/images/pr_img.svg" alt="">
+                                        <img :src="pr['img']" alt="">
                                     </div>
-                                    <div class="i_name">Футболка женская оверсайз....</div>
-                                    <div class="i_art">12312312312</div>
-                                    <div class="i_count">3 шт</div>
-                                    <div class="i_sale">30%</div>
-                                    <div class="i_price">1 350 руб</div>
+                                    <div class="i_name">{{pr['naming']}}</div>
+                                    <div class="i_art">{{pr['article']}}</div>
+                                    <div class="i_count">{{pr['count']}}</div>
+                                    <div class="i_sale">{{pr['discount']}}</div>
+                                    <div class="i_price">{{pr['price']}}</div>
                                     <div class="i_bad">1200 руб</div>
                                     <div class="i_commis">1200 руб</div>
-                                </div>
-                                <div class="line_info_sales">
-                                    <div class="i_brand">Nenaglyada</div>
-                                    <div class="i_date">33.03.2033</div>
-                                    <div class="i_img">
-                                        <img src="../../assets/images/pr_img.svg" alt="">
-                                    </div>
-                                    <div class="i_name">Футболка женская оверсайз....</div>
-                                    <div class="i_art">12312312312</div>
-                                    <div class="i_count">3 шт</div>
-                                    <div class="i_sale">30%</div>
-                                    <div class="i_price">1 350 руб</div>
-                                    <div class="i_bad">1200 руб</div>
-                                    <div class="i_commis">1200 руб</div>
-                                </div>
-                                <div class="line_info_sales">
-                                    <div class="i_brand">Nenaglyada</div>
-                                    <div class="i_date">33.03.2033</div>
-                                    <div class="i_img">
-                                        <img src="../../assets/images/pr_img.svg" alt="">
-                                    </div>
-                                    <div class="i_name">Футболка женская оверсайз....</div>
-                                    <div class="i_art">12312312312</div>
-                                    <div class="i_count">3 шт</div>
-                                    <div class="i_sale">30%</div>
-                                    <div class="i_price">1 350 руб</div>
-                                    <div class="i_bad">1200 руб</div>
-                                    <div class="i_commis">1200 руб</div>
-                                </div>
-                                <div class="line_info_sales">
-                                    <div class="i_brand">Nenaglyada</div>
-                                    <div class="i_date">33.03.2033</div>
-                                    <div class="i_img">
-                                        <img src="../../assets/images/pr_img.svg" alt="">
-                                    </div>
-                                    <div class="i_name">Футболка женская оверсайз....</div>
-                                    <div class="i_art">12312312312</div>
-                                    <div class="i_count">3 шт</div>
-                                    <div class="i_sale">30%</div>
-                                    <div class="i_price">1 350 руб</div>
-                                    <div class="i_bad">1200 руб</div>
-                                    <div class="i_commis">1200 руб</div>
-                                </div>
-                                <div class="line_info_sales">
-                                    <div class="i_brand">Nenaglyada</div>
-                                    <div class="i_date">33.03.2033</div>
-                                    <div class="i_img">
-                                        <img src="../../assets/images/pr_img.svg" alt="">
-                                    </div>
-                                    <div class="i_name">Футболка женская оверсайз....</div>
-                                    <div class="i_art">12312312312</div>
-                                    <div class="i_count">3 шт</div>
-                                    <div class="i_sale">30%</div>
-                                    <div class="i_price">1 350 руб</div>
-                                    <div class="i_bad">1200 руб</div>
-                                    <div class="i_commis">1200 руб</div>
-                                </div>
+                              </div>
+
                             </div>
+                          </div>
+                          <div v-else >
+                            <div v-for="pr in order.products" class="table_inner">
+
+                              <div class="line_info_sales">
+                                <div class="i_brand">{{pr['brand']}}</div>
+                                <div class="i_date">{{pr['date_seller']}}}</div>
+                                <div class="i_img">
+                                  <img :src="pr['img']" alt="">
+                                </div>
+                                <div class="i_name">{{pr['naming']}}</div>
+                                <div class="i_art">{{pr['article']}}</div>
+                                <div class="i_count">{{pr['count']}}</div>
+                                <div class="i_sale">{{pr['discount']}}</div>
+                                <div class="i_price">{{pr['price']}}</div>
+                                <div class="i_bad">1200 руб</div>
+                                <div class="i_commis">1200 руб</div>
+                              </div>
+
+                            </div>
+
+                          </div>
                         </div>
                     </div>
                 </div>
@@ -144,21 +113,28 @@
         product: {count: 0, total: 0, products: {}},
         order: {count: 0, total: 0, products: {}},
         date: this.$route.query.date.split(' ')[0],
+        article: this.$route.query.article,
         type: this.$route.query.type == '1' ? 'Продажи' : 'Заказы',
 
       }
     },
     methods: {
       getStatic(){
-        this.$store.dispatch('request/get_seller_data', {token: "N2NiNGVjMGItZDMxZi00ZDIyLTg0NmEtOTI5MTQ4ODQ3YTBh", dateFrom: this.date, flag: '1'}).then((x) => {
+        let task1 = +window.localStorage.getItem('task1'),
+          token = window.localStorage.getItem('access');
+        this.$store.dispatch('request/get_seller_data', {task1: task1, access: token, dateFrom: '2022-11-01', flag: false, type: 4, date: this.date, article: this.article}).then((x) => {
           if(x.data.success){
-            this.product = x.data['product'];
+            this.product.products = x.data['product']['products'];
+            this.product.count = x.data['product']['count'][0]['cnt'];
+            this.product.total = x.data['product']['total'][0]['cnt'];
           }
           console.log(this.product);
         });
-        this.$store.dispatch('request/get_order_data', {token: "N2NiNGVjMGItZDMxZi00ZDIyLTg0NmEtOTI5MTQ4ODQ3YTBh", dateFrom: this.date, flag: '1'}).then((x) => {
+        this.$store.dispatch('request/get_order_data', {task1: task1, access: token, dateFrom: '2022-11-01', flag: false, type: 4, date: this.date, article: this.article}).then((x) => {
           if(x.data.success){
-            this.order = x.data['product'];
+            this.order.products = x.data['product']['products'];
+            this.order.count = x.data['product']['count'][0]['cnt'];
+            this.order.total = x.data['product']['total'][0]['cnt'];
           }
           console.log(this.order);
         });

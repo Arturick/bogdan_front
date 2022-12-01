@@ -32,23 +32,23 @@
                         </div>
                         <div class="table_info">
                             <div class="table_inner">
-                              <div class="1" v-for="pr in product.products">
-                                <div class="line_info_sales" v-for="productDate in pr">
-                                    <div class="i_brand">{{productDate['brand']}}</div>
-                                    <div class="i_date">{{productDate['date']}}</div>
+                              <div class="line_info_sales" v-for="pr in product.products">
+
+                                    <div class="i_brand">{{pr['brand']}}</div>
+                                    <div class="i_date">{{pr['date_seller']}}</div>
                                     <div class="i_img">
-                                        <img :src="productDate['img']" alt="">
+                                        <img :src="pr['img']" alt="">
                                     </div>
-                                    <div class="i_name">{{productDate['naming']}}</div>
-                                    <div class="i_art">{{productDate['article']}}</div>
-                                    <div class="i_count">{{productDate['count']}}</div>
-                                    <div class="i_sale">{{productDate['discountPercent']}}</div>
-                                    <div class="i_price">{{productDate['price']}} руб
-                                        <NuxtLink :to="'/sales/sales2/?date=' + productDate['date']+ '&type=0'" class="arrow_r">
+                                    <div class="i_name">{{pr['naming']}}</div>
+                                    <div class="i_art">{{pr['article']}}</div>
+                                    <div class="i_count">{{pr['count']}}</div>
+                                    <div class="i_sale">{{pr['discountPercent']}}</div>
+                                    <div class="i_price">{{pr['price']}} руб
+                                        <NuxtLink :to="'/sales/sales2/?date=' + pr['date_seller']+ '&article=' + pr['article'] + '&type=0'" class="arrow_r">
                                             <img  src="../../assets/images/arr_r.svg" alt="">
                                         </NuxtLink>
                                     </div>
-                                </div>
+
                               </div>
                             </div>
                         </div>
@@ -58,10 +58,10 @@
             <div class="l3_sales">
                 <div class="sales_title">Заказы товаров</div>
                 <div class="sales_params">
-                    <button @click="() => {getStatic(1)}" class="today">За сегодня</button>
-                    <button @click="() => {getStatic(2)}" class="yesterday">Вчера</button>
-                    <button @click="() => {getStatic(3)}" class="week">7 дней</button>
-                    <button @click="() => {getStatic(4)}" class="month">Месяц</button>
+                    <button @click="(e) => {getStatic(1); e.class == 'today active_date'}" class="today active_date">За сегодня</button>
+                    <button @click="(e) => {getStatic(2); e.class == 'today active_date'}" class="yesterday">Вчера</button>
+                    <button @click="(e) => {getStatic(3); e.class == 'today active_date'}" class="week">7 дней</button>
+                    <button @click="(e) => {getStatic(4); e.class == 'today active_date'}" class="month">Месяц</button>
                 </div>
                 <div class="sales_sup">В данном разделе вы можете увидеть свой анализ продаж,<br> есть возможные сортировки, за сегодня, за вчера, за 7<br>дней, за неделю, за месяц
                 </div>
@@ -79,23 +79,23 @@
                         </div>
                         <div class="table_info">
                             <div class="table_inner">
-                              <div class="1" v-for="pr in product.products">
-                                <div class="line_info_sales" v-for="productDate in pr">
-                                  <div class="i_brand">{{productDate['brand']}}</div>
-                                  <div class="i_date">{{productDate['date']}}</div>
+                              <div class="line_info_sales" v-for="pr in product.products">
+
+                                  <div class="i_brand">{{pr['brand']}}</div>
+                                  <div class="i_date">{{pr['date_seller']}}</div>
                                   <div class="i_img">
-                                    <img :src="productDate['img']" alt="">
+                                    <img :src="pr['img']" alt="">
                                   </div>
-                                  <div class="i_name">{{productDate['naming']}}</div>
-                                  <div class="i_art">{{productDate['article']}}</div>
-                                  <div class="i_count">{{productDate['count']}}</div>
-                                  <div class="i_sale">{{productDate['discountPercent']}}</div>
-                                  <div class="i_price">{{productDate['price']}} руб
-                                    <NuxtLink :to="'/sales/sales2/?date=' + productDate['date']+ '&type=1'" class="arrow_r">
+                                  <div class="i_name">{{pr['naming']}}</div>
+                                  <div class="i_art">{{pr['article']}}</div>
+                                  <div class="i_count">{{pr['count']}}</div>
+                                  <div class="i_sale">{{pr['discountPercent']}}</div>
+                                  <div class="i_price">{{pr['price']}} руб
+                                    <NuxtLink :to="'/sales/sales2/?date=' + pr['date_seller']+ '&article=' + pr['article'] + '&type=1'" class="arrow_r">
                                       <img  src="../../assets/images/arr_r.svg" alt="">
                                     </NuxtLink>
                                   </div>
-                                </div>
+
                               </div>
                             </div>
                         </div>
@@ -133,17 +133,23 @@
             flag = 0;
             break;
         }
+        let task1 = +window.localStorage.getItem('task1'),
+            token = +window.localStorage.getItem('access');
         localDate = `${localDate.getFullYear()}-${localDate.getMonth()}-${localDate.getDate()}`;
 
-        this.$store.dispatch('request/get_seller_data', {token: "N2NiNGVjMGItZDMxZi00ZDIyLTg0NmEtOTI5MTQ4ODQ3YTBh", dateFrom: localDate, flag: flag, type: type}).then((x) => {
+        this.$store.dispatch('request/get_seller_data', {task1: task1, access: token, dateFrom: localDate, flag: flag, type: type}).then((x) => {
           if(x.data.success){
-            this.product = x.data['product'];
+            this.product.products = x.data['product']['products'];
+            this.product.count = x.data['product']['count'][0]['cnt'];
+            this.product.total = x.data['product']['total'][0]['cnt'];
           }
           console.log(this.product);
         });
-        this.$store.dispatch('request/get_order_data', {token: "N2NiNGVjMGItZDMxZi00ZDIyLTg0NmEtOTI5MTQ4ODQ3YTBh", dateFrom: localDate, flag: flag, type: type}).then((x) => {
+        this.$store.dispatch('request/get_order_data', {task1: task1, access: token, dateFrom: localDate, flag: flag, type: type}).then((x) => {
           if(x.data.success){
-            this.order = x.data['product'];
+            this.order.products = x.data['product']['products'];
+            this.order.count = x.data['product']['count'][0]['cnt'];
+            this.order.total = x.data['product']['total'][0]['cnt'];
           }
           console.log(this.order);
         });

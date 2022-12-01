@@ -294,21 +294,20 @@
         <div class="orders_inner">
           <div class="orders_title">Лента заказов</div>
           <div class="1" v-for="product in order.products">
-            <div class="order" v-for="productDate in product">
 
               <div class="order_txt">
-                📦 Товар: «{{productDate.article}}» Заказан.<br>
+                📦 Товар: «{{product.article}}» Заказан.<br>
                 📆 Дата выкупа: 2022-06-27 20:44:38<br>
-                💳 Стоимость товара составила: {{productDate.price}} ₽<br>
+                💳 Стоимость товара составила: {{product.price}} ₽<br>
               </div>
               <div class="order_left">
-                <div class="nLeft_time">{{productDate.date}}</div>
+                <div class="nLeft_time">{{product.date}}</div>
                 <div class="btn_more">
                   Подробнее
                   <img src="../assets/images/btn_more.svg" alt="">
                 </div>
               </div>
-            </div>
+
           </div>
         </div>
       </div>
@@ -360,14 +359,14 @@ export default {
       resultsInSearch: {},
       loadingResultsInSearch: true,
       chart: {
-        categories: ['День 1', 'День 2', 'День 3', 'День 4', 'День 5', 'День 6', 'День 7'],
+        categories: [],
         series: [
           {
-            data: ['1', '2', '5', '1', '9', '21'],
+            data: [],
             name: 'Заказы'
           },
           {
-            data: ['5', '11', '3', '1', '2', '3'],
+            data: [],
             name: 'Продажи'
           },
         ],
@@ -377,32 +376,49 @@ export default {
     }
   },
   methods: {
-    getPositions() {
-      this.loadingResultsInSearch = true
-      this.$store.dispatch('request/get_positions').then((x) => {
-        this.resultsInSearch = x.data
-        this.loadingResultsInSearch = false
-      })
-    },
+
 
     getStatic(){
-      this.$store.dispatch('request/get_seller_data', {token: "N2NiNGVjMGItZDMxZi00ZDIyLTg0NmEtOTI5MTQ4ODQ3YTBh", dateFrom: "2022-11-01", flag: '0'}).then((x) => {
+      let newChart = { categories: [], series: [ {
+          data: [],
+          name: 'Заказы'
+        },
+          {
+            data: [],
+            name: 'Продажи'
+          },]}
+      let task1 = +window.localStorage.getItem('task1'),
+          token = +window.localStorage.getItem('access');
+      this.$store.dispatch('request/get_seller_data', {task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 4,}).then((x) => {
         if(x.data.success){
-          this.product = x.data['product'];
+          this.product.products = x.data['product']['products'];
+          this.product.count = x.data['product']['count'][0]['cnt'];
+          this.product.total = x.data['product']['total'][0]['cnt'];
+          this.product.products.map(i => {
+            console.log(2);
+            newChart.categories.push(i['date_seller']);
+            newChart.series[1].data.push(i['cnt']);
+          })
         }
-        console.log(x);
+        console.log(this.chart);
       });
-      this.$store.dispatch('request/get_order_data', {token: "N2NiNGVjMGItZDMxZi00ZDIyLTg0NmEtOTI5MTQ4ODQ3YTBh", dateFrom: "2022-11-01", flag: '0'}).then((x) => {
+      this.$store.dispatch('request/get_order_data', {task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 4,}).then((x) => {
         if(x.data.success){
-          this.order = x.data['product'];
+          this.order.products = x.data['product']['products'];
+          this.order.count = x.data['product']['count'][0]['cnt'];
+          this.order.total = x.data['product']['total'][0]['cnt'];
+          this.order.products.map(i => {
+            console.log(1);
+            newChart.series[0].data.push(i['cnt']);
+          })
         }
-        console.log(x);
+        console.log(this.chart);
+        this.chart = newChart;
       });
     }
   },
   mounted() {
-    this.getPositions()
     this.getStatic();
-  },
+    },
 }
 </script>

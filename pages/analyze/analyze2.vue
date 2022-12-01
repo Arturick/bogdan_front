@@ -12,14 +12,14 @@
                 <div class="infoPr_a2">
                     <img src="../../assets/images/pr_img.svg" alt="">
                     <div class="infoPr_txt_a2">
-                        <span>SKU: 78858215</span> 
-                        <span>Бренд: Nenaglyada</span> 
-                        <span>Тип продаж: FBS</span>  
-                        <span>Категория: Футболки и топы</span>  
-                        <span>Продаж: 950 000р за все время</span> 
-                        <span>Проадж (шт): 1000 шт</span> 
-                        <span>Рейтинг: 4,3</span> 
-                        <span>Прибыль за все время: 350 000р</span> 
+                        <span>SKU: 78858215</span>
+                        <span>Бренд: Nenaglyada</span>
+                        <span>Тип продаж: FBS</span>
+                        <span>Категория: Футболки и топы</span>
+                        <span>Продаж: 950 000р за все время</span>
+                        <span>Проадж (шт): 1000 шт</span>
+                        <span>Рейтинг: 4,3</span>
+                        <span>Прибыль за все время: 350 000р</span>
                     </div>
                 </div>
                 <div class="graf_a2">
@@ -32,13 +32,13 @@
                       <span>Запрос</span>
                       <span>Частотность WB</span>
                       <span>Товаров на WB</span>
-                      <span>25.07</span>
-                      <span>25.07</span>
-                      <span>25.07</span>
-                      <span>25.07</span>
-                      <span>25.07</span>
-                      <span>25.07</span>
-                      <span>25.07</span>
+                      <span>26.11</span>
+                      <span>27.11</span>
+                      <span>28.11</span>
+                      <span>29.11</span>
+                      <span>30.11</span>
+                      <span>01.11</span>
+                      <span>02.11</span>
                   </div>
                   <div class="tda2_inner">
                       <div class="tda2_line">
@@ -126,7 +126,9 @@ export default {
             name: 'Продажи'
           },
         ],
-      }
+      },
+      product: {},
+      article: this.$route.query.article,
     }
   },
   methods: {
@@ -137,9 +139,24 @@ export default {
         this.loadingResultsInSearch = false
       })
     },
+    getAnalyze(){
+      let localDate = new Date();
+      let today = new Date();
+      localDate = new Date(new Date().getTime() - (31 *86400000));
+      localDate = `${localDate.getFullYear()}-${localDate.getMonth()}-${localDate.getDate()}`;
+      today= `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
+      this.$store.dispatch('request/get_economy', {token: "YjY1M2UwNGEtMGJmNS00ZTZhLWFmYWYtMDdhMDc3OTk3ZWU5", dateFrom: localDate, dateTo: today}).then((x) => {
+        if(x.data.success){
+          this.product = x.data['product'];
+        }
+        console.log(this.product);
+      });
+
+    },
   },
   mounted() {
-    this.getPositions()
+    this.getPositions();
+    this.getAnalyze();
   },
 }
 </script>

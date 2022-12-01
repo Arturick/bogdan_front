@@ -38,6 +38,33 @@ export default {
         })
     })
   },
+  login_user({commit}, state){
+    return new Promise((resolve, reject) => {
+      this.$axios
+        .post('login', state)
+        .then((x) => {
+          resolve(x);
+        })
+    })
+  },
+  getProfile({commit}, state){
+    return new Promise((resolve, reject) => {
+      this.$axios
+        .post('getUser', state)
+        .then((x) => {
+          resolve(x);
+        })
+    })
+  },
+  saveProfile({commit}, state){
+    return new Promise((resolve, reject) => {
+      this.$axios
+        .post('updateProfile', state)
+        .then((x) => {
+          resolve(x);
+        })
+    })
+  },
 
   get_seller_data({commit}, state){
     return new Promise((resolve, reject) => {
