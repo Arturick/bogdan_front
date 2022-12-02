@@ -10,23 +10,30 @@
                 <div class="content-title content-title_2">Контакные данные</div>
                 <div>Данные требуются для формирования закрывающих документов.</div>
             </div>
-            <div class="mt-4">
+            <div style="display: block; width: 200px; margin-top: 15px">
+              <h2>Логин</h2>
+              <input type="text" style="width: 200px; height: 40px; border: 1px solid rgb(0, 168, 136); margin-right: 15px; margin-bottom: 15px" v-model="profile.name">
+              <h2>Фамилия</h2>
+              <input type="text" style="width: 200px; height: 40px; border: 1px solid rgb(0, 168, 136)" v-model="profile.surname">
+            </div>
+              <div class="mt-4">
                 <div class="md:grid md:grid-cols-3 gap-10 flex flex-wrap">
                 </div>
             </div>
 
 
-          <input type="text" v-model="profile.token" style="
-            width: 500px;
-            height: 50px;
-            border: solid 1px #00A888;
-          ">
 
-          <div class="mt-12">
-                <div class="content-title content-title_2">API ключ</div>
-                <div>Ключ нужен для того, чтобы вы могли удобно добовлять товары в работу</div>
+
+            <div class="mt-12">
+                  <div class="content-title content-title_2">API ключ</div>
+                  <div>Ключ нужен для того, чтобы вы могли удобно добовлять товары в работу</div>
 
             </div>
+            <input type="text" v-model="profile.token" style="
+              width: 500px;
+              height: 50px;
+              border: solid 1px #00A888;
+            ">
 
             <div class="mt-12">
                 <div class="content-title content-title_2">Связанный аккаунт TELEGRAM</div>

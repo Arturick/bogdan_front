@@ -41,8 +41,8 @@
                                     </div>
                                     <div class="i_name">{{pr['naming']}}</div>
                                     <div class="i_art">{{pr['article']}}</div>
-                                    <div class="i_count">{{pr['count']}}</div>
-                                    <div class="i_sale">{{pr['discountPercent']}}</div>
+                                    <div class="i_count">{{pr['cnt']}}</div>
+                                    <div class="i_sale">{{pr['discount']}}</div>
                                     <div class="i_price">{{pr['price']}} руб
                                         <NuxtLink :to="'/sales/sales2/?date=' + pr['date_seller']+ '&article=' + pr['article'] + '&type=0'" class="arrow_r">
                                             <img  src="../../assets/images/arr_r.svg" alt="">
@@ -88,8 +88,8 @@
                                   </div>
                                   <div class="i_name">{{pr['naming']}}</div>
                                   <div class="i_art">{{pr['article']}}</div>
-                                  <div class="i_count">{{pr['count']}}</div>
-                                  <div class="i_sale">{{pr['discountPercent']}}</div>
+                                  <div class="i_count">{{pr['cnt']}}</div>
+                                  <div class="i_sale">{{pr['discount']}}</div>
                                   <div class="i_price">{{pr['price']}} руб
                                     <NuxtLink :to="'/sales/sales2/?date=' + pr['date_seller']+ '&article=' + pr['article'] + '&type=1'" class="arrow_r">
                                       <img  src="../../assets/images/arr_r.svg" alt="">

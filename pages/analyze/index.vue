@@ -39,7 +39,7 @@
                                     </span>
                                         <span>{{pr['brand']}}</span>
                                         <span>{{pr['nm_id']}}</span>
-                                        <span>S</span>
+                                        <span>{{pr['size_product']}}</span>
                                         <span>{{pr['barcode']}}</span>
                                         <span>{{pr['nm_id']}}</span>
                                         <span>{{pr['price']}}</span>

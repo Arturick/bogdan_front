@@ -304,7 +304,10 @@
                 <div class="nLeft_time">{{product.date}}</div>
                 <div class="btn_more">
                   Подробнее
-                  <img src="../assets/images/btn_more.svg" alt="">
+                  <NuxtLink :to="'/sales/sales2/?date=' + product.date + '&article=' + product.article + '&type=2'" class="arrow_r">
+                    <img src="../assets/images/btn_more.svg" alt="">
+                  </NuxtLink>
+
                 </div>
               </div>
 
