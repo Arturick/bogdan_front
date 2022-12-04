@@ -7,19 +7,17 @@
                     <span>Главная /</span> Юнит экономика
                 </div>
             </div>
-            <div class="a2_title">Товар artikul_12941529</div>
+            <div class="a2_title">{{this.article}}</div>
             <div class="graf_infoPr_a2">
                 <div class="infoPr_a2">
                     <img src="../../assets/images/pr_img.svg" alt="">
-                    <div class="infoPr_txt_a2">
-                        <span>SKU: 78858215</span>
-                        <span>Бренд: Nenaglyada</span>
+                    <div class="infoPr_txt_a2" v-if="this.product.data">
+                        <span>SKU: {{this.article}}</span>
+                        <span>Бренд: {{this.product.data[0]['brand']}}</span>
                         <span>Тип продаж: FBS</span>
                         <span>Категория: Футболки и топы</span>
-                        <span>Продаж: 950 000р за все время</span>
-                        <span>Проадж (шт): 1000 шт</span>
-                        <span>Рейтинг: 4,3</span>
-                        <span>Прибыль за все время: 350 000р</span>
+                        <span>Продаж: {{this.product.data[0]['SUM(*)']}} за все время</span>
+                        <span>Проадж (шт): {{this.product.data[0]['cnt']}} шт</span>
                     </div>
                 </div>
                 <div class="graf_a2">
@@ -32,75 +30,18 @@
                       <span>Запрос</span>
                       <span>Частотность WB</span>
                       <span>Товаров на WB</span>
-                      <span>26.11</span>
-                      <span>27.11</span>
-                      <span>28.11</span>
-                      <span>29.11</span>
-                      <span>30.11</span>
-                      <span>01.11</span>
-                      <span>02.11</span>
+                      <span v-for="pr in product.dates">{{pr}}</span>
+
                   </div>
-                  <div class="tda2_inner">
-                      <div class="tda2_line">
-                          <span class="tda2_1">Футболка женская</span>
-                          <span>150</span>
-                          <span>150</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
+                  <div class="tda2_inner" v-if="product.products">
+                      <div class="tda2_line" v-for="pr in Object.keys(product.products)">
+                            <span class="tda2_1">{{pr}}</span>
+
+                            <span v-for="i in product.products[pr]">{{i}}</span>
+
+
                       </div>
-                      <div class="tda2_line">
-                          <span class="tda2_1">Футболка женская</span>
-                          <span>150</span>
-                          <span>150</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                      </div>
-                      <div class="tda2_line">
-                          <span class="tda2_1">Футболка женская</span>
-                          <span>150</span>
-                          <span>150</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                      </div>
-                      <div class="tda2_line">
-                          <span class="tda2_1">Футболка женская</span>
-                          <span>150</span>
-                          <span>150</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                      </div>
-                      <div class="tda2_line">
-                          <span class="tda2_1">Футболка женская</span>
-                          <span>150</span>
-                          <span>150</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                          <span>77</span>
-                      </div>
+
                   </div>
               </div>
             </div>
@@ -140,19 +81,44 @@ export default {
       })
     },
     getAnalyze(){
-      let localDate = new Date();
-      let today = new Date();
-      localDate = new Date(new Date().getTime() - (31 *86400000));
-      localDate = `${localDate.getFullYear()}-${localDate.getMonth()}-${localDate.getDate()}`;
-      today= `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
-      this.$store.dispatch('request/get_economy', {token: "YjY1M2UwNGEtMGJmNS00ZTZhLWFmYWYtMDdhMDc3OTk3ZWU5", dateFrom: localDate, dateTo: today}).then((x) => {
+      let access = window.localStorage.getItem('access');
+      this.$store.dispatch('request/getAnalyze', {access: access, article: this.article}).then((x) => {
         if(x.data.success){
-          this.product = x.data['product'];
+          this.product = x.data.product;
         }
-        console.log(this.product);
+        console.log(x);
+
+        let localchart = {
+          categories: [],
+          series: [
+            {
+              data: [],
+              name: 'Заказы'
+            },
+            {
+              data: [],
+              name: 'Продажи'
+            },
+          ],
+        }
+        let seller = this.product.seller[0];
+        let order = this.product.order[0];
+        seller.map(i => {
+          localchart.categories.push(i['date_seller']);
+          localchart.series[1].data.push(i['cnt']);
+        });
+        order.map(i => {
+          if(i['date_seller'] in localchart.categories){
+
+          } else {
+            localchart.categories.push(i['date_seller']);
+          }
+          localchart.series[0].data.push(i['cnt']);
+        });
+        this.chart = localchart;
       });
 
-    },
+      },
   },
   mounted() {
     this.getPositions();

@@ -38,6 +38,24 @@ export default {
         })
     })
   },
+  getByArticle({commit}, state){
+    return new Promise((resolve, reject) => {
+      this.$axios
+        .post('getByArticle', state)
+        .then((x) => {
+          resolve(x);
+        })
+    })
+  },
+  getCompetition({commit}, state){
+    return new Promise((resolve, reject) => {
+      this.$axios
+        .post('getCompetition', state)
+        .then((x) => {
+          resolve(x);
+        })
+    })
+  },
   login_user({commit}, state){
     return new Promise((resolve, reject) => {
       this.$axios
@@ -70,6 +88,16 @@ export default {
     return new Promise((resolve, reject) => {
       this.$axios
         .post('seller', state)
+        .then((x) => {
+          resolve(x)
+        })
+    })
+  },
+
+  getAnalyze({commit}, state){
+    return new Promise((resolve, reject) => {
+      this.$axios
+        .post('getAnalyze', state)
         .then((x) => {
           resolve(x)
         })

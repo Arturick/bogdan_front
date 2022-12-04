@@ -14,104 +14,65 @@
             </div>
             <div class="yPr_title">Ваш товар</div>
             <div class="yPr_block">
-                <img src="../../assets/images/pr_img.svg" alt="">
+                <img :src="this.product1.image" alt="">
                 <div class="yPr_txt">
-                    <span>Продавец: ИП Михалюк Н. С.</span>
-                    <span>SKU: 78858215</span>
-                    <span>Бренд: Nenaglyada</span>
+
+                    <span>SKU: {{this.product1.article}}</span>
+                    <span>Бренд: {{this.product1.brand}}</span>
                     <span>Тип продаж: FBS</span>
                 </div>
             </div>
                 <div class="table_c2">
-                    <div class="table_cont_md">
+                    <div class="table_cont_md" style="overflow: auto">
                         <div class="tcomp_con">
                             <div class="tc2_params">
-                                <span>Бренд</span>
+
                                 <span>Фото</span>
                                 <span>Артикул</span>
                                 <span>Цена</span>
                                 <span>Запрос</span>
-                                <span>Частотность WB</span>
-                                <span>Товаров на WB</span>
-                                <span>25.07</span>
+                                <span>Частотность Товаров </span>
+                                <span> на WB</span>
+
                             </div>
                             <div class="tablec2">
                                 <div class="table_c2_inner">
                                     <div class="table_c2_line">
                                         <div>
-                                            <img src="../../assets/images/logo_brand.svg" alt="">
+                                            <img :src="this.product1.image" alt="">
                                         </div>
-                                        <div>
-                                            <img src="../../assets/images/pr_img.svg" alt="">
-                                        </div>
-                                        <div>78858215</div>
-                                        <div>271 ₽</div>
-                                        <div>Футболка женская</div>
-                                        <div>150</div>
-                                        <div>150</div>
-                                        <div>77</div>
-                                    </div>
-                                    <div class="table_c2_line">
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
+                                        <div>{{this.product1.article}}</div>
+                                        <div>{{this.product1.price}} ₽</div>
                                         <div>Футболка оверсайз</div>
                                         <div>150</div>
                                         <div>150</div>
                                         <div>77</div>
                                     </div>
-                                    <div class="table_c2_line">
-                                        <div>
-                                            
-                                        </div>
-                                        <div>
-                                            
-                                        </div>
-                                        <div></div>
-                                        <div></div>
-                                        <div>Футболка женская оверсайз</div>
-                                        <div>150</div>
-                                        <div>150</div>
-                                        <div>77</div>
+                                    <div class="table_c2_line"  v-for="pr in Object.keys(product)">
+                                      <div></div>
+                                      <div></div>
+                                      <div></div>
+                                      <div></div>
+                                      <div>{{pr}}</div>
+                                      <div>{{product[pr][0]}}</div>
                                     </div>
-                                    <div class="table_c2_line">
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div>Футболка женская</div>
-                                        <div>150</div>
-                                        <div>150</div>
-                                        <div>77</div>
-                                    </div>
-                                    <div class="table_c2_line">
-                                        <div>
-                                        </div>
-                                        <div>
-                                        </div>
-                                        <div></div>
-                                        <div></div>
-                                        <div>Футболка женская</div>
-                                        <div>150</div>
-                                        <div>150</div>
-                                        <div>77</div>
-                                    </div>
+
+
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="table_c3">
                         <div class="yPr_title">Ваш товар</div>
-                        <div class="yPr_block">
-                            <img src="../../assets/images/pr_img.svg" alt="">
-                            <div class="yPr_txt">
-                                <span>Продавец: ИП Михалюк Н. С.</span>
-                                <span>SKU: 78858215</span>
-                                <span>Бренд: Nenaglyada</span>
-                                <span>Тип продаж: FBS</span>
-                            </div>
+                      <div class="yPr_block">
+                        <img :src="this.product2.image" alt="">
+                        <div class="yPr_txt">
+
+                          <span>SKU: {{this.product2.article}}</span>
+                          <span>Бренд: {{this.product2.brand}}</span>
+                          <span>Тип продаж: FBS</span>
                         </div>
+                      </div>
                     <div class="table_c2">
                         <div class="tcomp_con">
                             <div class="tc2_params">
@@ -120,73 +81,34 @@
                                 <span>Артикул</span>
                                 <span>Цена</span>
                                 <span>Запрос</span>
-                                <span>Частотность WB</span>
-                                <span>Товаров на WB</span>
-                                <span>25.07</span>
+                                <span>Частотность Товаров</span>
+                                <span> на WB</span>
+
                             </div>
                             <div class="tablec2">
-                                <div class="table_c2_inner">
-                                    <div class="table_c2_line">
-                                        <div>
-                                            <img src="../../assets/images/logo_brand.svg" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="../../assets/images/pr_img.svg" alt="">
-                                        </div>
-                                        <div>78858215</div>
-                                        <div>271 ₽</div>
-                                        <div>Футболка женская</div>
-                                        <div>150</div>
-                                        <div>150</div>
-                                        <div>78</div>
-                                    </div>
-                                    <div class="table_c2_line">
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div>Футболка оверсайз</div>
-                                        <div>150</div>
-                                        <div>150</div>
-                                        <div>78</div>
-                                    </div>
-                                    <div class="table_c2_line">
-                                        <div>
-                                            
-                                        </div>
-                                        <div>
-                                            
-                                        </div>
-                                        <div></div>
-                                        <div></div>
-                                        <div>Футболка женская оверсайз</div>
-                                        <div>150</div>
-                                        <div>150</div>
-                                        <div>78</div>
-                                    </div>
-                                    <div class="table_c2_line">
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div>Футболка женская</div>
-                                        <div>150</div>
-                                        <div>150</div>
-                                        <div>78</div>
-                                    </div>
-                                    <div class="table_c2_line">
-                                        <div>
-                                        </div>
-                                        <div>
-                                        </div>
-                                        <div></div>
-                                        <div></div>
-                                        <div>Футболка женская</div>
-                                        <div>150</div>
-                                        <div>150</div>
-                                        <div>78</div>
-                                    </div>
+                              <div class="table_c2_inner">
+                                <div class="table_c2_line">
+                                  <div>
+                                    <img :src="this.product2.image" alt="">
+                                  </div>
+                                  <div>{{this.product2.article}}</div>
+                                  <div>{{this.product2.price}} ₽</div>
+                                  <div>Футболка оверсайз</div>
+                                  <div>150</div>
+                                  <div>150</div>
+                                  <div>77</div>
                                 </div>
+                                <div class="table_c2_line"  v-for="pr in Object.keys(product)">
+                                  <div></div>
+                                  <div></div>
+                                  <div></div>
+                                  <div></div>
+                                  <div>{{pr}}</div>
+                                  <div>{{product[pr][1]}}</div>
+                                </div>
+
+
+                              </div>
                             </div>
                         </div>
                     </div>
@@ -561,5 +483,73 @@
             </div>
         </div>
     </div>
-    
+
 </template>
+<script>
+  export default {
+    components: {},
+    data() {
+      return {
+
+        product: {},
+        article1: this.$route.query.article1,
+        article2: this.$route.query.article2,
+        product1: {},
+        product2: {},
+
+      }
+    },
+    methods: {
+      getStatic(){
+        let localDate = new Date();
+        let today = new Date();
+        localDate = new Date(new Date().getTime() - (31 *86400000));
+        localDate = `${localDate.getFullYear()}-${localDate.getMonth()}-${localDate.getDate()}`;
+        let task1 = +window.localStorage.getItem('task1'),
+          token = +window.localStorage.getItem('access');
+        today= `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
+        this.$store.dispatch('request/get_economy', {task1: task1, access: token, type: 4}).then((x) => {
+          if(x.data.success){
+            this.product = x.data['product']['products'];
+
+          }
+          console.log(this.product);
+        });
+
+      },
+      getProduct(type, article){
+        this.$store.dispatch('request/getCompetition', {article1: this.article1, article2: this.article2}).then((x) => {
+          if(x.data.success){
+            this.product = x.data.product
+            console.log(x);
+
+          }
+
+        });
+        this.$store.dispatch('request/getByArticle', {article: this.article1}).then((x) => {
+          if(x.data.success){
+            this.product1 = x.data.product;
+            ;
+
+          }
+
+        });
+        this.$store.dispatch('request/getByArticle', {article: this.article2}).then((x) => {
+          if(x.data.success){
+
+            this.product2 = x.data.product;
+
+
+
+          }
+
+        });
+
+      }
+    },
+    mounted() {
+      this.getStatic();
+      this.getProduct();
+    },
+  }
+</script>

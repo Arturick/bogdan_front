@@ -99,10 +99,13 @@
         let today = new Date();
         localDate = new Date(new Date().getTime() - (31 *86400000));
         localDate = `${localDate.getFullYear()}-${localDate.getMonth()}-${localDate.getDate()}`;
+        let task1 = +window.localStorage.getItem('task1'),
+          token = +window.localStorage.getItem('access');
         today= `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
-        this.$store.dispatch('request/get_economy', {token: "YjY1M2UwNGEtMGJmNS00ZTZhLWFmYWYtMDdhMDc3OTk3ZWU5", dateFrom: localDate, dateTo: today}).then((x) => {
+        this.$store.dispatch('request/get_economy', {task1: task1, access: token, type: 4}).then((x) => {
           if(x.data.success){
-            this.product = x.data['product'];
+            this.product = x.data['product']['products'];
+
           }
           console.log(this.product);
         });
