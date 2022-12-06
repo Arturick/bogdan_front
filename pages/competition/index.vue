@@ -94,30 +94,36 @@
         localDate = new Date(new Date().getTime() - (31 *86400000));
         localDate = `${localDate.getFullYear()}-${localDate.getMonth()}-${localDate.getDate()}`;
         let task1 = +window.localStorage.getItem('task1'),
-          token = +window.localStorage.getItem('access');
+          token = window.localStorage.getItem('access');
         today= `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
-        this.$store.dispatch('request/get_economy', {task1: task1, access: token, type: 4}).then((x) => {
-          if(x.data.success){
-            this.product = x.data['product']['products'];
 
-          }
-          console.log(this.product);
-        });
+          this.$store.dispatch('request/get_economy', {task1: task1, access: token, type: 4}).then((x) => {
+            if(x.data.success){
+              this.product = x.data['product']['products'];
+
+            }
+            console.log(this.product);
+          })
+
 
       },
       getProduct(type, article){
-        this.$store.dispatch('request/getByArticle', {article: article}).then((x) => {
-          if(x.data.success){
-            if(type == 1){
-                this.product1 = x.data.product;
-            } else {
-                this.product2 = x.data.product;
-            }
-            console.log(x);
 
-          }
-          console.log(this.product);
-        });
+
+          this.$store.dispatch('request/getByArticle', {article: article}).then((x) => {
+            if(x.data.success){
+              if(type == 1){
+                this.product1 = x.data.product;
+              } else {
+                this.product2 = x.data.product;
+              }
+              console.log(x);
+
+            }
+            console.log(this.product);
+          });
+
+
 
       }
     },

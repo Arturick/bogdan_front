@@ -44,16 +44,32 @@ export default {
         .post('getByArticle', state)
         .then((x) => {
           resolve(x);
-        })
+        }).catch((x) => {
+        resolve(x);
+      })
     })
   },
+  refresh({commit}, state){
+    return new Promise((resolve, reject) => {
+      this.$axios
+        .post('refresh', state)
+        .then((x) => {
+          resolve(x);
+        }).catch((x) => {
+        resolve(x);
+      })
+    })
+  },
+
   getCompetition({commit}, state){
     return new Promise((resolve, reject) => {
       this.$axios
         .post('getCompetition', state)
         .then((x) => {
           resolve(x);
-        })
+        }).catch((x) => {
+        resolve(x);
+      })
     })
   },
   login_user({commit}, state){
@@ -71,7 +87,9 @@ export default {
         .post('getUser', state)
         .then((x) => {
           resolve(x);
-        })
+        }).catch((x) => {
+        resolve(x);
+      })
     })
   },
   saveProfile({commit}, state){
@@ -80,7 +98,9 @@ export default {
         .post('updateProfile', state)
         .then((x) => {
           resolve(x);
-        })
+        }).catch((x) => {
+        resolve(x);
+      })
     })
   },
 
@@ -90,7 +110,9 @@ export default {
         .post('seller', state)
         .then((x) => {
           resolve(x)
-        })
+        }).catch((x) => {
+        resolve(x);
+      })
     })
   },
 
@@ -100,7 +122,9 @@ export default {
         .post('getAnalyze', state)
         .then((x) => {
           resolve(x)
-        })
+        }).catch((x) => {
+        resolve(x);
+      })
     })
   },
 
@@ -113,7 +137,15 @@ export default {
         })
     })
   },
-
+  get_all_economy({commit}, state){
+    return new Promise((resolve, reject) => {
+      this.$axios
+        .post('getAllEconomy', state)
+        .then((x) => {
+          resolve(x)
+        })
+    })
+  },
   get_fastinfo({ commit }) {
     return new Promise((resolve, reject) => {
       this.$axios

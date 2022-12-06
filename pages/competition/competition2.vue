@@ -1,5 +1,5 @@
 <template>
-    <div class="md:container md:mx-auto">
+    <div class="md:container md:mx-auto" v-if="!loadingResultsInSearch">
         <div class="bg-white rounded-3xl mt-2.5 mx-2.5 p-7 pb-20">
             <div class="l1_sales">
                 <NuxtLink to="/">
@@ -496,6 +496,7 @@
         article2: this.$route.query.article2,
         product1: {},
         product2: {},
+        loadingResultsInSearch: true,
 
       }
     },
@@ -506,44 +507,84 @@
         localDate = new Date(new Date().getTime() - (31 *86400000));
         localDate = `${localDate.getFullYear()}-${localDate.getMonth()}-${localDate.getDate()}`;
         let task1 = +window.localStorage.getItem('task1'),
-          token = +window.localStorage.getItem('access');
+          token = window.localStorage.getItem('access');
         today= `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
-        this.$store.dispatch('request/get_economy', {task1: task1, access: token, type: 4}).then((x) => {
-          if(x.data.success){
-            this.product = x.data['product']['products'];
 
-          }
-          console.log(this.product);
-        });
+          this.$store.dispatch('request/get_economy', {task1: task1, access: token, type: 4}).then((x) => {
+            if(x.data.success){
+              this.product = x.data['product']['products'];
+              this.loadingResultsInSearch = false;
+            }
+            console.log(this.product);
+          }).catch(() => {
+            this.$store.dispatch('request/refresh', {task1: task1}).then((x) => {
+              if(x.data.success){
+                window.localStorage.setItem('access', x.data.token);
+                window.localStorage.setItem('task1', x.data.profile[0]['task1']);
+                this.$auth.setUserToken('Bearer ' + x.data.token)
+              }
+              //console.log(x);
+            });
+          })
 
       },
       getProduct(type, article){
-        this.$store.dispatch('request/getCompetition', {article1: this.article1, article2: this.article2}).then((x) => {
-          if(x.data.success){
-            this.product = x.data.product
-            console.log(x);
 
-          }
+          this.$store.dispatch('request/getCompetition', {article1: this.article1, article2: this.article2}).then((x) => {
+            if(x.data.success){
+              this.product = x.data.product
+              console.log(x);
 
-        });
-        this.$store.dispatch('request/getByArticle', {article: this.article1}).then((x) => {
-          if(x.data.success){
-            this.product1 = x.data.product;
-            ;
+            }
 
-          }
+          }).catch(() => {
+            this.$store.dispatch('request/refresh', {task1: task1}).then((x) => {
+              if(x.data.success){
+                window.localStorage.setItem('access', x.data.token);
+                window.localStorage.setItem('task1', x.data.profile[0]['task1']);
+                this.$auth.setUserToken('Bearer ' + x.data.token)
+              }
+              //console.log(x);
+            });
+          })
+          this.$store.dispatch('request/getByArticle', {article: this.article1}).then((x) => {
+            if(x.data.success){
+              this.product1 = x.data.product;
+              ;
 
-        });
-        this.$store.dispatch('request/getByArticle', {article: this.article2}).then((x) => {
-          if(x.data.success){
+            }
 
-            this.product2 = x.data.product;
+          }).catch(() => {
+            this.$store.dispatch('request/refresh', {task1: task1}).then((x) => {
+              if(x.data.success){
+                window.localStorage.setItem('access', x.data.token);
+                window.localStorage.setItem('task1', x.data.profile[0]['task1']);
+                this.$auth.setUserToken('Bearer ' + x.data.token)
+              }
+              //console.log(x);
+            });
+          })
+          this.$store.dispatch('request/getByArticle', {article: this.article2}).then((x) => {
+            if(x.data.success){
+
+              this.product2 = x.data.product;
 
 
 
-          }
+            }
 
-        });
+          }).catch(() => {
+            this.$store.dispatch('request/refresh', {task1: task1}).then((x) => {
+              if(x.data.success){
+                window.localStorage.setItem('access', x.data.token);
+                window.localStorage.setItem('task1', x.data.profile[0]['task1']);
+                this.$auth.setUserToken('Bearer ' + x.data.token)
+              }
+              //console.log(x);
+            });
+          })
+
+
 
       }
     },

@@ -134,7 +134,7 @@
             break;
         }
         let task1 = +window.localStorage.getItem('task1'),
-            token = +window.localStorage.getItem('access');
+            token = window.localStorage.getItem('access');
         localDate = `${localDate.getFullYear()}-${localDate.getMonth()}-${localDate.getDate()}`;
 
         this.$store.dispatch('request/get_seller_data', {task1: task1, access: token, dateFrom: localDate, flag: flag, type: type}).then((x) => {

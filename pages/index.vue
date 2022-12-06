@@ -391,33 +391,36 @@ export default {
             name: 'Продажи'
           },]}
       let task1 = +window.localStorage.getItem('task1'),
-          token = +window.localStorage.getItem('access');
-      this.$store.dispatch('request/get_seller_data', {task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 4,}).then((x) => {
-        if(x.data.success){
-          this.product.products = x.data['product']['products'];
-          this.product.count = x.data['product']['count'][0]['cnt'];
-          this.product.total = x.data['product']['total'][0]['cnt'];
-          this.product.products.map(i => {
-            console.log(2);
-            newChart.categories.push(i['date_seller']);
-            newChart.series[1].data.push(i['cnt']);
-          })
-        }
-        console.log(this.chart);
-      });
-      this.$store.dispatch('request/get_order_data', {task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 4,}).then((x) => {
-        if(x.data.success){
-          this.order.products = x.data['product']['products'];
-          this.order.count = x.data['product']['count'][0]['cnt'];
-          this.order.total = x.data['product']['total'][0]['cnt'];
-          this.order.products.map(i => {
-            console.log(1);
-            newChart.series[0].data.push(i['cnt']);
-          })
-        }
-        console.log(this.chart);
-        this.chart = newChart;
-      });
+          token = window.localStorage.getItem('access');
+        console.log(token);
+        this.$store.dispatch('request/get_seller_data', {task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 4,}).then((x) => {
+          if(x.data.success){
+            this.product.products = x.data['product']['products'];
+            this.product.count = x.data['product']['count'][0]['cnt'];
+            this.product.total = x.data['product']['total'][0]['cnt'];
+            this.product.products.map(i => {
+              console.log(2);
+              newChart.categories.push(i['date_seller']);
+              newChart.series[1].data.push(i['cnt']);
+            })
+          }
+          console.log(this.product);
+        })
+
+        this.$store.dispatch('request/get_order_data', {task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 4,}).then((x) => {
+          if(x.data.success){
+            this.order.products = x.data['product']['products'];
+            this.order.count = x.data['product']['count'][0]['cnt'];
+            this.order.total = x.data['product']['total'][0]['cnt'];
+            this.order.products.map(i => {
+              console.log(1);
+              newChart.series[0].data.push(i['cnt']);
+            })
+          }
+          console.log(this.order);
+          this.chart = newChart;
+        })
+
     }
   },
   mounted() {

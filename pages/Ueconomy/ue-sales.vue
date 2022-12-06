@@ -21,12 +21,7 @@
                 </div>
             </div>
             <div class="title_ues">Продажи товара artikul_12941529</div>
-            <div class="sales_params">
-              <button class="today"  @click="() => {getStatic(1)}">За сегодня</button>
-              <button class="yesterday"  @click="() => {getStatic(2)}">Вчера</button>
-              <button class="week"  @click="() => {getStatic(3)}">7 дней</button>
-              <button class="month"  @click="() => {getStatic(4)}">Месяц</button>
-            </div>
+
             <div class="table_stat_ues">
                 <div class="l1_st_ues">
                     <div>Товар</div>
@@ -47,7 +42,6 @@
                         <span>Баркод</span>
                         <span>SKU</span>
                         <span>Размер</span>
-                        <span>Категория</span>
                         <span>Себестоимость товаров</span>
                     </div>
                     <div class="bl_sales_ues">
@@ -84,62 +78,63 @@
                         <span>Цена со скидкой</span>
                     </div>
                 </div>
-                <div v-if="true" class="l3_st_ues">
+                <div class="l3_st_ues" v-for="pr in products" style="background: rgba(235, 235, 235, 0.76)">
                     <div class="bl_pr_ues">
                         <span>
-                            <img :src="product['img']" alt="">
+                            <img :src="pr['img']" alt="">
                         </span>
-                        <span>{{product['brand']}}</span>
-                        <span>{{product['article']}}</span>
-                        <span>{{product['barcode']}}</span>
-                        <span>78858215</span>
-                        <span>{{product['size']}}</span>
-                        <span></span>
+                        <span>{{pr['brand']}}</span>
+                        <span>{{pr['owner_article']}}</span>
+                        <span>{{pr['barcode']}}</span>
+                        <span>{{pr['article']}}</span>
+                        <span>{{pr['size']}}</span>
+                      <input class="input_self" v-model="priceLocal[pr['article']]" type='text' style="height: 35px; width: 75px;">
                     </div>
                     <div class="bl_sales_ues">
-                        <span>{{product['price']}}</span>
-                        <span>{{product['countBuy']}}</span>
-                        <span>{{product['price']}}</span>
+                        <span>{{pr['totalBuy']}}</span>
+                        <span>{{pr['cntBuy']}}</span>
+                        <span>{{+pr['cntBuy'] - +pr['countRetail']}}</span>
                     </div>
                     <div class="bl_returns_ues">
-                      <span>{{product['price']}}</span>
-                      <span>{{product['countRetail']}}</span>
+                      <span>{{pr['rtp']}}</span>
+                      <span>{{pr['countRetail']}}</span>
                     </div>
                     <div class="bl_log_ues">
-                      <span>{{product['logic']}}</span>
+                      <span>{{pr['lg']}}</span>
+                      <span>{{pr['lg']}}</span>
                     </div>
                     <div class="bl_com_ues">
-                        <span>0р</span>
-                      <span>{{product['com_wb']}}</span>
+                        <span>{{pr['pnt']}}р</span>
+                      <span>{{pr['com_wb']}}</span>
                     </div>
                     <div class="bl_exp_ues">
                         <span>-1500р</span>
                     </div>
                     <div class="bl_prof_ues">
-                        <span>50000р</span>
-                        <span>50000р</span>
-                        <span>50%</span>
+                        <span>{{pr['totalBuy'] - (pr['cntBuy'] * priceLocal[pr['article']])}}р</span>
+                        <span>{{pr['totalBuy'] - (pr['cntBuy'] * priceLocal)}}р</span>
+                        <span>{{((100 * pr['price']) / priceLocal) - 100 }}%</span>
                     </div>
                     <div class="bl_anal_ues">
                         <span>A кат</span>
                     </div>
                     <div class="bl_price_ues">
-                      <span>{{product['priceRetail']}}</span>
-                      <span>{{product['discount']}}</span>
-                        <span>{{ +product['price'] -  ((+product['price'] * +product['discount']) / 100)}}</span>
+                      <span>{{pr['price']}}</span>
+                      <span>{{pr['discount']}}</span>
+                        <span>{{ +pr['price'] -  ((+pr['price'] * +pr['discount']) / 100)}}</span>
                     </div>
                 </div>
             </div>
-            <div  v-if="product[article]"  class="txt_ues">
-                Общее количество:  &nbsp;<span>1 артикула, {{product['countBuy']}} шт</span><br>
-                Сумма продаж:  &nbsp;<span>{{product['priceBuy']}}₽</span><br>
-                Возвраты: &nbsp;<span>{{product['priceRetail']}}Р</span><br>
-                Комиссия: &nbsp;<span>1000р</span><br>
-                Логистика к клиенту и от клиента: &nbsp;<span>{{product['logic']}}р</span><br>
-                Себестоимость товаров: &nbsp;<span>N рублей</span><br>
-                <span>Итого: {{+product['priceBuy'] - (+product['logic']) - (+product['priceRetail'])}}₽</span><br>
-                <span>ПРИБЫЛЬ С ТОВРАРА: {{+product['priceBuy'] - (+product['logic']) - (+product['priceRetail'])}}₽</span>
-            </div>
+<!--            <div  v-if="product[article]"  class="txt_ues">-->
+<!--                Общее количество:  &nbsp;<span>1 артикула, {{product['countBuy']}} шт</span><br>-->
+<!--                Сумма продаж:  &nbsp;<span>{{product['priceBuy']}}₽</span><br>-->
+<!--                Возвраты: &nbsp;<span>{{product['priceRetail']}}Р</span><br>-->
+<!--                Комиссия: &nbsp;<span>1000р</span><br>-->
+<!--                Логистика к клиенту и от клиента: &nbsp;<span>{{product['logic']}}р</span><br>-->
+<!--                Себестоимость товаров: &nbsp;<span>N рублей</span><br>-->
+<!--                <span>Итого: {{+product['priceBuy'] - (+product['logic']) - (+product['priceRetail'])}}₽</span><br>-->
+<!--                <span>ПРИБЫЛЬ С ТОВРАРА: {{+product['priceBuy'] - (+product['logic']) - (+product['priceRetail'])}}₽</span>-->
+<!--            </div>-->
         </div>
     </div>
 </template>
@@ -149,8 +144,10 @@
     components: {Button},
     data() {
       return {
-        product: {},
-        article: this.$route.query.article
+        products: {},
+        article: this.$route.query.article,
+        priceLocal: {},
+        typeLocal: this.$route.query.type
       }
     },
     methods: {
@@ -167,15 +164,49 @@
         localDate = `${localDate.getFullYear()}-${localDate.getMonth()}-${localDate.getDate()}`;
         today= `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
         let task1 = +window.localStorage.getItem('task1'),
-          token = +window.localStorage.getItem('access');
-        console.log(this.article);
-        this.$store.dispatch('request/get_economy', {task1: task1, access: token, type: 4, article: this.article}).then((x) => {
-          if(x.data.success){
-            this.product = x.data['product']['products'][0];
+          token = window.localStorage.getItem('access');
+        console.log(this.typeLocal != 1);
+        console.log(!this.typeLocal);
 
-          }
-          console.log(this.product);
-        });
+        if(!this.typeLocal){
+          this.$store.dispatch('request/get_economy', {task1: task1, access: token, type: 4, article: this.article}).then((x) => {
+            if(x.data.success){
+
+              this.products = x.data['product']['products'];
+
+            }
+
+          }).catch(() => {
+            this.$store.dispatch('request/refresh', {task1: task1}).then((x) => {
+              if(x.data.success){
+                window.localStorage.setItem('access', x.data.token);
+                window.localStorage.setItem('task1', x.data.profile[0]['task1']);
+                this.$auth.setUserToken('Bearer ' + x.data.token)
+              }
+              //console.log(x);
+            });
+          })
+        } else {
+          console.log(1);
+          this.$store.dispatch('request/get_all_economy', { access: token, }).then((x) => {
+
+            if(x.data.success){
+             this.products = x.data['product']['products'];
+              console.log(this.products);
+            }
+
+          }).catch(() => {
+            this.$store.dispatch('request/refresh', {task1: task1}).then((x) => {
+              if(x.data.success){
+                window.localStorage.setItem('access', x.data.token);
+                window.localStorage.setItem('task1', x.data.profile[0]['task1']);
+                this.$auth.setUserToken('Bearer ' + x.data.token)
+              }
+              //console.log(x);
+            });
+          })
+        }
+
       }
     },
     mounted() {
@@ -184,5 +215,12 @@
     },
   }
 </script>
+<style>
+  .input_self{
+      border: 7px solid white;
+      border-radius: 10px;
+    background: white;
+  }
+</style>
 
 

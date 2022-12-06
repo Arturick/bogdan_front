@@ -38,13 +38,13 @@
                                         <img :src="pr['img']" alt="">
                                     </span>
                                         <span>{{pr['brand']}}</span>
-                                        <span>{{pr['nm_id']}}</span>
+                                        <span>{{pr['article']}}</span>
                                         <span>{{pr['size_product']}}</span>
                                         <span>{{pr['barcode']}}</span>
-                                        <span>{{pr['nm_id']}}</span>
+                                        <span>{{pr['owner_article']}}</span>
                                         <span>{{pr['price']}}</span>
                                         <!--  -->
-                                        <NuxtLink :to="'/analyze/analyze2?article=' + pr['nm_id']" >
+                                        <NuxtLink :to="'/analyze/analyze2?article=' + pr['article']" >
                                           <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt="">
                                         </NuxtLink>
                                       </div>
@@ -100,15 +100,24 @@
         localDate = new Date(new Date().getTime() - (31 *86400000));
         localDate = `${localDate.getFullYear()}-${localDate.getMonth()}-${localDate.getDate()}`;
         let task1 = +window.localStorage.getItem('task1'),
-          token = +window.localStorage.getItem('access');
+          token = window.localStorage.getItem('access');
         today= `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
-        this.$store.dispatch('request/get_economy', {task1: task1, access: token, type: 4}).then((x) => {
-          if(x.data.success){
-            this.product = x.data['product']['products'];
 
-          }
-          console.log(this.product);
-        });
+          this.$store.dispatch('request/get_economy', {task1: task1, access: token, type: 4}).then((x) => {
+            if(x.data.success){
+              this.product = x.data['product']['products'];
+            }
+            console.log(this.product);
+          }).catch(() => {
+            this.$store.dispatch('request/refresh', {task1: task1}).then((x) => {
+              if(x.data.success){
+                window.localStorage.setItem('access', x.data.token);
+                window.localStorage.setItem('task1', x.data.profile[0]['task1']);
+                this.$auth.setUserToken('Bearer ' + x.data.token)
+              }
+              //console.log(x);
+            });
+          })
 
       }
     },

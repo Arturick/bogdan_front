@@ -16,7 +16,10 @@
                         В данном разделе вы можете указать себестоимость товара,<br> упаковки, прочих расходов. Так же посмотреть ваше финансовое<br> состояние, на сегодняшний день, за вычетом всех расходов<br>  Идивидуально по товару так и по всем
                     </div>
                 </div>
-                <div class="btn_u">Посмотреть по всем</div>
+              <NuxtLink to="/Ueconomy/ue-sales?type=1" >
+                <div class="btn_u" >Посмотреть по всем</div>
+              </NuxtLink>
+
             </div>
             <input type="text" class="inp_Ue" placeholder="Поиск по баркоду, артикулу поставщика, бренду">
             <div class="table_new_wrap">
@@ -75,75 +78,8 @@
                             </div>
                         </div>
                     </div>
-            </div>
-            <div class="title_ue2">Статьи расходов</div>
-            <div class="ue2_txt_bl">
-                <div class="ue_sup22">
-                    В данном разделе вы можете указать статьи расходов, для<br> того чтобы кооректно отобразить вам ваш зароботок.<br>  Постоянные расходы сохраняются тут, не постоянные<br>  ежемесчено нужно заполнять
-                </div>
-                <div class="btn_u">Добавить</div>
-            </div>
-            <div class="t2_low_ue_cont">
-                <div class="t2_low_ue">
-                    <div class="t_menu_ue">
-                        <span>Дата занесения</span>
-                        <span>Название расхода</span>
-                        <span>Число</span>
-                        <span>Постоянный</span>
-                        <span>Когда вычетать</span>
-                    </div>
-                    <div class="t_line_ue2">
-                        <div class="tline_ue2_inner">
-                            <span>12.01.22</span>
-                            <span>Налог с продаж</span>
-                            <span>13</span>
-                            <span>Да</span>
-                            <span>Cуммы продажи</span>
-                            <span>&#215;</span>
-                        </div>
-                    </div>
-                    <div class="t_line_ue2">
-                        <div class="tline_ue2_inner">
-                            <span>12.01.22</span>
-                            <span>Налог с продаж</span>
-                            <span>130 000 руб</span>
-                            <span>Нет</span>
-                            <span>Из прибыли</span>
-                            <span>&#215;</span>
-                        </div>
-                    </div>
-                    <div class="t_line_ue2">
-                        <div class="tline_ue2_inner">
-                            <span>12.01.22</span>
-                            <span>Логистика товара</span>
-                            <span>130 000 руб</span>
-                            <span>Нет</span>
-                            <span>Из прибыли</span>
-                            <span>&#215;</span>
-                        </div>
-                    </div>
-                    <div class="t_line_ue2">
-                        <div class="tline_ue2_inner">
-                            <span></span>
-                            <span><input type="text"></span>
-                            <span><input type="text"></span>
-                            <span class="sel_tue2">
-                                <select>
-                                    <option></option>
-                                </select>
-                                <img src="../../assets/images/arr_d.svg" alt="">
-                            </span>
-                            <span class="sel_tue2">
-                                <select>
-                                    <option></option>
-                                </select>
-                                <img src="../../assets/images/arr_d.svg" alt="">
-                            </span>
-                            <span>&#215;</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div>2
+
         </div>
     </div>
 </template>
@@ -164,15 +100,26 @@
         localDate = new Date(new Date().getTime() - (31 *86400000));
         localDate = `${localDate.getFullYear()}-${localDate.getMonth()}-${localDate.getDate()}`;
         let task1 = +window.localStorage.getItem('task1'),
-          token = +window.localStorage.getItem('access');
+          token = window.localStorage.getItem('access');
         today= `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
-        this.$store.dispatch('request/get_economy', {task1: task1, access: token, type: 4}).then((x) => {
-          if(x.data.success){
-            this.product = x.data['product']['products'];
 
-          }
-          console.log(this.product);
-        });
+          this.$store.dispatch('request/get_economy', {task1: task1, access: token, type: 4}).then((x) => {
+            if(x.data.success){
+              this.product = x.data['product']['products'];
+
+            }
+            console.log(this.product);
+          }).catch(() => {
+            this.$store.dispatch('request/refresh', {task1: task1}).then((x) => {
+              if(x.data.success){
+                window.localStorage.setItem('access', x.data.token);
+                window.localStorage.setItem('task1', x.data.profile[0]['task1']);
+                this.$auth.setUserToken('Bearer ' + x.data.token)
+              }
+              //console.log(x);
+            });
+          })
+
 
       }
     },

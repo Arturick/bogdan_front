@@ -1,5 +1,5 @@
 <template>
-     <div class="md:container md:mx-auto">
+     <div class="md:container md:mx-auto" v-if="!loadingResultsInSearch">
         <div class="bg-white rounded-3xl mt-2.5 mx-2.5 p-7 pb-20">
             <div class="l1_sales">
                 <div class="btn_more_a">Назад</div>
@@ -10,7 +10,7 @@
             <div class="a2_title">{{this.article}}</div>
             <div class="graf_infoPr_a2">
                 <div class="infoPr_a2">
-                    <img src="../../assets/images/pr_img.svg" alt="">
+                    <img :src="this.product.data[0]['img']" alt="">
                     <div class="infoPr_txt_a2" v-if="this.product.data">
                         <span>SKU: {{this.article}}</span>
                         <span>Бренд: {{this.product.data[0]['brand']}}</span>
@@ -56,14 +56,14 @@ export default {
       resultsInSearch: {},
       loadingResultsInSearch: true,
       chart: {
-        categories: ['День 1', 'День 2', 'День 3', 'День 4', 'День 5', 'День 6', 'День 7'],
+        categories: [],
         series: [
           {
-            data: ['1', '2', '5', '1', '9', '21'],
+            data: [],
             name: 'Заказы'
           },
           {
-            data: ['5', '11', '3', '1', '2', '3'],
+            data: [],
             name: 'Продажи'
           },
         ],
@@ -73,17 +73,11 @@ export default {
     }
   },
   methods: {
-    getPositions() {
-      this.loadingResultsInSearch = true
-      this.$store.dispatch('request/get_positions').then((x) => {
-        this.resultsInSearch = x.data
-        this.loadingResultsInSearch = false
-      })
-    },
     getAnalyze(){
       let access = window.localStorage.getItem('access');
       this.$store.dispatch('request/getAnalyze', {access: access, article: this.article}).then((x) => {
         if(x.data.success){
+          this.loadingResultsInSearch = false;
           this.product = x.data.product;
         }
         console.log(x);
@@ -121,7 +115,6 @@ export default {
       },
   },
   mounted() {
-    this.getPositions();
     this.getAnalyze();
   },
 }
