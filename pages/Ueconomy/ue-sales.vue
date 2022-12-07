@@ -95,7 +95,7 @@
                         <span>{{pr['cntBuy']}}</span>
                         <span>{{+pr['cntBuy'] - +pr['countRetail']}}</span>
                     </div>
-                    <div class="bl_returns_ues">
+                    <div class="bl_returns_ues">0
                       <span>{{pr['rtp']}}</span>
                       <span>{{pr['countRetail']}}</span>
                     </div>
@@ -112,11 +112,11 @@
                     </div>
                     <div class="bl_prof_ues">
                         <span>{{pr['totalBuy'] - (pr['cntBuy'] * priceLocal[pr['article']])}}р</span>
-                        <span>{{pr['totalBuy'] - (pr['cntBuy'] * priceLocal)}}р</span>
-                        <span>{{((100 * pr['price']) / priceLocal) - 100 }}%</span>
+                        <span>{{pr['totalBuy'] - (pr['cntBuy'] * priceLocal[pr['article']])}}р</span>
+                        <span>{{((100 * priceLocal[pr['article']]) / pr['price'])}}%</span>
                     </div>
-                    <div class="bl_anal_ues">
-                        <span>A кат</span>
+                    <div class="bl_anal_ues" v-if="loading">
+                        <span>{{abc[pr['article']]}} кат</span>
                     </div>
                     <div class="bl_price_ues">
                       <span>{{pr['price']}}</span>
@@ -145,6 +145,7 @@
     data() {
       return {
         products: {},
+        loading: false,
         article: this.$route.query.article,
         priceLocal: {},
         typeLocal: this.$route.query.type
@@ -206,6 +207,14 @@
             });
           })
         }
+        this.$store.dispatch('request/get_abc', {}).then((x) => {
+          if(x.data.success){
+            console.log(x.data);
+            this.abc = x.data['product'];
+            this.loading = true;
+          }
+
+        })
 
       }
     },

@@ -20,13 +20,13 @@
                     <div class="table_sales">
                         <div class="table_sales_params">
                             <div class="p_brand">Бренд</div>
-                            <div class="p_date">Дата</div>
-                            <div class="p_img">Фото</div>
-                            <div class="p_name">Наименование</div>
-                            <div class="p_art">Артикул</div>
-                            <div class="p_count">Продано(шт)</div>
-                            <div class="p_sale">Скидка</div>
-                            <div class="p_price">Логистика к  клиенту (руб)</div>
+                            <div class="p_date" v-if="checkBox.date">Дата</div>
+                            <div class="p_img" v-if="checkBox.img" >Фото</div>
+                            <div class="p_name" v-if="checkBox.naming" >Наименование</div>
+                            <div class="p_art" v-if="checkBox.article" >Артикул</div>
+                            <div class="p_count" v-if="checkBox.cnt" >Продано(шт)</div>
+                            <div class="p_sale" v-if="checkBox.discount" >Скидка</div>
+                            <div class="p_price" v-if="checkBox.log" >Логистика к  клиенту (руб)</div>
                             <div class="p_bad">Штрафы</div>
                             <div class="p_commis">Комиссия</div>
                             <label class="menu__btn1" for="menu__toggle1">
@@ -34,20 +34,20 @@
                             </label>
                         </div>
                         <div class="table_info">
-                          <div v-if="type == 1">
+                          <div v-if="type == 'Продажи'">
                             <div v-for="pr in product.products" class="table_inner">
 
                               <div class="line_info_sales">
-                                    <div class="i_brand">{{pr['brand']}}</div>
-                                    <div class="i_date">{{pr['date_seller']}}}</div>
-                                    <div class="i_img">
+                                    <div class="i_brand" v-if="checkBox.brand">{{pr['brand']}}</div>
+                                    <div class="i_date" v-if="checkBox.date">{{pr['date_seller']}}}</div>
+                                    <div class="i_img" v-if="checkBox.img">
                                         <img :src="pr['img']" alt="">
                                     </div>
-                                    <div class="i_name">{{pr['naming']}}</div>
-                                    <div class="i_art">{{pr['article']}}</div>
-                                    <div class="i_count">{{pr['count']}}</div>
-                                    <div class="i_sale">{{pr['discount']}}</div>
-                                    <div class="i_price">{{pr['price']}}</div>
+                                    <div class="i_name" v-if="checkBox.naming">{{pr['naming']}}</div>
+                                    <div class="i_art" v-if="checkBox.article">{{pr['article']}}</div>
+                                    <div class="i_count" v-if="checkBox.cnt">{{pr['count']}}</div>
+                                    <div class="i_sale" v-if="checkBox.discount" >{{pr['discount']}}</div>
+                                    <div class="i_price" v-if="checkBox.price" >{{pr['price']}}</div>
                                     <div class="i_bad">1200 руб</div>
                                     <div class="i_commis">1200 руб</div>
                               </div>
@@ -58,16 +58,16 @@
                             <div v-for="pr in order.products" class="table_inner">
 
                               <div class="line_info_sales">
-                                <div class="i_brand">{{pr['brand']}}</div>
-                                <div class="i_date">{{pr['date_seller']}}}</div>
-                                <div class="i_img">
+                                <div class="i_brand" v-if="checkBox.brand">{{pr['brand']}}</div>
+                                <div class="i_date" v-if="checkBox.date">{{pr['date_seller']}}}</div>
+                                <div class="i_img" v-if="checkBox.img">
                                   <img :src="pr['img']" alt="">
                                 </div>
-                                <div class="i_name">{{pr['naming']}}</div>
-                                <div class="i_art">{{pr['article']}}</div>
-                                <div class="i_count">{{pr['count']}}</div>
-                                <div class="i_sale">{{pr['discount']}}</div>
-                                <div class="i_price">{{pr['price']}}</div>
+                                <div class="i_name" v-if="checkBox.naming">{{pr['naming']}}</div>
+                                <div class="i_art" v-if="checkBox.article">{{pr['article']}}</div>
+                                <div class="i_count" v-if="checkBox.cnt">{{pr['count']}}</div>
+                                <div class="i_sale" v-if="checkBox.discount" >{{pr['discount']}}</div>
+                                <div class="i_price" v-if="checkBox.price" >{{pr['price']}}</div>
                                 <div class="i_bad">1200 руб</div>
                                 <div class="i_commis">1200 руб</div>
                               </div>
@@ -82,18 +82,18 @@
                     <input id="menu__toggle1" type="checkbox" />
 
                     <ul class="menu__box1">
-                        <li><input type="checkbox" name="" id="" checked><span>Бренд</span></li>
-                        <li><input type="checkbox" name="" id="" checked><span>Дата</span></li>
-                        <li><input type="checkbox" name="" id="" checked><span>Фото</span></li>
-                        <li><input type="checkbox" name="" id="" checked><span>Наименование</span></li>
-                        <li><input type="checkbox" name="" id="" checked><span>Артикул</span></li>
+                        <li><input type="checkbox" name="" id="" v-model="checkBox.brand" checked><span>Бренд</span></li>
+                        <li><input type="checkbox" name="" id="" v-model="checkBox.date" checked><span>Дата</span></li>
+                        <li><input type="checkbox" name="" id="" v-model="checkBox.img" checked><span>Фото</span></li>
+                        <li><input type="checkbox" name="" id="" v-model="checkBox.naming" checked><span>Наименование</span></li>
+                        <li><input type="checkbox" name="" id="" v-model="checkBox.article" checked><span>Артикул</span></li>
                         <li><input type="checkbox" name="" id=""><span>Баркод</span></li>
                         <li><input type="checkbox" name="" id=""><span>Категория</span></li>
                         <li><input type="checkbox" name="" id=""><span>Размер</span></li>
                         <li><input type="checkbox" name="" id=""><span>Номер заказа</span></li>
-                        <li><input type="checkbox" name="" id="" checked><span>Заказано(шт)</span></li>
-                        <li><input type="checkbox" name="" id="" checked><span>Сумма заказа</span></li>
-                        <li><input type="checkbox" name="" id=""><span>Комиссия</span></li>
+                        <li><input type="checkbox" name="" id="" v-model="checkBox.cnt" checked><span>Заказано(шт)</span></li>
+                        <li><input type="checkbox" name="" id="" v-model="checkBox.price" checked><span>price</span></li>
+                        <li><input type="checkbox" name="" id="" v-model="checkBox.coms" ><span>Комиссия</span></li>
                         <li><input type="checkbox" name="" id=""><span>Регион</span></li>
                         <li><input type="checkbox" name="" id=""><span>Склад</span></li>
                         <li><input type="checkbox" name="" id=""><span>Номер поставки</span></li>
@@ -112,9 +112,22 @@
 
         product: {count: 0, total: 0, products: {}},
         order: {count: 0, total: 0, products: {}},
-        date: this.$route.query.date.split(' ')[0],
+        date: this.$route.query.date,
         article: this.$route.query.article,
         type: this.$route.query.type == '1' ? 'Продажи' : 'Заказы',
+        checkBox: {
+          brand: true,
+          img: true,
+          date: true,
+          article: true,
+          cnt: true,
+          discount: true,
+          log: true,
+          penalti: true,
+          coms: true,
+          price: true,
+          naming: true
+        },
 
       }
     },

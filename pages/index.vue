@@ -326,26 +326,26 @@
             </div>
           </NuxtLink>
         </div>
-        <div class="a_stat">
+        <div class="a_stat" v-if="this.abc">
           <div class="a_stat_bl">
             <div class="stat_inner">
               <div class="stat_title">Группа А</div>
-              <div class="stat_sup1">Выручка 846 571,11 ₽ (77 %)</div>
-              <div class="stat_sup2">Товаров 2шт 10%</div>
+              <div class="stat_sup1">Выручка {{ abc["a"]["totalSum"]}} ₽ ({{abc["a"]["prs"]}} %)</div>
+              <div class="stat_sup2">Товаров {{ abc["a"]["cnt"]}}шт</div>
             </div>
           </div>
           <div class="a_stat_bl">
             <div class="stat_inner">
-              <div class="stat_title">Группа А</div>
-              <div class="stat_sup1">Выручка 846 571,11 ₽ (77 %)</div>
-              <div class="stat_sup2">Товаров 3шт 15%</div>
+              <div class="stat_title">Группа B</div>
+              <div class="stat_sup1">Выручка {{ abc["b"]["totalSum"]}} ₽ ({{abc["b"]["prs"]}} %)</div>
+              <div class="stat_sup2">Товаров {{ abc["b"]["cnt"]}}шт</div>
             </div>
           </div>
           <div class="a_stat_bl">
             <div class="stat_inner">
-              <div class="stat_title">Группа А</div>
-              <div class="stat_sup1">Выручка 846 571,11 ₽ (77 %)</div>
-              <div class="stat_sup2">Товаров 15шт (75%)</div>
+              <div class="stat_title">Группа C</div>
+              <div class="stat_sup1">Выручка {{ abc["c"]["totalSum"]}} ₽ ({{abc["c"]["prs"]}} %)</div>
+              <div class="stat_sup2">Товаров {{ abc["c"]["cnt"]}}шт</div>
             </div>
           </div>
         </div>
@@ -373,6 +373,7 @@ export default {
             name: 'Продажи'
           },
         ],
+        abc: false,
       },
       product: {count: 0, total: 0, products: {}},
       order: {count: 0, total: 0, products: {}}
@@ -393,33 +394,54 @@ export default {
       let task1 = +window.localStorage.getItem('task1'),
           token = window.localStorage.getItem('access');
         console.log(token);
-        this.$store.dispatch('request/get_seller_data', {task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 4,}).then((x) => {
+        this.$store.dispatch('request/get_seller_data', {task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 3,}).then((x) => {
           if(x.data.success){
             this.product.products = x.data['product']['products'];
             this.product.count = x.data['product']['count'][0]['cnt'];
             this.product.total = x.data['product']['total'][0]['cnt'];
-            this.product.products.map(i => {
-              console.log(2);
-              newChart.categories.push(i['date_seller']);
-              newChart.series[1].data.push(i['cnt']);
+            this.$store.dispatch('request/get_seller_data', {graph: true, task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 3,}).then((x) => {
+              if(x.data.success){
+                x.data['product']['products'].map(i => {
+                  console.log(i['date_seller']);
+                  newChart.categories.push(i['date_seller']);
+                  newChart.series[1].data.push(i['cnt']);
+                })
+              }
             })
           }
           console.log(this.product);
         })
 
-        this.$store.dispatch('request/get_order_data', {task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 4,}).then((x) => {
+
+        this.$store.dispatch('request/get_order_data', {task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 3,}).then((x) => {
           if(x.data.success){
             this.order.products = x.data['product']['products'];
             this.order.count = x.data['product']['count'][0]['cnt'];
             this.order.total = x.data['product']['total'][0]['cnt'];
-            this.order.products.map(i => {
-              console.log(1);
-              newChart.series[0].data.push(i['cnt']);
+            this.$store.dispatch('request/get_order_data', {graph: true, task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 3,}).then((x) => {
+              if(x.data.success){
+                console.log()
+                x.data['product']['products'].map(i => {
+                  newChart.series[0].data.push(i['cnt']);
+                })
+              }
+              this.chart = newChart;
             })
           }
           console.log(this.order);
-          this.chart = newChart;
+
         })
+
+
+        this.$store.dispatch('request/get_abc', {}).then((x) => {
+        if(x.data.success){
+          console.log(x.data);
+          this.abc = x.data['product'];
+
+        }
+        console.log(this.order);
+
+      })
 
     }
   },

@@ -146,6 +146,15 @@ export default {
         })
     })
   },
+  get_abc({commit}, state){
+    return new Promise((resolve, reject) => {
+      this.$axios
+        .post('abcAnalyze', state)
+        .then((x) => {
+          resolve(x)
+        })
+    })
+  },
   get_fastinfo({ commit }) {
     return new Promise((resolve, reject) => {
       this.$axios
