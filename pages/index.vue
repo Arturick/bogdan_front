@@ -337,14 +337,14 @@
           <div class="a_stat_bl">
             <div class="stat_inner">
               <div class="stat_title">Группа B</div>
-              <div class="stat_sup1">Выручка {{ abc["b"]["totalSum"]}} ₽ ({{abc["b"]["prs"]}} %)</div>
+              <div class="stat_sup1">Выручка {{ abc["b"]["totalSum"]}} ₽</div>
               <div class="stat_sup2">Товаров {{ abc["b"]["cnt"]}}шт</div>
             </div>
           </div>
           <div class="a_stat_bl">
             <div class="stat_inner">
               <div class="stat_title">Группа C</div>
-              <div class="stat_sup1">Выручка {{ abc["c"]["totalSum"]}} ₽ ({{abc["c"]["prs"]}} %)</div>
+              <div class="stat_sup1">Выручка {{ abc["c"]["totalSum"]}} ₽</div>
               <div class="stat_sup2">Товаров {{ abc["c"]["cnt"]}}шт</div>
             </div>
           </div>

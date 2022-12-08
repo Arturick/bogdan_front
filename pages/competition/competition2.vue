@@ -14,7 +14,7 @@
             </div>
             <div class="yPr_title">Ваш товар</div>
             <div class="yPr_block">
-                <img :src="this.product1.image" alt="">
+                <img :src="this.img1" alt="">
                 <div class="yPr_txt">
 
                     <span>SKU: {{this.product1.article}}</span>
@@ -31,30 +31,29 @@
                                 <span>Артикул</span>
                                 <span>Цена</span>
                                 <span>Запрос</span>
-                                <span>Частотность Товаров </span>
-                                <span> на WB</span>
+                                <span>Частотность Товаров на WB</span>
 
                             </div>
                             <div class="tablec2">
                                 <div class="table_c2_inner">
                                     <div class="table_c2_line">
                                         <div>
-                                            <img :src="this.product1.image" alt="">
+                                            <img :src="this.img1" alt="">
                                         </div>
                                         <div>{{this.product1.article}}</div>
                                         <div>{{this.product1.price}} ₽</div>
                                         <div>Футболка оверсайз</div>
-                                        <div>150</div>
-                                        <div>150</div>
-                                        <div>77</div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
                                     </div>
                                     <div class="table_c2_line"  v-for="pr in Object.keys(product)">
                                       <div></div>
                                       <div></div>
                                       <div></div>
-                                      <div></div>
                                       <div>{{pr}}</div>
-                                      <div>{{product[pr][0]}}</div>
+                                        <div>{{product[pr][0]}}</div>
+                                      <div></div>
                                     </div>
 
 
@@ -65,7 +64,7 @@
                     <div class="table_c3">
                         <div class="yPr_title">Ваш товар</div>
                       <div class="yPr_block">
-                        <img :src="this.product2.image" alt="">
+                        <img :src="this.img1" alt="">
                         <div class="yPr_txt">
 
                           <span>SKU: {{this.product2.article}}</span>
@@ -81,30 +80,31 @@
                                 <span>Артикул</span>
                                 <span>Цена</span>
                                 <span>Запрос</span>
-                                <span>Частотность Товаров</span>
-                                <span> на WB</span>
+                                <span>Частотность Товаров на WB</span>
+                              <div></div>
 
                             </div>
                             <div class="tablec2">
                               <div class="table_c2_inner">
                                 <div class="table_c2_line">
                                   <div>
-                                    <img :src="this.product2.image" alt="">
+                                      <img :src="this.img1" alt="">
                                   </div>
                                   <div>{{this.product2.article}}</div>
                                   <div>{{this.product2.price}} ₽</div>
                                   <div>Футболка оверсайз</div>
-                                  <div>150</div>
-                                  <div>150</div>
-                                  <div>77</div>
+                                  <div></div>
+                                  <div></div>
+                                  <div></div>
+
                                 </div>
                                 <div class="table_c2_line"  v-for="pr in Object.keys(product)">
                                   <div></div>
                                   <div></div>
                                   <div></div>
-                                  <div></div>
                                   <div>{{pr}}</div>
                                   <div>{{product[pr][1]}}</div>
+                                  <div></div>
                                 </div>
 
 
@@ -497,6 +497,7 @@
         product1: {},
         product2: {},
         loadingResultsInSearch: true,
+        img1: `https://images.wbstatic.net/c246x328/new/${String(this.$route.query.article1).slice(0,4)}0000/${String(this.$route.query.article1)}-1.jpg`
 
       }
     },

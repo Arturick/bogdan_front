@@ -24,12 +24,10 @@
                     <ChartSale :categories="chart.categories" :series="chart.series"></ChartSale>
                 </div>
             </div>
-            <div class="t2_low_ue_cont">
+            <div class="t2_low_ue_cont" style="overflow: scroll">
               <div class="table_down_a2">
                   <div class="tda2_params">
                       <span>Запрос</span>
-                      <span>Частотность WB</span>
-                      <span>Товаров на WB</span>
                       <span v-for="pr in product.dates">{{pr}}</span>
 
                   </div>
@@ -74,45 +72,42 @@ export default {
   },
   methods: {
     getAnalyze(){
+      let newChart = { categories: [], series: [ {
+          data: [],
+          name: 'Заказы'
+        },
+          {
+            data: [],
+            name: 'Продажи'
+          },]}
       let access = window.localStorage.getItem('access');
+      let task1 = window.localStorage.getItem('task1');
       this.$store.dispatch('request/getAnalyze', {access: access, article: this.article}).then((x) => {
         if(x.data.success){
           this.loadingResultsInSearch = false;
           this.product = x.data.product;
         }
         console.log(x);
-
-        let localchart = {
-          categories: [],
-          series: [
-            {
-              data: [],
-              name: 'Заказы'
-            },
-            {
-              data: [],
-              name: 'Продажи'
-            },
-          ],
-        }
-        let seller = this.product.seller[0];
-        let order = this.product.order[0];
-        seller.map(i => {
-          localchart.categories.push(i['date_seller']);
-          localchart.series[1].data.push(i['cnt']);
-        });
-        order.map(i => {
-          if(i['date_seller'] in localchart.categories){
-
-          } else {
-            localchart.categories.push(i['date_seller']);
-          }
-          localchart.series[0].data.push(i['cnt']);
-        });
-        this.chart = localchart;
       });
-
-      },
+      this.$store.dispatch('request/get_seller_data', {graph: true, task1: task1, access: access, dateFrom: "2022-11-01", flag: '0', type: 4, article: this.article}).then((x) => {
+        if(x.data.success){
+          console.log(x);
+          x.data['product']['products'].map(i => {
+            console.log(i['date_seller']);
+            newChart.categories.push(i['date_seller']);
+            newChart.series[1].data.push(i['cnt']);
+          })
+        }
+      });
+      this.$store.dispatch('request/get_order_data', {graph: true, task1: task1, access: access, dateFrom: "2022-11-01", flag: '0', type: 4, article: this.article}).then((x) => {
+        if(x.data.success){
+          console.log(x);
+          x.data['product']['products'].map(i => {
+            newChart.series[0].data.push(i['cnt']);
+          })
+        }
+        this.chart = newChart;
+      })},
   },
   mounted() {
     this.getAnalyze();
