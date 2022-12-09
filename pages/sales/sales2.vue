@@ -16,86 +16,84 @@
                 </div>
                 <div class="sales_sup">В данном разделе вы можете увидеть свой анализ продаж,<br> есть возможные сортировки, за сегодня, за вчера, за 7<br>дней, за неделю, за месяц
                 </div>
-                <div class="table_cont_md2">
-                    <div class="table_sales">
-                        <div class="table_sales_params">
-                            <div class="p_brand">Бренд</div>
-                            <div class="p_date" v-if="checkBox.date">Дата</div>
-                            <div class="p_img" v-if="checkBox.img" >Фото</div>
-                            <div class="p_name" v-if="checkBox.naming" >Наименование</div>
-                            <div class="p_art" v-if="checkBox.article" >Артикул</div>
-                            <div class="p_count" v-if="checkBox.cnt" >Продано(шт)</div>
-                            <div class="p_sale" v-if="checkBox.discount" >Скидка</div>
-                            <div class="p_price" v-if="checkBox.log" >Логистика к  клиенту (руб)</div>
-                          <div class="p_price" v-if="checkBox.barcode" >Баркод</div>
-                          <div class="p_price" v-if="checkBox.category" >Категория</div>
-                          <div class="p_price" v-if="checkBox.size" >Размер</div>
-                          <div class="p_price" v-if="checkBox.region" >Регион</div>
-                          <div class="p_price" v-if="checkBox.pwz" >ПВЗ</div>
-                          <div class="p_price" v-if="checkBox.srid" >Номер поставки</div>
-                            <div class="p_bad">Штрафы</div>
-                            <div class="p_commis">Комиссия</div>
-                            <label class="menu__btn1" for="menu__toggle1">
-                                <span><img class="bur_sh" src="../../assets/images/shest.svg" alt=""></span>
-                            </label>
-                        </div>
-                        <div class="table_info">
-                          <div v-if="type == 'Продажи'">
-                            <div v-for="pr in product.products" class="table_inner">
+              <div class="table_cont_md2">
+                <div class="table_sales">
+                  <div class="table_sales_params">
+                    <div class="p_brand" v-if="checkBox.brand">Бренд</div>
+                    <div class="p_date" v-if="checkBox.date">Дата</div>
+                    <div class="p_img" v-if="checkBox.img" >Фото</div>
+                    <div class="p_name" v-if="checkBox.naming" >Наименование</div>
+                    <div class="p_art" v-if="checkBox.article" >Артикул</div>
+                    <div class="p_count" v-if="checkBox.cnt" >Продано(шт)</div>
+                    <div class="p_sale" v-if="checkBox.discount" >Скидка</div>
+                    <div class="p_price" v-if="checkBox.log" >Логистика к  клиенту (руб)</div>
+                    <div class="p_bar" v-if="checkBox.barcode" >Баркод</div>
+                    <div class="p_cat" v-if="checkBox.category" >Категория</div>
+                    <div class="p_size" v-if="checkBox.size" >Размер</div>
+                    <div class="p_region" v-if="checkBox.region" >Регион</div>
+                    <div class="p_pvz" v-if="checkBox.pwz" >ПВЗ</div>
+                    <div class="p_price" v-if="checkBox.srid" >Номер поставки</div>
+                    <div class="p_bad">Штрафы</div>
+                    <div class="p_commis">Комиссия</div>
+                    <label class="menu__btn1" for="menu__toggle1">
+                      <span><img class="bur_sh" src="../../assets/images/shest.svg" alt=""></span>
+                    </label>
+                  </div>
+                  <div class="table_info">
+                    <div v-if="type == 'Продажи'">
+                      <div v-for="pr in product.products" class="table_inner">
 
-                              <div class="line_info_sales">
-                                    <div class="i_brand" v-if="checkBox.brand">{{pr['brand']}}</div>
-                                    <div class="i_date" v-if="checkBox.date">{{pr['date_seller']}}}</div>
-                                    <div class="i_img" v-if="checkBox.img">
-                                        <img :src="pr['img']" alt="">
-                                    </div>
-                                    <div class="i_name" v-if="checkBox.naming">{{pr['naming']}}</div>
-                                    <div class="i_art" v-if="checkBox.article">{{pr['article']}}</div>
-                                    <div class="i_count" v-if="checkBox.cnt">{{pr['count']}}</div>
-                                    <div class="i_sale" v-if="checkBox.discount" >{{pr['discount']}}</div>
-                                    <div class="i_price" v-if="checkBox.price" >{{pr['price']}}</div>
-                                    <div class="i_bad">1200 руб</div>
-                                    <div class="i_commis">1200 руб</div>
-                                    <div class="i_bad" v-if="checkBox.barcode">{{pr['barcode']}}</div>
-                                    <div class="i_commis" v-if="checkBox.category" >{{pr['category']}}</div>
-                                    <div class="i_bad" v-if="checkBox.region" >{{pr['region']}}</div>
-                                    <div class="i_commis" v-if="checkBox.size" >{{pr['size']}}</div>
-                                    <div class="i_commis" v-if="checkBox.pwz" >{{pr['pwz']}}</div>
-
-                              </div>
-
-                            </div>
+                        <div class="line_info_sales">
+                          <div class="i_brand" v-if="checkBox.brand">{{pr['brand']}}</div>
+                          <div class="i_date" v-if="checkBox.date">{{pr['date_seller']}}}</div>
+                          <div class="i_img" v-if="checkBox.img">
+                            <img :src="pr['img']" alt="">
                           </div>
-                          <div v-else >
-                            <div v-for="pr in order.products" class="table_inner">
+                          <div class="i_name" v-if="checkBox.naming">{{pr['naming']}}</div>
+                          <div class="i_art" v-if="checkBox.article">{{pr['article']}}</div>
+                          <div class="i_count" v-if="checkBox.cnt">{{pr['count']}}</div>
+                          <div class="i_sale" v-if="checkBox.discount" >{{pr['discount']}}</div>
+                          <div class="i_price" v-if="checkBox.price" >{{pr['price']}}</div>
+                          <div class="i_bad">{{}}</div>
+                          <div class="i_commis">{{}}</div>
+                          <div class="i_bad" v-if="checkBox.barcode">{{pr['barcode']}}</div>
+                          <div class="i_commis" v-if="checkBox.category" >{{pr['category']}}</div>
+                          <div class="i_bad" v-if="checkBox.region" >{{pr['region']}}</div>
+                          <div class="i_commis" v-if="checkBox.size" >{{pr['size']}}</div>
+                          <div class="i_commis" v-if="checkBox.pwz" >{{pr['pwz']}}</div>
 
-                              <div class="line_info_sales">
-                                <div class="i_brand" v-if="checkBox.brand">{{pr['brand']}}</div>
-                                <div class="i_date" v-if="checkBox.date">{{pr['date_seller']}}}</div>
-                                <div class="i_img" v-if="checkBox.img">
-                                  <img :src="pr['img']" alt="">
-                                </div>
-                                <div class="i_name" v-if="checkBox.naming">{{pr['naming']}}</div>
-                                <div class="i_art" v-if="checkBox.article">{{pr['article']}}</div>
-                                <div class="i_count" v-if="checkBox.cnt">{{pr['count']}}</div>
-                                <div class="i_sale" v-if="checkBox.discount" >{{pr['discount']}}</div>
-                                <div class="i_price" v-if="checkBox.price" >{{pr['price']}}</div>
-                                <div class="i_bad">1200 руб</div>
-                                <div class="i_commis">1200 руб</div>
-                                <div class="i_bad" v-if="checkBox.barcode">{{pr['barcode']}}</div>
-                                <div class="i_commis" v-if="checkBox.category" >{{pr['category']}}</div>
-                                <div class="i_bad" v-if="checkBox.region" >{{pr['region']}}</div>
-                                <div class="i_commis" v-if="checkBox.size" >{{pr['size']}}</div>
-                                <div class="i_commis" v-if="checkBox.pwz" >{{pr['pwz']}}</div>
-
-                              </div>
-
-                            </div>
-
-                          </div>
                         </div>
+
+                      </div>
                     </div>
+                    <div v-else >
+                      <div v-for="pr in order.products" class="table_inner">
+
+                        <div class="line_info_sales">
+                          <div class="i_brand" v-if="checkBox.brand">{{pr['brand']}}</div>
+                          <div class="i_date" v-if="checkBox.date">{{pr['date_seller']}}}</div>
+                          <div class="i_img" v-if="checkBox.img">
+                            <img :src="pr['img']" alt="">
+                          </div>
+                          <div class="i_name" v-if="checkBox.naming">{{pr['naming']}}</div>
+                          <div class="i_art" v-if="checkBox.article">{{pr['article']}}</div>
+                          <div class="i_count" v-if="checkBox.cnt">{{pr['count']}}хуй</div>
+                          <div class="i_sale" v-if="checkBox.discount" >{{pr['discount']}}</div>
+                          <div class="i_price" v-if="checkBox.price" >{{pr['price']}}</div>
+                          <div class="i_bar" v-if="checkBox.barcode">{{pr['barcode']}}</div>
+                          <div class="i_reg" v-if="checkBox.region" >{{pr['region']}}</div>
+                          <div class="i_size" v-if="checkBox.size" >{{pr['size']}}</div>
+                          <div class="i_pwz" v-if="checkBox.pwz" >{{pr['pwz']}}</div>
+                          <div class="i_bad">1200 руб</div>
+                          <div class="i_commis">1200 руб</div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
                 </div>
+              </div>
                 <div class="hamburger-menu1">
                     <input id="menu__toggle1" type="checkbox" />
 

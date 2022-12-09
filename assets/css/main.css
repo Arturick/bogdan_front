@@ -321,7 +321,7 @@ body,
   color: #000000;
 }
 
-.content-title.content-title_1 {}
+/* .content-title.content-title_1 {} */
 
 .content-title.content-title_2 {
   font-size: 18px;
@@ -542,7 +542,7 @@ body,
   background: #FFFFFF;
 }
 
-.input-block.input-block_edit {}
+/* .input-block.input-block_edit {} */
 
 .input-block__but {
   position: absolute;
@@ -1257,7 +1257,7 @@ input {
   width: 95%;
 }
 
-.l2_title_btn .btn_more_a {}
+/* .l2_title_btn .btn_more_a {} */
 
 .l1_sales {
   display: flex;
@@ -1311,8 +1311,8 @@ input {
   color: #195AF6;
 }
 
-.today {
-}
+/* .today {
+} */
 
 .table_sales_params {
   font-size: 13px;
@@ -1321,45 +1321,41 @@ input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-right: 2rem;
+  margin-right: 0rem;
   margin-left: 1rem;
 }
 
-.t2_low_ue_cont{
-  width: 100%;
-}
+.table_sales_params div{display: flex;}
 
-.p_brand {
-  width: 80px;
-}
+.t2_low_ue_cont{width: 100%;}
 
-.p_date {
-  width: 70px;
-}
+.p_brand {width: 80px;}
 
-.p_img {
-  width: 36px;
-}
+.p_date {width: 70px;}
 
-.p_name {
-  width: 223px;
-}
+.p_img {width: 36px;}
 
-.p_art {
-  width: 72px;
-}
+.p_name {width: 223px;}
 
-.p_count {
-  width: 95px;
-}
+.p_art {width: 72px;}
 
-.p_sale {
-  width: 52px;
-}
+.p_count {width: 95px;}
 
-.p_price {
-  width: 125px;
-}
+.p_sale {width: 52px;}
+
+.p_price {width: 125px;}
+
+.p_bar{width: 55px;}
+
+.p_cat{width: 75px;}
+
+.p_size{width: 52px;}
+
+.p_region{width: 52px;}
+
+.p_pvz{width: 30px;}
+
+.p_price{}
 
 .table_info {
   background-color: #F4F4F8;
@@ -2618,7 +2614,7 @@ color: #00A888;} */
 }
 
 .table_cont_md2 .table_inner{
-  padding-right: 7rem;
+  padding-right: 3rem;
 }
 
 .table_cont_md2{
