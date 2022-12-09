@@ -27,6 +27,12 @@
                             <div class="p_count" v-if="checkBox.cnt" >Продано(шт)</div>
                             <div class="p_sale" v-if="checkBox.discount" >Скидка</div>
                             <div class="p_price" v-if="checkBox.log" >Логистика к  клиенту (руб)</div>
+                          <div class="p_price" v-if="checkBox.barcode" >Баркод</div>
+                          <div class="p_price" v-if="checkBox.category" >Категория</div>
+                          <div class="p_price" v-if="checkBox.size" >Размер</div>
+                          <div class="p_price" v-if="checkBox.region" >Регион</div>
+                          <div class="p_price" v-if="checkBox.pwz" >ПВЗ</div>
+                          <div class="p_price" v-if="checkBox.srid" >Номер поставки</div>
                             <div class="p_bad">Штрафы</div>
                             <div class="p_commis">Комиссия</div>
                             <label class="menu__btn1" for="menu__toggle1">
@@ -50,6 +56,12 @@
                                     <div class="i_price" v-if="checkBox.price" >{{pr['price']}}</div>
                                     <div class="i_bad">1200 руб</div>
                                     <div class="i_commis">1200 руб</div>
+                                    <div class="i_bad" v-if="checkBox.barcode">{{pr['barcode']}}</div>
+                                    <div class="i_commis" v-if="checkBox.category" >{{pr['category']}}</div>
+                                    <div class="i_bad" v-if="checkBox.region" >{{pr['region']}}</div>
+                                    <div class="i_commis" v-if="checkBox.size" >{{pr['size']}}</div>
+                                    <div class="i_commis" v-if="checkBox.pwz" >{{pr['pwz']}}</div>
+
                               </div>
 
                             </div>
@@ -70,6 +82,12 @@
                                 <div class="i_price" v-if="checkBox.price" >{{pr['price']}}</div>
                                 <div class="i_bad">1200 руб</div>
                                 <div class="i_commis">1200 руб</div>
+                                <div class="i_bad" v-if="checkBox.barcode">{{pr['barcode']}}</div>
+                                <div class="i_commis" v-if="checkBox.category" >{{pr['category']}}</div>
+                                <div class="i_bad" v-if="checkBox.region" >{{pr['region']}}</div>
+                                <div class="i_commis" v-if="checkBox.size" >{{pr['size']}}</div>
+                                <div class="i_commis" v-if="checkBox.pwz" >{{pr['pwz']}}</div>
+
                               </div>
 
                             </div>
@@ -87,17 +105,15 @@
                         <li><input type="checkbox" name="" id="" v-model="checkBox.img" checked><span>Фото</span></li>
                         <li><input type="checkbox" name="" id="" v-model="checkBox.naming" checked><span>Наименование</span></li>
                         <li><input type="checkbox" name="" id="" v-model="checkBox.article" checked><span>Артикул</span></li>
-                        <li><input type="checkbox" name="" id=""><span>Баркод</span></li>
-                        <li><input type="checkbox" name="" id=""><span>Категория</span></li>
-                        <li><input type="checkbox" name="" id=""><span>Размер</span></li>
-                        <li><input type="checkbox" name="" id=""><span>Номер заказа</span></li>
+                        <li><input type="checkbox" name="" id="" v-model="checkBox.barcode"><span>Баркод</span></li>
+                        <li><input type="checkbox" name="" id="" v-model="checkBox.category"><span>Категория</span></li>
+                        <li><input type="checkbox" name="" id="" v-model="checkBox.size"><span>Размер</span></li>
                         <li><input type="checkbox" name="" id="" v-model="checkBox.cnt" checked><span>Заказано(шт)</span></li>
                         <li><input type="checkbox" name="" id="" v-model="checkBox.price" checked><span>price</span></li>
                         <li><input type="checkbox" name="" id="" v-model="checkBox.coms" ><span>Комиссия</span></li>
-                        <li><input type="checkbox" name="" id=""><span>Регион</span></li>
-                        <li><input type="checkbox" name="" id=""><span>Склад</span></li>
-                        <li><input type="checkbox" name="" id=""><span>Номер поставки</span></li>
-                        <li><input type="checkbox" name="" id=""><span>Статус</span></li>
+                        <li><input type="checkbox" name="" id="" v-model="checkBox.region"><span>Регион</span></li>
+                        <li><input type="checkbox" name="" id="" v-model="checkBox.pwz"><span>Склад</span></li>
+                        <li><input type="checkbox" name="" id="" v-model="checkBox.srid"><span>Номер поставки</span></li>
                     </ul>
                 </div>
             </div>
@@ -126,7 +142,12 @@
           penalti: true,
           coms: true,
           price: true,
-          naming: true
+          barcode: true,
+          category: true,
+          size: true,
+          region: true,
+          pwz: true,
+          srid: true
         },
 
       }
