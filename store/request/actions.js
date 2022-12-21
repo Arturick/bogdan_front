@@ -164,6 +164,15 @@ export default {
         })
     })
   },
+  deleteMinus({commit}, state){
+    return new Promise((resolve, reject) => {
+      this.$axios
+        .post('deleteMinus', state)
+        .then((x) => {
+          resolve(x)
+        })
+    })
+  },
   getMinus({commit}, state){
     return new Promise((resolve, reject) => {
       this.$axios

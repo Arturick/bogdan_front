@@ -52,10 +52,10 @@
             <div class="l3_sales">
                 <div class="sales_title">Заказы товаров</div>
                 <div class="sales_params">
-                    <button @click="(e) => {getStatic(1);}" :class="{ active_date : orderCount == 1}" class="today">За сегодня</button>
-                    <button @click="(e) => {getStatic(2);}" :class="{ active_date : sellerCount == 2}" class="yesterday">Вчера</button>
-                    <button @click="(e) => {getStatic(3);}" :class="{ active_date : sellerCount == 3}" class="week">7 дней</button>
-                    <button @click="(e) => {getStatic(4);}" :class="{ active_date : sellerCount == 4}" class="month">Месяц</button>
+                    <button @click="(e) => {getStatic1(1);}" :class="{ active_date : orderCount == 1}" class="today">За сегодня</button>
+                    <button @click="(e) => {getStatic1(2);}" :class="{ active_date : sellerCount == 2}" class="yesterday">Вчера</button>
+                    <button @click="(e) => {getStatic1(3);}" :class="{ active_date : sellerCount == 3}" class="week">7 дней</button>
+                    <button @click="(e) => {getStatic1(4);}" :class="{ active_date : sellerCount == 4}" class="month">Месяц</button>
                 </div>
                 <div class="sales_sup">В данном разделе вы можете увидеть свой анализ продаж,<br> есть возможные сортировки, за сегодня, за вчера, за 7<br>дней, за неделю, за месяц
                 </div>
@@ -161,6 +161,27 @@
           }
           console.log(this.product);
         });
+      },
+      getStatic1(type = 4){
+        let localDate = new Date(),
+          flag = 1;
+        this.orderCount = type;
+        this.sellerCount = type;
+        switch (type) {
+          case 2:
+            localDate = new Date(new Date().getTime() - 86400000);
+            break;
+          case 3:
+            flag = 0;
+            break;
+          case 4:
+            flag = 0;
+            break;
+        }
+        let task1 = +window.localStorage.getItem('task1'),
+          token = window.localStorage.getItem('access');
+        localDate = `${localDate.getFullYear()}-${localDate.getMonth()}-${localDate.getDate()}`;
+
         this.$store.dispatch('request/get_order_data', {graph: false, dateFrom: localDate, flag: flag, type: type, access: token, task1: task1}).then((x) => {
           if(x.data.success){
             this.order.products = x.data['product']['products'];
@@ -173,6 +194,7 @@
     },
     mounted() {
       this.getStatic();
+      this.getStatic1();
       console.log(this.$route);
     },
   }

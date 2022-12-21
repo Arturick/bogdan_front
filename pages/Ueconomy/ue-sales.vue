@@ -131,7 +131,7 @@
             Логистика к клиенту и от клиента: &nbsp;<span>{{totalCnt.logick}}P</span><br>
             Себестоимость товаров: &nbsp;<span>N рублей</span><br>
             <span>Итого: {{totalCnt.totalSell}}р</span><br>
-            <span>ПРИБЫЛЬ С ТОВРАРА: {{totalCnt.totalSell}}р</span>
+            <span>ПРИБЫЛЬ С ТОВРАРА: {{totalCnt.totalSell - totalCnt.logick - totalCnt.retail}}р</span>
           </div>
         </div>
     </div>
@@ -195,8 +195,8 @@
                 this.totalCnt.total +=  +i['totalBuy'];
                   this.totalCnt.cnt += +i['cntBuy'];
                   this.totalCnt.logick += +i['lg'];
-                  this.totalCnt.retail += +i['totalBuy'];
-                this.totalCnt.totalCms += +i['countRetail'];
+                  this.totalCnt.retail += Math.floor((+i['totalBuy'] / +i['cntBuy']) * +i['countRetail']);
+                this.totalCnt.totalCms += +i['comi_wb'];
                 this.totalCnt.totalSell += +i['totalBuy'];
 
               })

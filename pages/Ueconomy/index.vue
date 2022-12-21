@@ -72,7 +72,7 @@
                 <span>{{i['value']}}</span>
                 <span>{{i['old'] ? 'ДА' : 'Нет'}}</span>
                 <span>{{i['allTime'] ? 'До' : 'После'}}</span>
-                <span>&#215;</span>
+                <div @click="deleteMinus(i['id'])">&#215;</div>
               </div>
             </div>
           </div>
@@ -187,6 +187,12 @@
         })
         console.log(this.minus);
       },
+      deleteMinus(id){
+        this.$store.dispatch('request/deleteMinus', {id: id}).then((x) => {
+          console.log(this.minusList);
+          this.getMinus();
+        })
+      }
     },
     mounted() {
       this.getStatic();
