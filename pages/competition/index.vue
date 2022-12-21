@@ -70,7 +70,7 @@
             </div>
             <div class="btn_cont_s3">
                 <div class="btn_more_a">
-                    <NuxtLink :to="'/competition/competition2?article1= '+ this.article1 + '&article2=' + this.article2">Далее</NuxtLink>
+                    <NuxtLink :to="'/competition/competition2?article1='+ this.article1 + '&article2=' + this.article2">Далее</NuxtLink>
                 </div>
             </div>
         </div>
@@ -132,4 +132,8 @@
     },
   }
 </script>
-
+<style scoped>
+  .btn_more_a{
+    cursor: pointer;
+  }
+</style>

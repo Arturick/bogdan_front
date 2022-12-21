@@ -21,76 +21,61 @@
               </NuxtLink>
 
             </div>
-            <input type="text" class="inp_Ue" placeholder="Поиск по баркоду, артикулу поставщика, бренду">
+            <input type="text" class="inp_Ue" placeholder="Поиск по баркоду, артикулу поставщика, бренду" v-model="searchKey">
             <div class="table_new_wrap">
-                <div class="table_md">
-                <div class="tmd_params">
-                            <span>Фото</span>
-                            <span>Бренд</span>
-                            <span>Артикул</span>
-                            <span>Размер</span>
-                            <span>Баркод</span>
-                            <span>Артикул поставщика</span>
-                            <span>Цена WB</span>
-                        </div>
-                        <div class="tmd_lines">
-                          <div class="1" v-for="pr in product">
-                            <div class="tmd_line">
-                                <div class="tmd_line_inner">
-                                    <span>
-                                        <img :src="pr['img']" alt="">
-                                    </span>
-                                    <span>{{pr['brand']}}</span>
-                                    <span>{{pr['article']}}</span>
-                                    <span>S</span>
-                                    <span>{{pr['barcode']}}</span>
-                                    <span>{{pr['article']}}</span>
-                                    <span>{{pr['price']}}</span>
-                                    <!--  -->
-                                    <NuxtLink :to="'/Ueconomy/Ue-sales?article=' + pr['article']" >
-                                        <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt="">
-                                    </NuxtLink>
-                                </div>
-                            </div>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="low_props_md">
-                        <div class="low_props_md_inner">
-                            <div class="title_md_low">Показать записей</div>
-                            <div class="sel_md_low">
-                                <select>
-                                    <option>10</option>
-                                    <option>15</option>
-                                    <option>20</option>
-                                    <option>25</option>
-                                    <option>30</option>
-                                </select>
-                                <img src="../../assets/images/arr_d.svg" alt="">
-                            </div>
-                            <div class="pages_md_low">
-                                <span>1</span>
-                                <span>2</span>
-                                <span>3</span>
-                                <span>4</span>
-                                <span>...</span>
-                                <span>10</span>
-                            </div>
-                        </div>
-                    </div>
-            </div>2
+              <v-data-table
+                :headers="productHeaders"
+                :items="sortProduct"
+                class="postable"
+              >
+
+                <template v-slot:item.brand="{ item }">
+                  <span>Partony</span>
+                </template>
+                <template v-slot:item.img="{ item }">
+                  <div class="i_img">
+                    <img :src="item.img"/>
+                  </div>
+                </template>
+                <template v-slot:item.action="{ item }">
+                  <NuxtLink :to="'/Ueconomy/Ue-sales?article=' +item.article" >
+                    <img class="arr_r_ue" src="../../assets/images/arr_r.svg" alt="">
+                  </NuxtLink>
+                </template>
+
+              </v-data-table>
+            </div>
+
+            </div>
 
         </div>
-    </div>
+
 </template>
 <script>
   export default {
     components: {},
     data() {
       return {
+        productHeaders:  [
+          {"text": "Брэнд", "value": 'brand', 'sortable': false},
+          {"text": "Фото", "value": 'img', 'sortable': false},
+          {"text": "Размер", "value": 'size', 'sortable': false},
+          {"text": "Артикул", "value": 'article', 'sortable': false},
+          {"text": "Колличество", "value": 'cnt', 'sortable': false},
+          {"text": "Цена", "value": 'price', 'sortable': false},
+          {"text": "", "value": 'action', 'sortable': false},
+        ],
+        product: [],
+        searchKey: ''
 
-        product: {},
-
+      }
+    },
+    computed: {
+      sortProduct(){
+        return this.product.filter(i => {
+          console.log(i);
+          return i.article.toLowerCase().includes(this.searchKey.toLowerCase()) || i.naming.toLowerCase().includes(this.searchKey.toLowerCase()) || i.brand.toLowerCase().includes(this.searchKey.toLowerCase());
+        })
       }
     },
     methods: {

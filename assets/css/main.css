@@ -989,6 +989,89 @@ input {
 
 /******************** main ***********************/
 
+/* new cards */
+
+.cards_main{
+  background-color: white;
+  width: 100%;
+  height: auto;
+  margin-top: 2rem;
+}
+
+.card_main_line{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+
+}
+
+
+
+.card_main{
+  border: 1px solid #E2EEFE;
+  background-color: white;
+  /* min-width: 330px; */
+  width: 370px;
+  /* min-width: 320px; */
+  min-height: 190px;
+  border-radius: 10px;
+  padding: 0.5rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.c-up{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 0.3rem;
+}
+
+.c_up_1{border-bottom: 2px solid rgb(240, 239, 239);}
+
+.card_name{padding-bottom: 0.45rem;cursor: pointer;}
+
+.c_stat_f{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.c_stat_d{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  color: orangered;
+}
+
+.cc_cap{margin-bottom: 2rem;}
+
+.c_name .card_name:nth-child(2){padding-left: 0.5rem;}
+
+.card_name.active{border-bottom: 2px solid blue;}
+
+.c-content{padding-top: 1rem;}
+
+.stat_count{font-size: 20px;}
+
+
+
+.cb_red{border-top: 2px solid red;}
+
+.cb_green{border-top: 2px solid green;}
+
+.cb_blue{border-top: 2px solid rgb(0, 106, 255);}
+
+.sc_green{color:green}
+
+
+
+
 /* Chart */
 
 .chart_main {
@@ -1355,7 +1438,7 @@ input {
 
 .p_pvz{width: 30px;}
 
-.p_price{}
+/* .p_price{} */
 
 .table_info {
   background-color: #F4F4F8;
@@ -1600,6 +1683,7 @@ input {
   flex-direction: column;
   justify-content: space-between;
   height: 160px;
+  margin-bottom: 14px;
 }
 
 /* Table c2 */
@@ -1609,7 +1693,7 @@ input {
   overflow: scroll;
 } */
 
-.tc2_params{
+.tc2_params {
   color: #77757D;
   display: flex;
   justify-content: space-between;
@@ -1618,7 +1702,7 @@ input {
   font-size: 15px;
   font-weight: 600;
   margin-top: 2rem;
-  padding-right: 0.8rem;
+  padding-right: 5.800000000000001rem;
 }
 
 .tc2_params span:nth-child(1){width: 41px;}

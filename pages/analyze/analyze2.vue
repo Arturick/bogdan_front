@@ -4,7 +4,7 @@
             <div class="l1_sales">
                 <div class="btn_more_a">Назад</div>
                 <div class="win_title_s">
-                    <span>Главная /</span> Юнит экономика
+                    <span>Главная /</span> Анализ Товара
                 </div>
             </div>
             <div class="a2_title">{{this.article}}</div>
@@ -93,8 +93,8 @@ export default {
         if(x.data.success){
           console.log(x);
           x.data['product']['products'].map(i => {
-            console.log(i['date_seller']);
-            newChart.categories.push(i['date_seller']);
+            console.log(i['date_seller'].toLocaleString().split("T")[0]);
+            newChart.categories.push(i['date_seller'].toLocaleString().split("T")[0]);
             newChart.series[1].data.push(i['cnt']);
           })
         }

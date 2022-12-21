@@ -34,6 +34,7 @@
     "vue-toastification": "^1.7.14",
     "vue-yandex-maps": "^0.11.13",
     "vue2-daterange-picker": "^0.6.8",
+    "vuetify": "^2.6.13",
     "webpack": "^4.46.0",
     "ymaps": "^0.2.1"
   },

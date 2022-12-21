@@ -1,5 +1,5 @@
 <template>
-    <div class="md:container md:mx-auto" v-if="!loadingResultsInSearch">
+    <div class="md:container md:mx-auto">
         <div class="bg-white rounded-3xl mt-2.5 mx-2.5 p-7 pb-20">
             <div class="l1_sales">
                 <NuxtLink to="/">
@@ -9,120 +9,112 @@
                     <NuxtLink to="/competition"><span>Главная /</span></NuxtLink> Конкуренция
                 </div>
             </div>
+          <div v-if="loadingResultsInSearch == false">
             <div class="sales_title">Сравните свои товары</div>
-            <div class="comp_sup">В данном разделе вы можете 4 сравнить свои товары с<br> товарами конкурентов (по цене, по позициям в выдаче и<br>  отображению в ключевых запросах).
-            </div>
-            <div class="yPr_title">Ваш товар</div>
-            <div class="yPr_block">
-                <img :src="this.img1" alt="">
-                <div class="yPr_txt">
+              <div class="comp_sup">В данном разделе вы можете 4 сравнить свои товары с<br> товарами конкурентов (по цене, по позициям в выдаче и<br>  отображению в ключевых запросах).
+              </div>
+              <div class="yPr_title">Ваш товар</div>
+              <div class="yPr_block">
+                  <img :src="this.img1" alt="">
+                  <div class="yPr_txt">
 
-                    <span>SKU: {{this.product1.article}}</span>
-                    <span>Бренд: {{this.product1.brand}}</span>
-                    <span>Тип продаж: FBS</span>
-                </div>
-            </div>
-                <div class="table_c2">
-                    <div class="table_cont_md" style="overflow: auto">
-                        <div class="tcomp_con">
-                            <div class="tc2_params">
+                      <span>SKU: {{this.product1.article}}</span>
+                      <span>Бренд: {{this.product1.brand}}</span>
+                      <span>Тип продаж: FBS</span>
+                  </div>
+              </div>
+                  <div class="table_c2">
+                      <div class="table_cont_md" style="overflow: auto">
+                          <div class="tcomp_con">
+                              <div class="tc2_params">
 
-                                <span>Фото</span>
-                                <span>Артикул</span>
-                                <span>Цена</span>
-                                <span>Запрос</span>
-                                <span>Частотность Товаров на WB</span>
-
-                            </div>
-                            <div class="tablec2">
-                                <div class="table_c2_inner">
-                                    <div class="table_c2_line">
-                                        <div>
-                                            <img :src="this.img1" alt="">
-                                        </div>
-                                        <div>{{this.product1.article}}</div>
-                                        <div>{{this.product1.price}} ₽</div>
-                                        <div>Футболка оверсайз</div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div class="table_c2_line"  v-for="pr in Object.keys(product)">
-                                      <div></div>
-                                      <div></div>
-                                      <div></div>
-                                      <div>{{pr}}</div>
-                                        <div>{{product[pr][0]}}</div>
-                                      <div></div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="table_c3">
-                        <div class="yPr_title">Ваш товар</div>
-                      <div class="yPr_block">
-                        <img :src="this.img1" alt="">
-                        <div class="yPr_txt">
-
-                          <span>SKU: {{this.product2.article}}</span>
-                          <span>Бренд: {{this.product2.brand}}</span>
-                          <span>Тип продаж: FBS</span>
-                        </div>
-                      </div>
-                    <div class="table_c2">
-                        <div class="tcomp_con">
-                            <div class="tc2_params">
-                                <span>Бренд</span>
-                                <span>Фото</span>
-                                <span>Артикул</span>
-                                <span>Цена</span>
-                                <span>Запрос</span>
-                                <span>Частотность Товаров на WB</span>
-                              <div></div>
-
-                            </div>
-                            <div class="tablec2">
-                              <div class="table_c2_inner">
-                                <div class="table_c2_line">
-                                  <div>
-                                      <img :src="this.img1" alt="">
-                                  </div>
-                                  <div>{{this.product2.article}}</div>
-                                  <div>{{this.product2.price}} ₽</div>
-                                  <div>Футболка оверсайз</div>
-                                  <div></div>
-                                  <div></div>
-                                  <div></div>
-
-                                </div>
-                                <div class="table_c2_line"  v-for="pr in Object.keys(product)">
-                                  <div></div>
-                                  <div></div>
-                                  <div></div>
-                                  <div>{{pr}}</div>
-                                  <div>{{product[pr][1]}}</div>
-                                  <div></div>
-                                </div>
-
+                                  <span>Фото</span>
+                                  <span>Артикул</span>
+                                  <span>Цена</span>
+                                  <span>Запрос</span>
+                                  <span>Частотность Товаров на WB</span>
 
                               </div>
-                            </div>
+                              <div class="tablec2">
+                                  <div class="table_c2_inner">
+                                      <div class="table_c2_line">
+                                          <div>
+                                              <img :src="this.img1" alt="">
+                                          </div>
+                                          <div>{{this.product1.article}}</div>
+                                          <div>{{this.product1.price}} ₽</div>
+                                          <div>{{this.product1.naming}}</div>
+                                          <div></div>
+                                          <div></div>
+                                      </div>
+                                      <div class="table_c2_line"  v-for="pr in Object.keys(product)">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div>{{pr}}</div>
+                                          <div>{{product[pr][0]}}</div>
+                                        <div></div>
+                                      </div>
+
+
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="table_c2">
+                          <div class="yPr_title">Ваш товар</div>
+                        <div class="yPr_block">
+                          <img :src="this.product2.image" alt="">
+                          <div class="yPr_txt">
+
+                            <span>SKU: {{this.product2.article}}</span>
+                            <span>Бренд: {{this.product2.brand}}</span>
+                            <span>Тип продаж: FBS</span>
+                          </div>
                         </div>
-                    </div>
-                </div>
-                <div class="new_c2_title">Отличия и рекомендации</div>
-                <div class="new_c2_sup">Ваш тоавар по высокочастотным ключевым запросам находиться, выше, Но имеет меньше ключевых<br> слов чем у вашего конкурента, но цена у вашего конкурента ниже. остаток, у вас больше, но ваш<br>  конкурент, торгует по FBO.
-                </div>
-                <div class="new_c2_sup">
-                    Мы рекомендовали бы, отгрузить товары на FBO и по работать с ценой. Для более детально аналите,<br>  обратитесь к нашему менеджеру.
-                </div>
-                </div>
-        <div class="down_btn_c3">
-                <div class="btn_more_a">Заполнить форму</div>
-            </div>
+                      <div class="table_c2">
+                          <div class="tcomp_con">
+                              <div class="tc2_params">
+                                  <span>Бренд</span>
+                                  <span>Фото</span>
+                                  <span>Артикул</span>
+                                  <span>Цена</span>
+                                  <span>Запрос</span>
+                                  <span>Частотность Товаров на WB</span>
+                                <div></div>
+
+                              </div>
+                              <div class="tablec2">
+                                <div class="table_c2_inner">
+                                  <div class="table_c2_line">
+                                    <div>
+                                        <img :src="this.product2.image" alt="">
+                                    </div>
+                                    <div>{{this.product2.article}}</div>
+                                    <div>{{this.product2.price}} ₽</div>
+                                    <div>{{this.product2.naming}}</div>
+                                    <div></div>
+                                    <div></div>
+
+                                  </div>
+                                  <div class="table_c2_line"  v-for="pr in Object.keys(product)">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div>{{pr}}</div>
+                                    <div>{{product[pr][1]}}</div>
+                                    <div></div>
+                                  </div>
+
+
+                                </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  </div>
+          </div>
+
         </div>
         <div class="modal1">
             <div class="modal_content1">
@@ -482,6 +474,19 @@
                 </div>
             </div>
         </div>
+      <v-dialog
+      v-model="isModal"
+      transition="dialog-bottom-transition"
+      max-width="450"
+      >
+      <v-card>
+        <div class="bg-white rounded-3xl p-2.5 md:p-7">
+          <form action="">
+
+          </form>
+        </div>
+      </v-card>
+      </v-dialog>
     </div>
 
 </template>
@@ -490,7 +495,7 @@
     components: {},
     data() {
       return {
-
+        isModal: false,
         product: {},
         article1: this.$route.query.article1,
         article2: this.$route.query.article2,
@@ -514,7 +519,6 @@
           this.$store.dispatch('request/get_economy', {task1: task1, access: token, type: 4}).then((x) => {
             if(x.data.success){
               this.product = x.data['product']['products'];
-              this.loadingResultsInSearch = false;
             }
             console.log(this.product);
           }).catch(() => {
@@ -534,8 +538,10 @@
           this.$store.dispatch('request/getCompetition', {article1: this.article1, article2: this.article2}).then((x) => {
             if(x.data.success){
               this.product = x.data.product
-              console.log(x);
+              if(this.product == {}){
 
+                }
+              this.loadingResultsInSearch = false;
             }
 
           }).catch(() => {
@@ -549,40 +555,14 @@
             });
           })
           this.$store.dispatch('request/getByArticle', {article: this.article1}).then((x) => {
-            if(x.data.success){
+
               this.product1 = x.data.product;
-              ;
 
-            }
-
-          }).catch(() => {
-            this.$store.dispatch('request/refresh', {task1: task1}).then((x) => {
-              if(x.data.success){
-                window.localStorage.setItem('access', x.data.token);
-                window.localStorage.setItem('task1', x.data.profile[0]['task1']);
-                this.$auth.setUserToken('Bearer ' + x.data.token)
-              }
-              //console.log(x);
-            });
           })
           this.$store.dispatch('request/getByArticle', {article: this.article2}).then((x) => {
-            if(x.data.success){
 
               this.product2 = x.data.product;
 
-
-
-            }
-
-          }).catch(() => {
-            this.$store.dispatch('request/refresh', {task1: task1}).then((x) => {
-              if(x.data.success){
-                window.localStorage.setItem('access', x.data.token);
-                window.localStorage.setItem('task1', x.data.profile[0]['task1']);
-                this.$auth.setUserToken('Bearer ' + x.data.token)
-              }
-              //console.log(x);
-            });
           })
 
 

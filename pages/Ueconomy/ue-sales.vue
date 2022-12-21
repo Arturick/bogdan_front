@@ -6,21 +6,19 @@
                     <div class="btn_more_a">Назад</div>
                 </NuxtLink>
                 <div class="win_title_s">
-                    <span>Главная /</span> Продажи
+                    <span>Главная /</span> Юнит Экономика
                 </div>
             </div>
             <div class="u_titles">
                 <div class="u_txt">
-                    <div class="u_title">Анализ товара artikul_12941529</div>
+                    <div class="u_title">Анализ товара {{article}}</div>
                     <div class="u_sup">
                         В данном разделе вы можете увидеть свой анализ продаж,<br> есть возможные сортировки, за сегодня, за вчера, за 7<br>  дней, за неделю, за месяц
                     </div>
                 </div>
-                <div class="btn_u">
-                    Выгрузить в Excel
-                </div>
+
             </div>
-            <div class="title_ues">Продажи товара artikul_12941529</div>
+            <div class="title_ues">Продажи товара {{article}}</div>
 
             <div class="table_stat_ues">
                 <div class="l1_st_ues">

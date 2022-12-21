@@ -48,7 +48,7 @@
               <div class="order_left">
                 <div class="btn_more">
                   Подробнее
-                  <NuxtLink :to="'/sales/sales2/?date=' + product.date + '&article=' + product.article + '&type=2'" class="arrow_r">
+                  <NuxtLink :to="'/sales/sales2/?date=' + product.date_seller + '&article=' + product.article + '&type=2'" class="arrow_r">
                     <img src="../assets/images/btn_more.svg" alt="">
                   </NuxtLink>
 
@@ -63,7 +63,7 @@
       <div class="a_inner">
         <div class="l1_a">
           <div class="a_title">ABC анализ</div>
-          <NuxtLink to="/analyze">
+          <NuxtLink to="/Ueconomy">
             <div class="btn_more_a">
               Подробнее
               <img src="../assets/images/btn_more.svg" alt="">
@@ -74,21 +74,21 @@
           <div class="a_stat_bl">
             <div class="stat_inner">
               <div class="stat_title">Группа А</div>
-              <div class="stat_sup1">Выручка {{ abc["a"]["totalSum"]}} ₽</div>
+              <div class="stat_sup1">Выручка {{ Number(abc["a"]["totalSum"]).toLocaleString()}} ₽</div>
               <div class="stat_sup2">Товаров {{ abc["a"]["cnt"]}}шт</div>
             </div>
           </div>
           <div class="a_stat_bl">
             <div class="stat_inner">
               <div class="stat_title">Группа B</div>
-              <div class="stat_sup1">Выручка {{ abc["b"]["totalSum"]}} ₽</div>
+              <div class="stat_sup1">Выручка {{ Number(abc["b"]["totalSum"]).toLocaleString()}} ₽</div>
               <div class="stat_sup2">Товаров {{ abc["b"]["cnt"]}}шт</div>
             </div>
           </div>
           <div class="a_stat_bl">
             <div class="stat_inner">
               <div class="stat_title">Группа C</div>
-              <div class="stat_sup1">Выручка {{ abc["c"]["totalSum"]}} ₽</div>
+              <div class="stat_sup1">Выручка {{ Number(abc["c"]["totalSum"]).toLocaleString()}} ₽</div>
               <div class="stat_sup2">Товаров {{ abc["c"]["cnt"]}}шт</div>
             </div>
           </div>
@@ -105,6 +105,7 @@ export default {
     return {
       resultsInSearch: {},
       loadingResultsInSearch: true,
+      dates: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб',],
       chart: {
         categories: [],
         series: [
@@ -142,12 +143,15 @@ export default {
           if(x.data.success){
             this.product.products = x.data['product']['products'];
             this.product.count = x.data['product']['count'][0]['cnt'];
-            this.product.total = x.data['product']['total'][0]['cnt'];
+            this.product.total = +x.data['product']['total'][0]['cnt'];
+            this.product.total =  this.product.total.toLocaleString();
             this.$store.dispatch('request/get_seller_data', {graph: true, task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 3,}).then((x) => {
               if(x.data.success){
                 x.data['product']['products'].map(i => {
-                  console.log(i['date_seller']);
-                  newChart.categories.push(i['date_seller']);
+                  console.log(new Date(i['date_seller']).getDay());
+                  console.log(this.dates[new Date(i['date_seller']).getDay()]);
+
+                  newChart.categories.push(this.dates[new Date(i['date_seller']).getDay()]);
                   newChart.series[1].data.push(i['cnt']);
                 })
               }
@@ -165,12 +169,13 @@ export default {
               return  new Date(b.date_seller).getTime() - new Date(a.date_seller).getTime();
             })
             this.order.count = x.data['product']['count'][0]['cnt'];
-            this.order.total = x.data['product']['total'][0]['cnt'];
+            this.order.total = +x.data['product']['total'][0]['cnt'];
+            this.order.total = this.order.total.toLocaleString();
             this.$store.dispatch('request/get_order_data', {graph: true, task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 3,}).then((x) => {
               if(x.data.success){
                 console.log()
                 x.data['product']['products'].map(i => {
-                  newChart.series[0].data.push(i['cnt']);
+                  newChart.series[0].data.push(`${i['cnt']}`);
                 })
               }
               this.chart = newChart;
@@ -198,3 +203,8 @@ export default {
     },
 }
 </script>
+<style scoped>
+  .stat_inner{
+    text-decoration: none;
+  }
+</style>

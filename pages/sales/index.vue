@@ -11,94 +11,82 @@
             <div class="l2_sales">
                 <div class="sales_title">Продажи товаров</div>
                 <div class="sales_params">
-                  <button @click="() => {getStatic(1)}" class="today">За сегодня</button>
-                  <button @click="() => {getStatic(2)}" class="yesterday">Вчера</button>
-                  <button @click="() => {getStatic(3)}" class="week">7 дней</button>
-                  <button @click="() => {getStatic(4)}" class="month">Месяц</button>
+                  <button @click="() => {getStatic(1)}" :class="{ active_date : sellerCount == 1}" class="today" >За сегодня</button>
+                  <button @click="() => {getStatic(2)}" :class="{ active_date : sellerCount == 2}"  class="yesterday">Вчера</button>
+                  <button @click="() => {getStatic(3)}" :class="{ active_date : sellerCount == 3}" class="week">7 дней</button>
+                  <button @click="() => {getStatic(4)}" :class="{ active_date : sellerCount == 4}" class="month">Месяц</button>
                 </div>
                 <div class="sales_sup">В данном разделе вы можете увидеть свой анализ продаж,<br> есть возможные сортировки, за сегодня, за вчера, за 7<br>дней, за неделю, за месяц
                 </div>
                 <div class="table_cont_md">
                     <div class="table_sales">
-                        <div class="table_sales_params">
-                            <div class="p_brand">Бренд</div>
-                            <div class="p_date">Дата</div>
-                            <div class="p_img">Фото</div>
-                            <div class="p_name">Наименование</div>
-                            <div class="p_art">Артикул</div>
-                            <div class="p_count">Продано(шт)</div>
-                            <div class="p_sale">Скидка</div>
-                            <div class="p_price">Цена со скидкой</div>
-                        </div>
-                        <div class="table_info">
-                            <div class="table_inner">
-                              <div class="line_info_sales" v-for="pr in product.products">
+                      <v-data-table
+                        :headers="orderHeaders"
+                        :items="product.products"
+                        class="postable"
+                        :sort-by="'date_seller'"
+                        :sort-desc="true"
+                      >
 
-                                    <div class="i_brand">{{pr['brand']}}</div>
-                                    <div class="i_date">{{pr['date_seller']}}</div>
-                                    <div class="i_img">
-                                        <img :src="pr['img']" alt="">
-                                    </div>
-                                    <div class="i_name">{{pr['naming']}}</div>
-                                    <div class="i_art">{{pr['article']}}</div>
-                                    <div class="i_count">{{pr['cnt']}}</div>
-                                    <div class="i_sale">{{pr['discount']}}</div>
-                                    <div class="i_price">{{pr['price']}} руб
-                                        <NuxtLink :to="'/sales/sales2/?date=' + pr['date_seller']+ '&article=' + pr['article'] + '&type=0'" class="arrow_r">
-                                            <img  src="../../assets/images/arr_r.svg" alt="">
-                                        </NuxtLink>
-                                    </div>
+                        <template v-slot:item.brand="{ item }">
+                          <span>Partony</span>
+                        </template>
+                        <template v-slot:item.date_seller="{ item }">
+                          <span>{{item.date_seller.toLocaleString().split("T")[0]}}</span>
+                        </template>
+                        <template v-slot:item.img="{ item }">
+                          <div class="i_img">
+                            <img :src="item.img"/>
+                          </div>
+                        </template>
+                        <template v-slot:item.action="{ item }">
+                          <NuxtLink :to="'/sales/sales2/?date=' + item.date_seller + '&article=' + item.article + '&type=0'" class="arrow_r">
+                            <img  src="../../assets/images/arr_r.svg" alt="">
+                          </NuxtLink>
+                        </template>
 
-                              </div>
-                            </div>
-                        </div>
+                      </v-data-table>
                     </div>
                  </div>
             </div>
             <div class="l3_sales">
                 <div class="sales_title">Заказы товаров</div>
                 <div class="sales_params">
-                    <button @click="(e) => {getStatic(1); e.class == 'today active_date'}" class="today active_date">За сегодня</button>
-                    <button @click="(e) => {getStatic(2); e.class == 'today active_date'}" class="yesterday">Вчера</button>
-                    <button @click="(e) => {getStatic(3); e.class == 'today active_date'}" class="week">7 дней</button>
-                    <button @click="(e) => {getStatic(4); e.class == 'today active_date'}" class="month">Месяц</button>
+                    <button @click="(e) => {getStatic(1);}" :class="{ active_date : orderCount == 1}" class="today">За сегодня</button>
+                    <button @click="(e) => {getStatic(2);}" :class="{ active_date : sellerCount == 2}" class="yesterday">Вчера</button>
+                    <button @click="(e) => {getStatic(3);}" :class="{ active_date : sellerCount == 3}" class="week">7 дней</button>
+                    <button @click="(e) => {getStatic(4);}" :class="{ active_date : sellerCount == 4}" class="month">Месяц</button>
                 </div>
                 <div class="sales_sup">В данном разделе вы можете увидеть свой анализ продаж,<br> есть возможные сортировки, за сегодня, за вчера, за 7<br>дней, за неделю, за месяц
                 </div>
                 <div class="table_cont_md">
                     <div class="table_sales">
-                        <div class="table_sales_params">
-                            <div class="p_brand">Бренд</div>
-                            <div class="p_date">Дата</div>
-                            <div class="p_img">Фото</div>
-                            <div class="p_name">Наименование</div>
-                            <div class="p_art">Артикул</div>
-                            <div class="p_count">Продано(шт)</div>
-                            <div class="p_sale">Скидка</div>
-                            <div class="p_price">Цена со скидкой</div>
-                        </div>
-                        <div class="table_info">
-                            <div class="table_inner">
-                              <div class="line_info_sales" v-for="pr in product.products">
+                      <v-data-table
+                        :headers="orderHeaders"
+                        :items="order.products"
+                        class="postable"
+                        :sort-by="'date_seller'"
+                        :sort-desc="true"
+                      >
 
-                                  <div class="i_brand">{{pr['brand']}}</div>
-                                  <div class="i_date">{{pr['date_seller']}}</div>
-                                  <div class="i_img">
-                                    <img :src="pr['img']" alt="">
-                                  </div>
-                                  <div class="i_name">{{pr['naming']}}</div>
-                                  <div class="i_art">{{pr['article']}}</div>
-                                  <div class="i_count">{{pr['cnt']}}</div>
-                                  <div class="i_sale">{{pr['discount']}}</div>
-                                  <div class="i_price">{{pr['price']}} руб
-                                    <NuxtLink :to="'/sales/sales2/?date=' + pr['date_seller']+ '&article=' + pr['article'] + '&type=1'" class="arrow_r">
-                                      <img  src="../../assets/images/arr_r.svg" alt="">
-                                    </NuxtLink>
-                                  </div>
+                        <template v-slot:item.brand="{ item }">
+                          <span>Partony</span>
+                        </template>
+                        <template v-slot:item.date_seller="{ item }">
+                            <span>{{item.date_seller.toLocaleString().split("T")[0]}}</span>
+                          </template>
+                        <template v-slot:item.img="{ item }">
+                          <div class="i_img">
+                            <img :src="item.img"/>
+                          </div>
+                        </template>
+                        <template v-slot:item.action="{ item }">
+                          <NuxtLink :to="'/sales/sales2/?date=' + item.date_seller + '&article=' + item.article + '&type=1'" class="arrow_r">
+                            <img  src="../../assets/images/arr_r.svg" alt="">
+                          </NuxtLink>
+                        </template>
 
-                              </div>
-                            </div>
-                        </div>
+                      </v-data-table>
                     </div>
                 </div>
             </div>
@@ -112,16 +100,44 @@
     components: {Button},
     data() {
       return {
-
-        product: {count: 0, total: 0, products: {}},
-        order: {count: 0, total: 0, products: {}},
+        productHeaders: [
+          {"text": "Брэнд", "value": 'brand', 'sortable': false},
+          {"text": "Дата", "value": 'date_seller', 'sortable': true},
+          {"text": "Фото", "value": 'img', 'sortable': false},
+          {"text": "Наименование", "value": 'naming', 'sortable': false},
+          {"text": "Артикул", "value": 'article', 'sortable': false},
+          {"text": "Колличество", "value": 'cnt', 'sortable': false},
+          {"text": "Скидка", "value": 'discount', 'sortable': false},
+          {"text": "Цена", "value": 'price', 'sortable': false},
+          {"text": "", "value": 'action', 'sortable': false},
+        ],
+        orderHeaders: [
+          {"text": "Брэнд", "value": 'brand', 'sortable': false},
+          {"text": "Дата", "value": 'date_seller', 'sortable': true},
+          {"text": "Фото", "value": 'img', 'sortable': false},
+          {"text": "Наименование", "value": 'naming', 'sortable': false},
+          {"text": "Артикул", "value": 'article', 'sortable': false},
+          {"text": "Колличество", "value": 'cnt', 'sortable': false},
+          {"text": "Скидка", "value": 'discount', 'sortable': false},
+          {"text": "Цена", "value": 'price', 'sortable': false},
+          {"text": "", "value": 'action', 'sortable': false},
+        ],
+        product: {count: 0, total: 0, products: []},
+        order: {count: 0, total: 0, products: []},
+        orderCount: 1,
+        sellerCount: 1,
         type: 4
       }
+    },
+    computed: {
+
     },
     methods: {
       getStatic(type = 4){
         let localDate = new Date(),
           flag = 1;
+        this.orderCount = type;
+        this.sellerCount = type;
         switch (type) {
           case 2:
             localDate = new Date(new Date().getTime() - 86400000);
@@ -137,7 +153,7 @@
             token = window.localStorage.getItem('access');
         localDate = `${localDate.getFullYear()}-${localDate.getMonth()}-${localDate.getDate()}`;
 
-        this.$store.dispatch('request/get_seller_data', {task1: task1, access: token, dateFrom: localDate, flag: flag, type: type}).then((x) => {
+        this.$store.dispatch('request/get_seller_data', {graph: false, dateFrom: localDate, flag: flag, type: type, access: token, task1: task1}).then((x) => {
           if(x.data.success){
             this.product.products = x.data['product']['products'];
             this.product.count = x.data['product']['count'][0]['cnt'];
@@ -145,7 +161,7 @@
           }
           console.log(this.product);
         });
-        this.$store.dispatch('request/get_order_data', {task1: task1, access: token, dateFrom: localDate, flag: flag, type: type}).then((x) => {
+        this.$store.dispatch('request/get_order_data', {graph: false, dateFrom: localDate, flag: flag, type: type, access: token, task1: task1}).then((x) => {
           if(x.data.success){
             this.order.products = x.data['product']['products'];
             this.order.count = x.data['product']['count'][0]['cnt'];
