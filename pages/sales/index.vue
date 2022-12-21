@@ -53,9 +53,9 @@
                 <div class="sales_title">Заказы товаров</div>
                 <div class="sales_params">
                     <button @click="(e) => {getStatic1(1);}" :class="{ active_date : orderCount == 1}" class="today">За сегодня</button>
-                    <button @click="(e) => {getStatic1(2);}" :class="{ active_date : sellerCount == 2}" class="yesterday">Вчера</button>
-                    <button @click="(e) => {getStatic1(3);}" :class="{ active_date : sellerCount == 3}" class="week">7 дней</button>
-                    <button @click="(e) => {getStatic1(4);}" :class="{ active_date : sellerCount == 4}" class="month">Месяц</button>
+                    <button @click="(e) => {getStatic1(2);}" :class="{ active_date : orderCount == 2}" class="yesterday">Вчера</button>
+                    <button @click="(e) => {getStatic1(3);}" :class="{ active_date : orderCount == 3}" class="week">7 дней</button>
+                    <button @click="(e) => {getStatic1(4);}" :class="{ active_date : orderCount == 4}" class="month">Месяц</button>
                 </div>
                 <div class="sales_sup">В данном разделе вы можете увидеть свой анализ продаж,<br> есть возможные сортировки, за сегодня, за вчера, за 7<br>дней, за неделю, за месяц
                 </div>
@@ -136,7 +136,6 @@
       getStatic(type = 4){
         let localDate = new Date(),
           flag = 1;
-        this.orderCount = type;
         this.sellerCount = type;
         switch (type) {
           case 2:
@@ -166,7 +165,6 @@
         let localDate = new Date(),
           flag = 1;
         this.orderCount = type;
-        this.sellerCount = type;
         switch (type) {
           case 2:
             localDate = new Date(new Date().getTime() - 86400000);
