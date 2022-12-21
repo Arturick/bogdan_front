@@ -96,11 +96,16 @@ export default {
         }
     },
     mounted() {
+        let wdn = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб',];
+        let actCtg = [];
         if (this.categories) {
-            this.options = {
+          for(let i in this.categories){
+             actCtg.push(wdn[this.categories[i]]);
+          }
+          this.options = {
                 ...this.options,
                 xaxis: {
-                    categories: this.categories
+                    categories: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб',]
                 }
             }
         }

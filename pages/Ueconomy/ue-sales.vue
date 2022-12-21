@@ -60,7 +60,7 @@
                         <span>Комиссия WB</span>
                     </div>
                     <div class="bl_exp_ues">
-                        <span></span>
+                        <span v-for="i in minusList">{{i['naming']}}</span>
                     </div>
                     <div class="bl_prof_ues">
                         <span>Маржинальная прибыль</span>
@@ -93,7 +93,7 @@
                         <span>{{pr['cntBuy']}}</span>
                         <span>{{+pr['cntBuy'] - +pr['countRetail']}}</span>
                     </div>
-                    <div class="bl_returns_ues">0
+                    <div class="bl_returns_ues">
                       <span>{{pr['rtp']}}</span>
                       <span>{{pr['countRetail']}}</span>
                     </div>
@@ -106,10 +106,10 @@
                       <span>{{pr['com_wb']}}</span>
                     </div>
                     <div class="bl_exp_ues">
-                        <span>-1500р</span>
+                        <div v-for="i in minusList"> -{{i['value']}}</div>
                     </div>
                     <div class="bl_prof_ues">
-                        <span>{{pr['totalBuy'] - (pr['cntBuy'] * priceLocal[pr['article']])}}р</span>
+                        <span>{{pr['totalBuy']  - (pr['cntBuy'] * priceLocal[pr['article']])}}р</span>
                         <span>{{pr['totalBuy'] - (pr['cntBuy'] * priceLocal[pr['article']])}}р</span>
                         <span>{{((100 * priceLocal[pr['article']]) / pr['price'])}}%</span>
                     </div>
@@ -123,16 +123,16 @@
                     </div>
                 </div>
             </div>
-<!--            <div  v-if="product[article]"  class="txt_ues">-->
-<!--                Общее количество:  &nbsp;<span>1 артикула, {{product['countBuy']}} шт</span><br>-->
-<!--                Сумма продаж:  &nbsp;<span>{{product['priceBuy']}}₽</span><br>-->
-<!--                Возвраты: &nbsp;<span>{{product['priceRetail']}}Р</span><br>-->
-<!--                Комиссия: &nbsp;<span>1000р</span><br>-->
-<!--                Логистика к клиенту и от клиента: &nbsp;<span>{{product['logic']}}р</span><br>-->
-<!--                Себестоимость товаров: &nbsp;<span>N рублей</span><br>-->
-<!--                <span>Итого: {{+product['priceBuy'] - (+product['logic']) - (+product['priceRetail'])}}₽</span><br>-->
-<!--                <span>ПРИБЫЛЬ С ТОВРАРА: {{+product['priceBuy'] - (+product['logic']) - (+product['priceRetail'])}}₽</span>-->
-<!--            </div>-->
+          <div class="txt_ues">
+            Общее количество:  &nbsp;<span>{{totalCnt.articles}} артикула,{{totalCnt.cnt}} шт</span><br>
+            Сумма продаж:  &nbsp;<span>{{totalCnt.totalSell}}₽</span><br>
+            Возвраты: &nbsp;<span>{{totalCnt.retail}} шт</span><br>
+            Комиссия: &nbsp;<span>1000р</span><br>
+            Логистика к клиенту и от клиента: &nbsp;<span>{{totalCnt.logick}}P</span><br>
+            Себестоимость товаров: &nbsp;<span>N рублей</span><br>
+            <span>Итого: {{totalCnt.totalSell}}р</span><br>
+            <span>ПРИБЫЛЬ С ТОВРАРА: {{totalCnt.totalSell}}р</span>
+          </div>
         </div>
     </div>
 </template>
@@ -146,7 +146,24 @@
         loading: false,
         article: this.$route.query.article,
         priceLocal: {},
-        typeLocal: this.$route.query.type
+        typeLocal: this.$route.query.type,
+        minusList: [],
+        totalCnt: {
+            articles: 0,
+            cnt: 0,
+            totalSell: 0,
+            retail: 0,
+          totalCms: 0,
+          logick: 0,
+          sebst: 0,
+          total: 0
+        },
+        minus: {
+          naming: '',
+          value: '',
+          allTime: '',
+          old: '',
+        },
       }
     },
     methods: {
@@ -173,6 +190,16 @@
 
               this.products = x.data['product']['products'];
 
+              this.products.map( i => {
+                this.totalCnt.articles += 1;
+                this.totalCnt.total +=  +i['totalBuy'];
+                  this.totalCnt.cnt += +i['cntBuy'];
+                  this.totalCnt.logick += +i['lg'];
+                  this.totalCnt.retail += +i['totalBuy'];
+                this.totalCnt.totalCms += +i['countRetail'];
+                this.totalCnt.totalSell += +i['totalBuy'];
+
+              })
             }
 
           }).catch(() => {
@@ -214,9 +241,18 @@
 
         })
 
-      }
+      },
+      getMinus(){
+        let task1 = +window.localStorage.getItem('task1');
+        this.$store.dispatch('request/getMinus', {task1: task1}).then((x) => {
+          this.minusList = x.data['product'];
+          console.log(this.minusList);
+        })
+        console.log(this.minus);
+      },
     },
     mounted() {
+      this.getMinus();
       this.getStatic(4);
       console.log(this.$route);
     },

@@ -153,6 +153,16 @@ export default {
 
                   newChart.categories.push(this.dates[new Date(i['date_seller']).getDay()]);
                   newChart.series[1].data.push(i['cnt']);
+                  this.$store.dispatch('request/get_order_data', {graph: true, task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 3,}).then((x) => {
+                    if(x.data.success){
+                      console.log()
+                      x.data['product']['products'].map(i => {
+                        newChart.series[0].data.push(`${i['cnt']}`);
+                      })
+                    }
+                    this.chart = newChart;
+                    console.log(this.chart);
+                  })
                 })
               }
             })
@@ -171,15 +181,7 @@ export default {
             this.order.count = x.data['product']['count'][0]['cnt'];
             this.order.total = +x.data['product']['total'][0]['cnt'];
             this.order.total = this.order.total.toLocaleString();
-            this.$store.dispatch('request/get_order_data', {graph: true, task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 3,}).then((x) => {
-              if(x.data.success){
-                console.log()
-                x.data['product']['products'].map(i => {
-                  newChart.series[0].data.push(`${i['cnt']}`);
-                })
-              }
-              this.chart = newChart;
-            })
+
           }
           console.log(this.order);
 

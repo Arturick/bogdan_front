@@ -47,7 +47,60 @@
             </div>
 
             </div>
+      <div class="title_ue2">Статьи расходов</div>
+      <div class="ue2_txt_bl">
+        <div class="ue_sup22">
+          В данном разделе вы можете указать статьи расходов, для<br> того чтобы кооректно отобразить вам ваш зароботок.<br>  Постоянные расходы сохраняются тут, не постоянные<br>  ежемесчено нужно заполнять
+        </div>
+        <div class="btn_u" @click="addMinus">Добавить</div>
+      </div>
+      <div class="t2_low_ue_cont">
+        <div class="t2_low_ue">
+          <div class="t_menu_ue">
+            <span>Дата занесения</span>
+            <span>Название расхода</span>
+            <span>Число</span>
+            <span>Постоянный</span>
+            <span>Когда вычетать</span>
 
+          </div>
+          <div v-for="i in minusList">
+            <div class="t_line_ue2">
+              <div class="tline_ue2_inner">
+                <span>{{i['date_add'].toLocaleString().split('T')[0]}}</span>
+                <span>{{i['naming']}}</span>
+                <span>{{i['value']}}</span>
+                <span>{{i['old'] ? 'ДА' : 'Нет'}}</span>
+                <span>{{i['allTime'] ? 'До' : 'После'}}</span>
+                <span>&#215;</span>
+              </div>
+            </div>
+          </div>
+          <div class="t_line_ue2">
+
+            <div class="tline_ue2_inner">
+              <span></span>
+              <span><input type="text" v-model="minus.naming"></span>
+              <span><input type="text" v-model="minus.value"></span>
+              <span class="sel_tue2">
+                                <select v-model="minus.old">
+                                    <option>Да</option>
+                                  <option>Нет</option>
+                                </select>
+                                <img src="../../assets/images/arr_d.svg" alt="">
+                            </span>
+              <span class="sel_tue2">
+                                <select v-model="minus.allTime">
+                                    <option>До</option>
+                                  <option>После</option>
+                                </select>
+                                <img src="../../assets/images/arr_d.svg" alt="">
+                            </span>
+              <span>&#215;</span>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
 
 </template>
@@ -66,10 +119,18 @@
           {"text": "", "value": 'action', 'sortable': false},
         ],
         product: [],
-        searchKey: ''
+        searchKey: '',
+        minusList: [],
+        minus: {
+          naming: '',
+          value: '',
+          allTime: '',
+          old: '',
+        },
 
       }
     },
+
     computed: {
       sortProduct(){
         return this.product.filter(i => {
@@ -106,10 +167,30 @@
           })
 
 
-      }
+      },
+      addMinus(){
+        let task1 = +window.localStorage.getItem('task1');
+        this.minus.allTime = this.minus.allTime == 'До' ? 1 : 0;
+        this.minus.old = this.minus.old == 'Да' ? 1 : 0;
+        this.$store.dispatch('request/addMinus', {task1: task1,  value: this.minus.value, isNumber: 1, allTime: this.minus.allTime, old: this.minus.old, naming: this.minus.naming}).then((x) => {
+          this.getMinus();
+
+        })
+
+
+      },
+      getMinus(){
+        let task1 = +window.localStorage.getItem('task1');
+        this.$store.dispatch('request/getMinus', {task1: task1}).then((x) => {
+          this.minusList = x.data['product'];
+          console.log(this.minusList);
+        })
+        console.log(this.minus);
+      },
     },
     mounted() {
       this.getStatic();
+      this.getMinus();
     },
   }
 </script>

@@ -155,6 +155,24 @@ export default {
         })
     })
   },
+  addMinus({commit}, state){
+    return new Promise((resolve, reject) => {
+      this.$axios
+        .post('addMinus', state)
+        .then((x) => {
+          resolve(x)
+        })
+    })
+  },
+  getMinus({commit}, state){
+    return new Promise((resolve, reject) => {
+      this.$axios
+        .post('getMinus', state)
+        .then((x) => {
+          resolve(x)
+        })
+    })
+  },
   get_fastinfo({ commit }) {
     return new Promise((resolve, reject) => {
       this.$axios
