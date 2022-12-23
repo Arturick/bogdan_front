@@ -1,120 +1,94 @@
 <template>
-    <VueApexCharts type="area" height="100%" :options="options" :series="series"></VueApexCharts>
+  <VueApexCharts
+    type="bar"
+    height="100%"
+    :options="options"
+    :series="series"
+  ></VueApexCharts>
 </template>
 
 <script>
-export default {
+  export default {
     data() {
-        return {
-            options: {
-                border: {
-                    show: true,
-                    colors: ['#000']
-                },
-                legend: {
-                    horizontalAlign: 'right',
-                    position: 'top',
-                    fontSize: '15px',
-                    fontFamily: "'Montserrat', sans-serif",
-                    fontWeight: 700,
-                    markers: {
-                        fillColors: ['transparent', 'transparent'],
-                        strokeColor: 'transparent',
-                        width: 44,
-                        height: 14,
-                        customHTML: function () {
-                            return `<label class="checkbox-google">
-                                        <input type="checkbox" checked>
-                                        <span class="checkbox-google-switch"></span>
-                                    </label>`
-                        }
-                    }
-                },
-                colors: ["#6290FE", "#9A9A9A"],
-                fill: {
-                    colors: ["transparent", "transparent"],
-                    gradient: {
-                        gradientToColors: ['#6592ff', '#fff'],
-                        opacityFrom: 1,
-                        type: "vertical"
-                    },
-                    type: 'gradient'
-                },
-                grid: {
-                    show: false,
-                },
-                chart: {
-                    toolbar: {
-                        show: false
-                    },
-                    zoom: {
-                        enabled: false
-                    }
-                },
-                markers: {
-                    show: false,
-                },
-                xaxis: {
-                    axisBorder: {
-                        show: true,
-                        color: '#000',
-                        height: 1,
-                        width: '100%',
-                    }
-                },
-                yaxis: {
-                    axisTicks: {
-                        show: true
-                    },
-                    axisBorder: {
-                        show: true,
-                        width: 1,
-                        color: "#000"
-                    },
-                    labels: {
-                        style: {
-                            colors: "#000"
-                        }
-                    }
-                },
-                // stroke: {
-                //     show: true,
-                //     curve: 'smooth',
-                //     lineCap: 'butt',
-                //     colors: ['#000'],
-                //     width: 2,
-                // }
+      return {
+        options: {
+          chart: {
+            type: "bar",
+            height: 350,
+            stacked: true,
+            toolbar: {
+              show: true,
             },
-        }
+            zoom: {
+              enabled: true,
+            },
+          },
+          responsive: [
+            {
+              breakpoint: 480,
+              options: {
+                legend: {
+                  position: "bottom",
+                  offsetX: -10,
+                  offsetY: 0,
+                },
+              },
+            },
+          ],
+          plotOptions: {
+            bar: {
+              horizontal: false,
+              borderRadius: 10,
+              dataLabels: {
+                total: {
+                  enabled: true,
+                  style: {
+                    fontSize: "13px",
+                    fontWeight: 900,
+                  },
+                },
+              },
+            },
+          },
+          xaxis: {},
+          legend: {
+            position: "right",
+            offsetY: 40,
+          },
+          fill: {
+            opacity: 1,
+          },
+        },
+      };
     },
     props: {
-        series: {
-            type: Array
-        },
-        categories: {
-            type: Array
-        }
+      series: {
+        type: Array,
+      },
+      categories: {
+        type: Array,
+      },
     },
     mounted() {
-        let wdn = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб',];
-        let actCtg = [];
-        if (this.categories) {
-          for(let i in this.categories){
-             actCtg.push(wdn[this.categories[i]]);
-          }
-          this.options = {
-                ...this.options,
-                xaxis: {
-                    categories: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб',]
-                }
-            }
+      let wdn = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+      let actCtg = [];
+      if (this.categories) {
+        for (let i in this.categories) {
+          actCtg.push(wdn[this.categories[i]]);
         }
-    }
-}
+        this.options = {
+          ...this.options,
+          xaxis: {
+            categories: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+          },
+        };
+      }
+    },
+  };
 </script>
 
 <style>
-.checkbox-google {
+  .checkbox-google {
     display: inline-block;
     height: 28px;
     line-height: 28px;
@@ -123,10 +97,10 @@ export default {
     vertical-align: middle;
     font-size: 14px;
     user-select: none;
-}
+  }
 
-.checkbox-google input+.checkbox-google-switch {
-    background: #9ABEF7;
+  .checkbox-google input + .checkbox-google-switch {
+    background: #9abef7;
     display: inline-block;
     width: 36px;
     height: 14px;
@@ -134,15 +108,16 @@ export default {
     position: relative;
     top: 6px;
     vertical-align: top;
-    transition: .2s;
-}
+    transition: 0.2s;
+  }
 
-.checkbox-google input+.checkbox-google-switch:before {
+  .checkbox-google input + .checkbox-google-switch:before {
     background: #1a73e8;
     border-radius: 50%;
-    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-    transition: .15s;
-    content: '';
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    transition: 0.15s;
+    content: "";
     display: inline-block;
     width: 20px;
     height: 20px;
@@ -150,35 +125,35 @@ export default {
     top: -3px;
     left: -1px;
     transform: translateX(18px);
-}
+  }
 
-.apexcharts-inactive-legend .checkbox-google .checkbox-google-switch {
+  .apexcharts-inactive-legend .checkbox-google .checkbox-google-switch {
     background: #9f9f9f;
-    transition: .15s;
-}
+    transition: 0.15s;
+  }
 
-.apexcharts-inactive-legend .checkbox-google .checkbox-google-switch:before {
+  .apexcharts-inactive-legend .checkbox-google .checkbox-google-switch:before {
     background: #fff;
     transform: translateX(0);
-    transition: .15s;
-}
+    transition: 0.15s;
+  }
 
-.checkbox-google input {
+  .checkbox-google input {
     display: block;
     width: 0;
     height: 0;
     position: absolute;
     z-index: -1;
     opacity: 0;
-}
+  }
 
-/* Disabled */
-/* .checkbox-google input:disabled+.checkbox-google-switch {
-    filter: grayscale(60%);
-    border-color: rgba(0, 0, 0, .1);
-}
+  /* Disabled */
+  /* .checkbox-google input:disabled+.checkbox-google-switch {
+      filter: grayscale(60%);
+      border-color: rgba(0, 0, 0, .1);
+  }
 
-.checkbox-google input:disabled+.checkbox-google-switch:before {
-    background: #eee;
-} */
+  .checkbox-google input:disabled+.checkbox-google-switch:before {
+      background: #eee;
+  } */
 </style>

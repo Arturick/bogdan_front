@@ -81,7 +81,7 @@
                           </div>
                         </template>
                         <template v-slot:item.action="{ item }">
-                          <NuxtLink :to="'/sales/sales2/?date=' + item.date_seller + '&article=' + item.article + '&type=1'" class="arrow_r">
+                          <NuxtLink :to="'/sales/sales2/?date=' + item.date_seller + '&article=' + item.article + '&type=0'" class="arrow_r">
                             <img  src="../../assets/images/arr_r.svg" alt="">
                           </NuxtLink>
                         </template>

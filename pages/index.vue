@@ -1,5 +1,171 @@
 <template>
   <div class="md:container md:mx-auto">
+    <div class="cards_main">
+      <div class="card_main_line">
+        <div class="card_main cb_red">
+          <div class="c-up">
+            <div class="btn_points">
+              <svg width="20" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 6C8.89543 6 8 5.10457 8 4C8 2.89543 8.89543 2 10 2C11.1046 2 12 2.89543 12 4C12 5.10457 11.1046 6 10 6Z" fill="grey"/>
+                <path d="M10 12C8.89543 12 8 11.1046 8 10C8 8.89543 8.89543 8 10 8C11.1046 8 12 8.89543 12 10C12 11.1046 11.1046 12 10 12Z" fill="grey"/>
+                <path d="M10 18C8.89543 18 8 17.1046 8 16C8 14.8954 8.89543 14 10 14C11.1046 14 12 14.8954 12 16C12 17.1046 11.1046 18 10 18Z" fill="grey"/>
+              </svg>
+            </div>
+            <div class="c_name">
+              <span class="card_name">Продажи</span>
+              <span class="card_name_ico">&#9432;</span>
+            </div>
+          </div>
+          <div class="c-content">
+            <div class="c_stat">
+              <div class="c_stat_f">
+                <div class="stat_name">Сумма</div>
+                <div class="stat_count">{{(+allSeller.totalPr).toLocaleString()}} ₽</div>
+              </div>
+            </div>
+          </div>
+          <div class="c-content">
+            <div class="c_stat">
+              <div class="c_stat_f">
+                <div class="stat_name">Количество</div>
+                <div class="stat_count">{{allSeller.cnt.toLocaleString()}} шт.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card_main cb_red">
+          <div class="c-up c_up_1">
+            <div class="btn_points">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 6C8.89543 6 8 5.10457 8 4C8 2.89543 8.89543 2 10 2C11.1046 2 12 2.89543 12 4C12 5.10457 11.1046 6 10 6Z" fill="grey"/>
+                <path d="M10 12C8.89543 12 8 11.1046 8 10C8 8.89543 8.89543 8 10 8C11.1046 8 12 8.89543 12 10C12 11.1046 11.1046 12 10 12Z" fill="grey"/>
+                <path d="M10 18C8.89543 18 8 17.1046 8 16C8 14.8954 8.89543 14 10 14C11.1046 14 12 14.8954 12 16C12 17.1046 11.1046 18 10 18Z" fill="grey"/>
+              </svg>
+            </div>
+            <div class="c_name">
+              <span class="card_name" @click="allOrderFlag=0" :class="{ active : allOrderFlag == 0}" >Заказы</span>
+              <span class="card_name" @click="allOrderFlag=1" :class="{ active : allOrderFlag == 1}">Незавершенные</span>
+              <span class="card_name_ico">&#9432;</span>
+            </div>
+          </div>
+          <div class="c-content">
+            <div class="c_stat">
+              <div class="c_stat_f">
+                <div class="stat_name">Сумма</div>
+                <div class="stat_count">{{(getAllOrderT).toLocaleString()}} ₽</div>
+              </div>
+            </div>
+          </div>
+          <div class="c-content">
+            <div class="c_stat">
+              <div class="c_stat_f">
+                <div class="stat_name">Количество</div>
+                <div class="stat_count">{{(getAllOrderC).toLocaleString()}} шт.</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="card_main cb_red">
+          <div class="c-up">
+            <div class="btn_points">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 6C8.89543 6 8 5.10457 8 4C8 2.89543 8.89543 2 10 2C11.1046 2 12 2.89543 12 4C12 5.10457 11.1046 6 10 6Z" fill="grey"/>
+                <path d="M10 12C8.89543 12 8 11.1046 8 10C8 8.89543 8.89543 8 10 8C11.1046 8 12 8.89543 12 10C12 11.1046 11.1046 12 10 12Z" fill="grey"/>
+                <path d="M10 18C8.89543 18 8 17.1046 8 16C8 14.8954 8.89543 14 10 14C11.1046 14 12 14.8954 12 16C12 17.1046 11.1046 18 10 18Z" fill="grey"/>
+              </svg>
+            </div>
+            <div class="c_name">
+              <span class="card_name">Возвраты</span>
+              <span class="card_name_ico">&#9432;</span>
+            </div>
+          </div>
+          <div class="c-content">
+            <div class="c_stat">
+              <div class="c_stat_f">
+                <div class="stat_name">Сумма</div>
+                <div class="stat_count">{{(+retail.prt).toLocaleString()}} ₽</div>
+              </div>
+            </div>
+          </div>
+          <div class="c-content">
+            <div class="c_stat">
+              <div class="c_stat_f">
+                <div class="stat_name">Количество</div>
+                <div class="stat_count">{{(+retail.cnt).toLocaleString()}} шт.</div>
+              </div>
+              <div class="c_stat_d">0 шт.</div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="card_main cb_red">
+          <div class="c-up">
+            <div class="btn_points">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 6C8.89543 6 8 5.10457 8 4C8 2.89543 8.89543 2 10 2C11.1046 2 12 2.89543 12 4C12 5.10457 11.1046 6 10 6Z" fill="grey"/>
+                <path d="M10 12C8.89543 12 8 11.1046 8 10C8 8.89543 8.89543 8 10 8C11.1046 8 12 8.89543 12 10C12 11.1046 11.1046 12 10 12Z" fill="grey"/>
+                <path d="M10 18C8.89543 18 8 17.1046 8 16C8 14.8954 8.89543 14 10 14C11.1046 14 12 14.8954 12 16C12 17.1046 11.1046 18 10 18Z" fill="grey"/>
+              </svg>
+            </div>
+            <div class="c_name">
+              <span class="card_name">Самовыкупы</span>
+              <span class="card_name_ico">&#9432;</span>
+            </div>
+          </div>
+          <div class="c-content">
+            <div class="c_stat">
+              <div class="c_stat_f">
+                <div class="stat_name">Сумма</div>
+                <div class="stat_count">0 ₽</div>
+              </div>
+              <div class="c_stat_d">0 ₽</div>
+            </div>
+          </div>
+          <div class="c-content">
+            <div class="c_stat">
+              <div class="c_stat_f">
+                <div class="stat_name">Количество</div>
+                <div class="stat_count">0 шт.</div>
+              </div>
+              <div class="c_stat_d">0 шт.</div>
+            </div>
+          </div>
+        </div> -->
+        <div class="card_main">
+          <div class="c-up">
+            <div class="btn_points">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 6C8.89543 6 8 5.10457 8 4C8 2.89543 8.89543 2 10 2C11.1046 2 12 2.89543 12 4C12 5.10457 11.1046 6 10 6Z" fill="grey"/>
+                <path d="M10 12C8.89543 12 8 11.1046 8 10C8 8.89543 8.89543 8 10 8C11.1046 8 12 8.89543 12 10C12 11.1046 11.1046 12 10 12Z" fill="grey"/>
+                <path d="M10 18C8.89543 18 8 17.1046 8 16C8 14.8954 8.89543 14 10 14C11.1046 14 12 14.8954 12 16C12 17.1046 11.1046 18 10 18Z" fill="grey"/>
+              </svg>
+            </div>
+            <div class="c_name">
+              <span class="card_name">Прибыль и комиссия</span>
+              <span class="card_name_ico">&#9432;</span>
+            </div>
+          </div>
+          <div class="c-content">
+            <div class="c_stat">
+              <div class="c_stat_f">
+                <div class="stat_name">Прибыль</div>
+                <div class="stat_count">0 ₽</div>
+              </div>
+              <div class="c_stat_d">0 ₽</div>
+            </div>
+          </div>
+          <div class="c-content">
+            <div class="c_stat">
+              <div class="c_stat_f">
+                <div class="stat_name">Комиссия WB</div>
+                <div class="stat_count">0 ₽</div>
+              </div>
+              <div class="c_stat_d sc_green">0 ₽</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="chart_main">
       <div class="chart_info">
         <div class="chart_title">График продаж</div>
@@ -48,7 +214,7 @@
               <div class="order_left">
                 <div class="btn_more">
                   Подробнее
-                  <NuxtLink :to="'/sales/sales2/?date=' + product.date_seller + '&article=' + product.article + '&type=2'" class="arrow_r">
+                  <NuxtLink :to="'/sales/sales2/?date=' + product.date_seller + '&article=' + product.article + '&type=0'" class="arrow_r">
                     <img src="../assets/images/btn_more.svg" alt="">
                   </NuxtLink>
 
@@ -63,7 +229,7 @@
       <div class="a_inner">
         <div class="l1_a">
           <div class="a_title">ABC анализ</div>
-          <NuxtLink to="/Ueconomy">
+          <NuxtLink to="/analyze">
             <div class="btn_more_a">
               Подробнее
               <img src="../assets/images/btn_more.svg" alt="">
@@ -74,21 +240,21 @@
           <div class="a_stat_bl">
             <div class="stat_inner">
               <div class="stat_title">Группа А</div>
-              <div class="stat_sup1">Выручка {{ Number(abc["a"]["totalSum"]).toLocaleString()}} ₽</div>
+              <div class="stat_sup1">Выручка {{ abc["a"]["totalSum"]}} ₽</div>
               <div class="stat_sup2">Товаров {{ abc["a"]["cnt"]}}шт</div>
             </div>
           </div>
           <div class="a_stat_bl">
             <div class="stat_inner">
               <div class="stat_title">Группа B</div>
-              <div class="stat_sup1">Выручка {{ Number(abc["b"]["totalSum"]).toLocaleString()}} ₽</div>
+              <div class="stat_sup1">Выручка {{ abc["b"]["totalSum"]}} ₽</div>
               <div class="stat_sup2">Товаров {{ abc["b"]["cnt"]}}шт</div>
             </div>
           </div>
           <div class="a_stat_bl">
             <div class="stat_inner">
               <div class="stat_title">Группа C</div>
-              <div class="stat_sup1">Выручка {{ Number(abc["c"]["totalSum"]).toLocaleString()}} ₽</div>
+              <div class="stat_sup1">Выручка {{ abc["c"]["totalSum"]}} ₽</div>
               <div class="stat_sup2">Товаров {{ abc["c"]["cnt"]}}шт</div>
             </div>
           </div>
@@ -105,7 +271,6 @@ export default {
     return {
       resultsInSearch: {},
       loadingResultsInSearch: true,
-      dates: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб',],
       chart: {
         categories: [],
         series: [
@@ -121,7 +286,41 @@ export default {
         abc: false,
       },
       product: {count: 0, total: 0, products: {}},
-      order: {count: 0, total: 0, products: {}}
+      order: {count: 0, total: 0, products: {}},
+      allSeller: {cnt: 0, totalPr: 0},
+      allOrder: {cnt: 0, total: 0, retailTotal: 0, retailCnt: 0},
+      allOrderFlag: 0,
+      retail: {cnt: 0, prt: 0}
+    }
+  },
+  computed: {
+      getAllOrderT(){
+        let answer = {cnt: 0, total: 0}
+        switch (this.allOrderFlag) {
+          case 0:
+            answer.cnt = this.allOrder.cnt;
+            answer.total = this.allOrder.total;
+            break;
+          case 1:
+            answer.cnt = this.allOrder.retailCnt;
+            answer.total = this.allOrder.retailTotal;
+            break;
+        }
+        return answer.total;
+      },
+    getAllOrderC(){
+      let answer = {cnt: 0, total: 0}
+      switch (this.allOrderFlag) {
+        case 0:
+          answer.cnt = this.allOrder.cnt;
+          answer.total = this.allOrder.total;
+          break;
+        case 1:
+          answer.cnt = this.allOrder.retailCnt;
+          answer.total = this.allOrder.retailTotal;
+          break;
+      }
+      return answer.cnt;
     }
   },
   methods: {
@@ -139,30 +338,23 @@ export default {
       let task1 = +window.localStorage.getItem('task1'),
           token = window.localStorage.getItem('access');
         console.log(token);
-        this.$store.dispatch('request/get_seller_data', {task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 3,}).then((x) => {
+      this.$store.dispatch('request/get_all_retail', {task1: task1}).then((x) => {
+        this.retail = x.data.product;
+        console.log(x, 11111111111111111111111111111111111111111);
+      });
+
+
+      this.$store.dispatch('request/get_seller_data', {task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 3,}).then((x) => {
           if(x.data.success){
             this.product.products = x.data['product']['products'];
             this.product.count = x.data['product']['count'][0]['cnt'];
-            this.product.total = +x.data['product']['total'][0]['cnt'];
-            this.product.total =  this.product.total.toLocaleString();
+            this.product.total = x.data['product']['total'][0]['cnt'];
             this.$store.dispatch('request/get_seller_data', {graph: true, task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 3,}).then((x) => {
               if(x.data.success){
                 x.data['product']['products'].map(i => {
-                  console.log(new Date(i['date_seller']).getDay());
-                  console.log(this.dates[new Date(i['date_seller']).getDay()]);
-
-                  newChart.categories.push(this.dates[new Date(i['date_seller']).getDay()]);
+                  console.log(i['date_seller']);
+                  newChart.categories.push(i['date_seller']);
                   newChart.series[1].data.push(i['cnt']);
-                  this.$store.dispatch('request/get_order_data', {graph: true, task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 3,}).then((x) => {
-                    if(x.data.success){
-                      console.log()
-                      x.data['product']['products'].map(i => {
-                        newChart.series[0].data.push(`${i['cnt']}`);
-                      })
-                    }
-                    this.chart = newChart;
-                    console.log(this.chart);
-                  })
                 })
               }
             })
@@ -179,9 +371,16 @@ export default {
               return  new Date(b.date_seller).getTime() - new Date(a.date_seller).getTime();
             })
             this.order.count = x.data['product']['count'][0]['cnt'];
-            this.order.total = +x.data['product']['total'][0]['cnt'];
-            this.order.total = this.order.total.toLocaleString();
-
+            this.order.total = x.data['product']['total'][0]['cnt'];
+            this.$store.dispatch('request/get_order_data', {graph: true, task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 3,}).then((x) => {
+              if(x.data.success){
+                console.log()
+                x.data['product']['products'].map(i => {
+                  newChart.series[0].data.push(i['cnt']);
+                })
+              }
+              this.chart = newChart;
+            })
           }
           console.log(this.order);
 
@@ -196,7 +395,31 @@ export default {
         }
         console.log(this.order);
 
-      })
+      });
+
+
+      this.$store.dispatch('request/getSellerDiagram', {task1: task1}).then((x) => {
+        console.log(x.data);
+        this.allSeller = x.data.product[0];
+        if(x.data.success){
+
+          //this.abc = x.data['product'];
+
+        }
+        console.log(this.order);
+
+      });
+
+      this.$store.dispatch('request/getOrderDiagram', {task1: task1}).then((x) => {
+        this.allOrder = x.data.product;
+
+        if(x.data.success){
+          //this.abc = x.data['product'];
+
+        }
+        console.log(this.order);
+
+      });
 
     }
   },
@@ -205,8 +428,3 @@ export default {
     },
 }
 </script>
-<style scoped>
-  .stat_inner{
-    text-decoration: none;
-  }
-</style>

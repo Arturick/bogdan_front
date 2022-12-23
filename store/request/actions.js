@@ -173,6 +173,39 @@ export default {
         })
     })
   },
+
+  getSellerDiagram({commit}, state){
+    return new Promise((resolve, reject) => {
+      this.$axios
+        .post('getSellerDiagram', state)
+        .then((x) => {
+          resolve(x)
+        })
+    })
+  },
+
+
+  get_all_retail({commit}, state){
+    return new Promise((resolve, reject) => {
+      this.$axios
+        .post('getAllRetail', state)
+        .then((x) => {
+          resolve(x)
+        })
+    })
+  },
+
+
+  getOrderDiagram({commit}, state){
+    return new Promise((resolve, reject) => {
+      this.$axios
+        .post('getOrderDiagram', state)
+        .then((x) => {
+          resolve(x)
+        })
+    })
+  },
+
   getMinus({commit}, state){
     return new Promise((resolve, reject) => {
       this.$axios
