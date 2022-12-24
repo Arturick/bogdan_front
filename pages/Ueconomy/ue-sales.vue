@@ -164,6 +164,7 @@
           allTime: '',
           old: '',
         },
+        userId: 0,
       }
     },
     methods: {
@@ -185,7 +186,7 @@
         console.log(!this.typeLocal);
 
         if(!this.typeLocal){
-          this.$store.dispatch('request/get_economy', {task1: task1, access: token, type: 4, article: this.article}).then((x) => {
+          this.$store.dispatch('request/get_economy', {userId: this.userId, type: 4, article: this.article}).then((x) => {
             if(x.data.success){
 
               this.products = x.data['product']['products'];
@@ -202,37 +203,18 @@
               })
             }
 
-          }).catch(() => {
-            this.$store.dispatch('request/refresh', {task1: task1}).then((x) => {
-              if(x.data.success){
-                window.localStorage.setItem('access', x.data.token);
-                window.localStorage.setItem('task1', x.data.profile[0]['task1']);
-                this.$auth.setUserToken('Bearer ' + x.data.token)
-              }
-              //console.log(x);
-            });
           })
         } else {
           console.log(1);
-          this.$store.dispatch('request/get_all_economy', { access: token, }).then((x) => {
+          this.$store.dispatch('request/get_all_economy', {userId: this.userId}).then((x) => {
 
             if(x.data.success){
              this.products = x.data['product']['products'];
               console.log(this.products);
             }
 
-          }).catch(() => {
-            this.$store.dispatch('request/refresh', {task1: task1}).then((x) => {
-              if(x.data.success){
-                window.localStorage.setItem('access', x.data.token);
-                window.localStorage.setItem('task1', x.data.profile[0]['task1']);
-                this.$auth.setUserToken('Bearer ' + x.data.token)
-              }
-              //console.log(x);
-            });
           })
-        }
-        this.$store.dispatch('request/get_abc', {}).then((x) => {
+        this.$store.dispatch('request/get_abc', {userId: this.userId}).then((x) => {
           if(x.data.success){
             console.log(x.data);
             this.abc = x.data['product'];
@@ -241,10 +223,11 @@
 
         })
 
-      },
+      }
+        },
       getMinus(){
         let task1 = +window.localStorage.getItem('task1');
-        this.$store.dispatch('request/getMinus', {task1: task1}).then((x) => {
+        this.$store.dispatch('request/getMinus', {userId: this.userId}).then((x) => {
           this.minusList = x.data['product'];
           console.log(this.minusList);
         })
@@ -252,6 +235,7 @@
       },
     },
     mounted() {
+      this.userId = +window.localStorage.getItem("userId");
       this.getMinus();
       this.getStatic(4);
       console.log(this.$route);

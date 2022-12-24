@@ -96,7 +96,8 @@
           email: '',
           token: '',
           surname: ''
-        }
+        },
+        userId: 0,
       }
     },
     computed: {
@@ -111,18 +112,16 @@
     },
     methods: {
       getProfile(){
-        let task1 = +window.localStorage.getItem('task1');
-        let access = window.localStorage.getItem('access');
-        this.$store.dispatch('request/getProfile', {task1: task1, access: access}).then((x) => {
 
-          this.unew = x.data.data[0];
+        this.$store.dispatch('request/getProfile', {userId: this.userId,}).then((x) => {
+
+          this.unew = x.data;
           console.log(x);
         });
       },
       saveProfile(){
-        let task1 = +window.localStorage.getItem('task1');
-        let access = window.localStorage.getItem('access');
-        this.$store.dispatch('request/saveProfile', {task1: task1, access: access, profile: this.unew}).then((x) => {
+
+        this.$store.dispatch('request/saveProfile', {userId: this.userId, userNew: this.unew}).then((x) => {
           if(x.data.success){
             this.profile = x.data.data[0];
           }
@@ -132,6 +131,7 @@
 
     },
     mounted() {
+      this.userId = +window.localStorage.getItem("userId");
       this.getProfile();
     }
   }

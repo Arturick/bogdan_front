@@ -20,6 +20,7 @@
                 <div class="table_sales">
                   <div>
                     <div v-if="type == 'Продажи'">
+                      <div v-if="product.products.length > 0">
                       <v-data-table
                         :headers="productHeaders"
                         :items="product.products"
@@ -46,8 +47,13 @@
                         </template>
 
                       </v-data-table>
+                      </div>
+                      <div v-else>
+                        <div class="result-empty" style="margin-top: 24px">ЗДЕСЬ ПОКА НИЧЕГО</div>
+                      </div>
                     </div>
                     <div v-else >
+                      <div v-if="order.products.length > 0">
                       <v-data-table
                         :headers="productHeaders"
                         :items="order.products"
@@ -74,6 +80,10 @@
                         </template>
 
                       </v-data-table>
+                      </div>
+                      <div v-else>
+                        <div class="result-empty" style="margin-top: 24px">ЗДЕСЬ ПОКА НИЧЕГО</div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -147,14 +157,13 @@
           pwz: true,
           srid: true
         },
+        userId: 0,
 
       }
     },
     methods: {
       getStatic(){
-        let task1 = +window.localStorage.getItem('task1'),
-          token = window.localStorage.getItem('access');
-        this.$store.dispatch('request/get_seller_data', {task1: task1, access: token, dateFrom: '2022-11-01', flag: false, type: 4, date: this.date, article: this.article}).then((x) => {
+        this.$store.dispatch('request/get_seller_data', {userId: this.userId,  dateFrom: '2022-11-24', flag: false, type: 4, date: this.date, article: this.article}).then((x) => {
           if(x.data.success){
             this.product.products = x.data['product']['products'];
             this.product.count = x.data['product']['count'][0]['cnt'];
@@ -162,7 +171,7 @@
           }
           console.log(this.product);
         });
-        this.$store.dispatch('request/get_order_data', {task1: task1, access: token, dateFrom: '2022-11-01', flag: false, type: 4, date: this.date, article: this.article}).then((x) => {
+        this.$store.dispatch('request/get_order_data', {userId: this.userId, dateFrom: '2022-11-24', flag: false, type: 4, date: this.date, article: this.article}).then((x) => {
           if(x.data.success){
             this.order.products = x.data['product']['products'];
             this.order.count = x.data['product']['count'][0]['cnt'];
@@ -173,6 +182,7 @@
       }
     },
     mounted() {
+      this.userId = +window.localStorage.getItem("userId");
       this.getStatic();
       console.log(this.$route);
     },

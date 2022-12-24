@@ -114,7 +114,13 @@
                   </div>
                   </div>
           </div>
-
+          <div v-else style="width: 200px; margin: 50px auto;">
+            <v-progress-circular
+              :size="200"
+              color="primary"
+              indeterminate
+            ></v-progress-circular>
+          </div>
         </div>
         <div class="modal1">
             <div class="modal_content1">
@@ -502,7 +508,8 @@
         product1: {},
         product2: {},
         loadingResultsInSearch: true,
-        img1: `https://images.wbstatic.net/c246x328/new/${String(this.$route.query.article1).slice(0,4)}0000/${String(this.$route.query.article1)}-1.jpg`
+        img1: `https://images.wbstatic.net/c246x328/new/${Math.floor(+this.$route.query.article1 / 10000)}0000/${String(this.$route.query.article1)}-1.jpg`,
+        userId: 0,
 
       }
     },
@@ -512,30 +519,19 @@
         let today = new Date();
         localDate = new Date(new Date().getTime() - (31 *86400000));
         localDate = `${localDate.getFullYear()}-${localDate.getMonth()}-${localDate.getDate()}`;
-        let task1 = +window.localStorage.getItem('task1'),
-          token = window.localStorage.getItem('access');
         today= `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
 
-          this.$store.dispatch('request/get_economy', {task1: task1, access: token, type: 4}).then((x) => {
+          this.$store.dispatch('request/get_economy', {userId: this.userId, type: 4}).then((x) => {
             if(x.data.success){
               this.product = x.data['product']['products'];
             }
             console.log(this.product);
-          }).catch(() => {
-            this.$store.dispatch('request/refresh', {task1: task1}).then((x) => {
-              if(x.data.success){
-                window.localStorage.setItem('access', x.data.token);
-                window.localStorage.setItem('task1', x.data.profile[0]['task1']);
-                this.$auth.setUserToken('Bearer ' + x.data.token)
-              }
-              //console.log(x);
-            });
           })
 
       },
       getProduct(type, article){
 
-          this.$store.dispatch('request/getCompetition', {article1: this.article1, article2: this.article2}).then((x) => {
+          this.$store.dispatch('request/getCompetition', {userId: this.userId, article1: this.article1, article2: this.article2}).then((x) => {
             if(x.data.success){
               this.product = x.data.product
               if(this.product == {}){
@@ -544,22 +540,13 @@
               this.loadingResultsInSearch = false;
             }
 
-          }).catch(() => {
-            this.$store.dispatch('request/refresh', {task1: task1}).then((x) => {
-              if(x.data.success){
-                window.localStorage.setItem('access', x.data.token);
-                window.localStorage.setItem('task1', x.data.profile[0]['task1']);
-                this.$auth.setUserToken('Bearer ' + x.data.token)
-              }
-              //console.log(x);
-            });
           })
-          this.$store.dispatch('request/getByArticle', {article: this.article1}).then((x) => {
+          this.$store.dispatch('request/getByArticle', {userId: this.userId, article: this.article1}).then((x) => {
 
               this.product1 = x.data.product;
 
           })
-          this.$store.dispatch('request/getByArticle', {article: this.article2}).then((x) => {
+          this.$store.dispatch('request/getByArticle', {userId: this.userId, article: this.article2}).then((x) => {
 
               this.product2 = x.data.product;
 
@@ -570,6 +557,7 @@
       }
     },
     mounted() {
+      this.userId = +window.localStorage.getItem("userId");
       this.getStatic();
       this.getProduct();
     },

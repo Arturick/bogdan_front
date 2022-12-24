@@ -41,7 +41,7 @@ export default {
   getByArticle({commit}, state){
     return new Promise((resolve, reject) => {
       this.$axios
-        .post('getByArticle', state)
+        .post('get-by-article', state)
         .then((x) => {
           resolve(x);
         }).catch((x) => {
@@ -64,7 +64,7 @@ export default {
   getCompetition({commit}, state){
     return new Promise((resolve, reject) => {
       this.$axios
-        .post('getCompetition', state)
+        .post('get-competition', state)
         .then((x) => {
           resolve(x);
         }).catch((x) => {
@@ -75,7 +75,7 @@ export default {
   login_user({commit}, state){
     return new Promise((resolve, reject) => {
       this.$axios
-        .post('login', state)
+        .post('user-login', state)
         .then((x) => {
           resolve(x);
         })
@@ -84,7 +84,7 @@ export default {
   getProfile({commit}, state){
     return new Promise((resolve, reject) => {
       this.$axios
-        .post('getUser', state)
+        .post('get-user', state)
         .then((x) => {
           resolve(x);
         }).catch((x) => {
@@ -95,7 +95,7 @@ export default {
   saveProfile({commit}, state){
     return new Promise((resolve, reject) => {
       this.$axios
-        .post('updateProfile', state)
+        .post('update-profile', state)
         .then((x) => {
           resolve(x);
         }).catch((x) => {
@@ -107,7 +107,7 @@ export default {
   get_seller_data({commit}, state){
     return new Promise((resolve, reject) => {
       this.$axios
-        .post('seller', state)
+        .post('seller', state, state.config)
         .then((x) => {
           resolve(x)
         }).catch((x) => {
@@ -131,7 +131,7 @@ export default {
   get_order_data({commit}, state){
     return new Promise((resolve, reject) => {
       this.$axios
-        .post('order', state)
+        .post('order', state, state.config)
         .then((x) => {
           resolve(x)
         })
@@ -140,7 +140,7 @@ export default {
   get_all_economy({commit}, state){
     return new Promise((resolve, reject) => {
       this.$axios
-        .post('getAllEconomy', state)
+        .post('get-all-economy', state)
         .then((x) => {
           resolve(x)
         })
@@ -149,7 +149,7 @@ export default {
   get_abc({commit}, state){
     return new Promise((resolve, reject) => {
       this.$axios
-        .post('abcAnalyze', state)
+        .post('abc-analyze', state)
         .then((x) => {
           resolve(x)
         })
@@ -177,7 +177,7 @@ export default {
   getSellerDiagram({commit}, state){
     return new Promise((resolve, reject) => {
       this.$axios
-        .post('getSellerDiagram', state)
+        .post('get-seller-diagram', state)
         .then((x) => {
           resolve(x)
         })
@@ -188,7 +188,7 @@ export default {
   get_all_retail({commit}, state){
     return new Promise((resolve, reject) => {
       this.$axios
-        .post('getAllRetail', state)
+        .post('get-all-retail', state)
         .then((x) => {
           resolve(x)
         })
@@ -199,7 +199,7 @@ export default {
   getOrderDiagram({commit}, state){
     return new Promise((resolve, reject) => {
       this.$axios
-        .post('getOrderDiagram', state)
+        .post('get-order-diagram', state)
         .then((x) => {
           resolve(x)
         })

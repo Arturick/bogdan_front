@@ -20,6 +20,7 @@
                 </div>
                 <div class="table_cont_md">
                     <div class="table_sales">
+                      <div v-if="product.products.length > 0">
                       <v-data-table
                         :headers="orderHeaders"
                         :items="product.products"
@@ -29,7 +30,7 @@
                       >
 
                         <template v-slot:item.brand="{ item }">
-                          <span>Partony</span>
+                          <span>{{item.brand}}</span>
                         </template>
                         <template v-slot:item.date_seller="{ item }">
                           <span>{{item.date_seller.toLocaleString().split("T")[0]}}</span>
@@ -40,13 +41,17 @@
                           </div>
                         </template>
                         <template v-slot:item.action="{ item }">
-                          <NuxtLink :to="'/sales/sales2/?date=' + item.date_seller + '&article=' + item.article + '&type=0'" class="arrow_r">
+                          <NuxtLink :to="'/sales/sales2/?date=' + item.date_seller + '&article=' + item.article + '&type=1'" class="arrow_r">
                             <img  src="../../assets/images/arr_r.svg" alt="">
                           </NuxtLink>
                         </template>
 
                       </v-data-table>
-                    </div>
+                      </div>
+                      <div v-else>
+                        <div class="result-empty" style="margin-top: 24px">ЗДЕСЬ ПОКА НИЧЕГО</div>
+                      </div>
+                      </div>
                  </div>
             </div>
             <div class="l3_sales">
@@ -61,6 +66,7 @@
                 </div>
                 <div class="table_cont_md">
                     <div class="table_sales">
+                      <div v-if="order.products.length > 0">
                       <v-data-table
                         :headers="orderHeaders"
                         :items="order.products"
@@ -70,7 +76,7 @@
                       >
 
                         <template v-slot:item.brand="{ item }">
-                          <span>Partony</span>
+                          <span>{{item.brand}}</span>
                         </template>
                         <template v-slot:item.date_seller="{ item }">
                             <span>{{item.date_seller.toLocaleString().split("T")[0]}}</span>
@@ -87,6 +93,10 @@
                         </template>
 
                       </v-data-table>
+                      </div>
+                      <div v-else>
+                        <div class="result-empty" style="margin-top: 24px">ЗДЕСЬ ПОКА НИЧЕГО</div>
+                      </div>
                     </div>
                 </div>
             </div>
@@ -126,7 +136,8 @@
         order: {count: 0, total: 0, products: []},
         orderCount: 1,
         sellerCount: 1,
-        type: 4
+        type: 4,
+        userId: 0,
       }
     },
     computed: {
@@ -152,7 +163,7 @@
             token = window.localStorage.getItem('access');
         localDate = `${localDate.getFullYear()}-${localDate.getMonth()}-${localDate.getDate()}`;
 
-        this.$store.dispatch('request/get_seller_data', {graph: false, dateFrom: localDate, flag: flag, type: type, access: token, task1: task1}).then((x) => {
+        this.$store.dispatch('request/get_seller_data', {graph: false, dateFrom: localDate, flag: flag, type: type, userId: this.userId}).then((x) => {
           if(x.data.success){
             this.product.products = x.data['product']['products'];
             this.product.count = x.data['product']['count'][0]['cnt'];
@@ -180,7 +191,7 @@
           token = window.localStorage.getItem('access');
         localDate = `${localDate.getFullYear()}-${localDate.getMonth()}-${localDate.getDate()}`;
 
-        this.$store.dispatch('request/get_order_data', {graph: false, dateFrom: localDate, flag: flag, type: type, access: token, task1: task1}).then((x) => {
+        this.$store.dispatch('request/get_order_data', {graph: false, dateFrom: localDate, flag: flag, type: type, userId: this.userId}).then((x) => {
           if(x.data.success){
             this.order.products = x.data['product']['products'];
             this.order.count = x.data['product']['count'][0]['cnt'];
@@ -191,6 +202,7 @@
       }
     },
     mounted() {
+      this.userId = +window.localStorage.getItem("userId");
       this.getStatic();
       this.getStatic1();
       console.log(this.$route);

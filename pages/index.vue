@@ -290,7 +290,13 @@ export default {
       allSeller: {cnt: 0, totalPr: 0},
       allOrder: {cnt: 0, total: 0, retailTotal: 0, retailCnt: 0},
       allOrderFlag: 0,
-      retail: {cnt: 0, prt: 0}
+      retail: {cnt: 0, prt: 0},
+      userId: 0,
+      config: {
+        headers: {
+          Authorization: 0
+        }
+      },
     }
   },
   computed: {
@@ -338,18 +344,17 @@ export default {
       let task1 = +window.localStorage.getItem('task1'),
           token = window.localStorage.getItem('access');
         console.log(token);
-      this.$store.dispatch('request/get_all_retail', {task1: task1}).then((x) => {
+      this.$store.dispatch('request/get_all_retail', {userId: this.userId}).then((x) => {
         this.retail = x.data.product;
-        console.log(x, 11111111111111111111111111111111111111111);
       });
 
 
-      this.$store.dispatch('request/get_seller_data', {task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 3,}).then((x) => {
+      this.$store.dispatch('request/get_seller_data', {userId: this.userId, dateFrom: "2022-11-01", flag: '0', type: 3, config: this.config}).then((x) => {
           if(x.data.success){
             this.product.products = x.data['product']['products'];
             this.product.count = x.data['product']['count'][0]['cnt'];
             this.product.total = x.data['product']['total'][0]['cnt'];
-            this.$store.dispatch('request/get_seller_data', {graph: true, task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 3,}).then((x) => {
+            this.$store.dispatch('request/get_seller_data', {userId: this.userId, graph: true,  dateFrom: "2022-11-01", flag: '0', type: 3, config: this.config}).then((x) => {
               if(x.data.success){
                 x.data['product']['products'].map(i => {
                   console.log(i['date_seller']);
@@ -363,7 +368,7 @@ export default {
         })
 
 
-        this.$store.dispatch('request/get_order_data', {task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 3,}).then((x) => {
+        this.$store.dispatch('request/get_order_data', { userId: this.userId, dateFrom: "2022-11-01", flag: '0', type: 3, config: this.config}).then((x) => {
           if(x.data.success){
             this.order.products = x.data['product']['products'];
             this.order.products = this.order.products.sort((a,b) => {
@@ -372,7 +377,7 @@ export default {
             })
             this.order.count = x.data['product']['count'][0]['cnt'];
             this.order.total = x.data['product']['total'][0]['cnt'];
-            this.$store.dispatch('request/get_order_data', {graph: true, task1: task1, access: token, dateFrom: "2022-11-01", flag: '0', type: 3,}).then((x) => {
+            this.$store.dispatch('request/get_order_data', {userId: this.userId, graph: true, config: this.config, dateFrom: "2022-11-01", flag: '0', type: 3,}).then((x) => {
               if(x.data.success){
                 console.log()
                 x.data['product']['products'].map(i => {
@@ -387,7 +392,7 @@ export default {
         })
 
 
-        this.$store.dispatch('request/get_abc', {}).then((x) => {
+        this.$store.dispatch('request/get_abc', {userId: this.userId, config: this.config}).then((x) => {
         if(x.data.success){
           console.log(x.data);
           this.abc = x.data['product'];
@@ -398,7 +403,7 @@ export default {
       });
 
 
-      this.$store.dispatch('request/getSellerDiagram', {task1: task1}).then((x) => {
+      this.$store.dispatch('request/getSellerDiagram', {userId: this.userId}).then((x) => {
         console.log(x.data);
         this.allSeller = x.data.product[0];
         if(x.data.success){
@@ -410,7 +415,7 @@ export default {
 
       });
 
-      this.$store.dispatch('request/getOrderDiagram', {task1: task1}).then((x) => {
+      this.$store.dispatch('request/getOrderDiagram', {userId: this.userId}).then((x) => {
         this.allOrder = x.data.product;
 
         if(x.data.success){
@@ -424,6 +429,9 @@ export default {
     }
   },
   mounted() {
+    this.userId = +window.localStorage.getItem('userId');
+    this.config.headers.Authorization = window.localStorage.getItem('access');
+    console.log(this.config);
     this.getStatic();
     },
 }

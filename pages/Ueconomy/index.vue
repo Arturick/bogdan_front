@@ -23,6 +23,7 @@
             </div>
             <input type="text" class="inp_Ue" placeholder="Поиск по баркоду, артикулу поставщика, бренду" v-model="searchKey">
             <div class="table_new_wrap">
+              <div v-if="product.length > 0">
               <v-data-table
                 :headers="productHeaders"
                 :items="sortProduct"
@@ -44,6 +45,11 @@
                 </template>
 
               </v-data-table>
+              </div>
+              <div v-else>
+                <div class="result-empty" style="margin-top: 24px">ЗДЕСЬ ПОКА НИЧЕГО</div>
+              </div>
+
             </div>
 
             </div>
@@ -127,7 +133,7 @@
           allTime: '',
           old: '',
         },
-
+        userId: 0,
       }
     },
 
@@ -149,21 +155,12 @@
           token = window.localStorage.getItem('access');
         today= `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
 
-          this.$store.dispatch('request/get_economy', {task1: task1, access: token, type: 4}).then((x) => {
+          this.$store.dispatch('request/get_economy', {userId: this.userId, type: 4}).then((x) => {
             if(x.data.success){
               this.product = x.data['product']['products'];
 
             }
             console.log(this.product);
-          }).catch(() => {
-            this.$store.dispatch('request/refresh', {task1: task1}).then((x) => {
-              if(x.data.success){
-                window.localStorage.setItem('access', x.data.token);
-                window.localStorage.setItem('task1', x.data.profile[0]['task1']);
-                this.$auth.setUserToken('Bearer ' + x.data.token)
-              }
-              //console.log(x);
-            });
           })
 
 
@@ -195,6 +192,7 @@
       }
     },
     mounted() {
+      this.userId = +window.localStorage.getItem("userId");
       this.getStatic();
       this.getMinus();
     },

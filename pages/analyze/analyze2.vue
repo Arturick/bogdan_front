@@ -45,6 +45,13 @@
             </div>
         </div>
      </div>
+  <div v-else style="width: 200px; margin: 50px auto;">
+    <v-progress-circular
+      :size="200"
+      color="primary"
+      indeterminate
+    ></v-progress-circular>
+  </div>
 </template>
 <script>
 export default {

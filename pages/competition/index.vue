@@ -84,7 +84,8 @@
         product1: {},
         product2: {},
         article1: '',
-        article2: ''
+        article2: '',
+        userId: 0,
       }
     },
     methods: {
@@ -97,7 +98,7 @@
           token = window.localStorage.getItem('access');
         today= `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
 
-          this.$store.dispatch('request/get_economy', {task1: task1, access: token, type: 4}).then((x) => {
+          this.$store.dispatch('request/get_economy', {userId: this.userId, type: 4}).then((x) => {
             if(x.data.success){
               this.product = x.data['product']['products'];
 
@@ -110,7 +111,7 @@
       getProduct(type, article){
 
 
-          this.$store.dispatch('request/getByArticle', {article: article}).then((x) => {
+          this.$store.dispatch('request/getByArticle', {userId: this.userId, article: article}).then((x) => {
             if(x.data.success){
               if(type == 1){
                 this.product1 = x.data.product;
@@ -128,6 +129,7 @@
       }
     },
     mounted() {
+      this.userId = +window.localStorage.getItem("userId");
       this.getStatic();
     },
   }

@@ -22,18 +22,13 @@
       loginUser(){
         console.log(1);
         this.$store.dispatch('request/login_user', {login: this.login, password: this.password}).then((x) => {
-          window.localStorage.setItem('access', x.data.token);
-          window.localStorage.setItem('task1', x.data.profile[0]['task1']);
-          this.$auth.setUserToken('Bearer ' + x.data.token)
-          this.$store.dispatch('request/auth_user').then((resp) => {
-
-          })
+          console.log(x);
+          window.localStorage.setItem('access', x.data.access);
+          window.localStorage.setItem('userId', x.data.userId);
+          this.$auth.setUserToken('Bearer ' + x.data.access);
           this.$router.push('/');
-          if(x.data.success){
-
-
-          }
-          //console.log(x);
+        }).catch(e => {
+          this.$store.$toast.error('Не удалось Авторизироваться');
         });
       },
 

@@ -20,7 +20,8 @@
             <input type="text" class="inp_Ue" placeholder="Поиск по баркоду, артикулу поставщика, бренду" v-model="searchKey">
             <div class="table_cont_md">
                 <div class="table_new_wrap">
-                  <v-data-table
+                  <div v-if="product.length > 0">
+                    <v-data-table
                     :headers="productHeaders"
                     :items="sortProduct"
                     class="postable"
@@ -41,7 +42,11 @@
                     </template>
 
                   </v-data-table>
-                            </div>
+                  </div>
+                  <div v-else>
+                    <div class="result-empty" style="margin-top: 24px">ЗДЕСЬ ПОКА НИЧЕГО</div>
+                  </div>
+                </div>
                     </div>
                 </div>
             </div>
@@ -62,7 +67,8 @@
           {"text": "", "value": 'action', 'sortable': false},
         ],
         product: [],
-        searchKey: ''
+        searchKey: '',
+        userId: 0,
       }
     },
     computed: {
@@ -77,31 +83,21 @@
       getStatic(){
         let localDate = new Date();
         let today = new Date();
-        localDate = new Date(new Date().getTime() - (31 *86400000));
+        localDate = new Date(new Date().getTime() - (29 *86400000));
         localDate = `${localDate.getFullYear()}-${localDate.getMonth()}-${localDate.getDate()}`;
-        let task1 = +window.localStorage.getItem('task1'),
-          token = window.localStorage.getItem('access');
         today= `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
 
-          this.$store.dispatch('request/get_economy', {task1: task1, access: token, type: 4}).then((x) => {
+          this.$store.dispatch('request/get_economy', {userId: this.userId, type: 4}).then((x) => {
             if(x.data.success){
               this.product = x.data['product']['products'];
             }
             console.log(this.product);
-          }).catch(() => {
-            this.$store.dispatch('request/refresh', {task1: task1}).then((x) => {
-              if(x.data.success){
-                window.localStorage.setItem('access', x.data.token);
-                window.localStorage.setItem('task1', x.data.profile[0]['task1']);
-                this.$auth.setUserToken('Bearer ' + x.data.token)
-              }
-              //console.log(x);
-            });
           })
 
       }
     },
     mounted() {
+      this.userId = +window.localStorage.getItem("userId");
       this.getStatic();
     },
   }
