@@ -119,7 +119,7 @@ export default {
   getAnalyze({commit}, state){
     return new Promise((resolve, reject) => {
       this.$axios
-        .post('getAnalyze', state)
+        .post('get-analyze', state)
         .then((x) => {
           resolve(x)
         }).catch((x) => {

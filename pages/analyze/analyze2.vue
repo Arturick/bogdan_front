@@ -75,6 +75,7 @@ export default {
       },
       product: {},
       article: this.$route.query.article,
+      userId: 0
     }
   },
   methods: {
@@ -89,14 +90,14 @@ export default {
           },]}
       let access = window.localStorage.getItem('access');
       let task1 = window.localStorage.getItem('task1');
-      this.$store.dispatch('request/getAnalyze', {access: access, article: this.article}).then((x) => {
+      this.$store.dispatch('request/getAnalyze', {userId: this.userId, article: this.article}).then((x) => {
         if(x.data.success){
           this.loadingResultsInSearch = false;
           this.product = x.data.product;
         }
         console.log(x);
       });
-      this.$store.dispatch('request/get_seller_data', {graph: true, task1: task1, access: access, dateFrom: "2022-11-01", flag: '0', type: 4, article: this.article}).then((x) => {
+      this.$store.dispatch('request/get_seller_data', {graph: true, userId: this.userId, dateFrom: "2022-11-01", flag: '0', type: 4, article: this.article}).then((x) => {
         if(x.data.success){
           console.log(x);
           x.data['product']['products'].map(i => {
@@ -106,7 +107,7 @@ export default {
           })
         }
       });
-      this.$store.dispatch('request/get_order_data', {graph: true, task1: task1, access: access, dateFrom: "2022-11-01", flag: '0', type: 4, article: this.article}).then((x) => {
+      this.$store.dispatch('request/get_order_data', {graph: true, userId: this.userId, dateFrom: "2022-11-01", flag: '0', type: 4, article: this.article}).then((x) => {
         if(x.data.success){
           console.log(x);
           x.data['product']['products'].map(i => {
@@ -117,6 +118,7 @@ export default {
       })},
   },
   mounted() {
+    this.userId = +window.localStorage.getItem("userId");
     this.getAnalyze();
   },
 }
