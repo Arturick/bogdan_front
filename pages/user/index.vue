@@ -19,7 +19,22 @@
             <input type="text" class="input-block__input py-5 px-6" placeholder="Фамилия" v-model="unew.surname" autocomplete="off">
           </div>
           <div class="input-block">
-            <input type="text"  class="input-block__input py-5 px-6" placeholder="ИНН" readonly v-model="unew.email" autocomplete="off">
+            <input type="text"  class="input-block__input py-5 px-6" placeholder="Почта"  readonly v-model="unew.email" autocomplete="off">
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12">
+        <div class="content-title content-title_2">Данные для авторизации</div>
+        <div>По средствам этих данных будет осуществлятся авторизация в ваш аккаунт</div>
+      </div>
+      <div class="mt-4">
+        <div class="md:grid md:grid-cols-3 gap-10 flex flex-wrap">
+          <div class="input-block">
+            <input type="text" class="input-block__input py-5 px-6" placeholder="Логин" v-model="unew.login" autocomplete="off">
+          </div>
+          <div class="input-block">
+            <input type="password" class="input-block__input py-5 px-6" placeholder="Пароль" v-model="unew.password" autocomplete="off">
           </div>
         </div>
       </div>
@@ -95,7 +110,9 @@
           name: '',
           email: '',
           token: '',
-          surname: ''
+          surname: '',
+          password: "",
+          login: "",
         },
         userId: 0,
       }
@@ -118,6 +135,7 @@
           this.unew = x.data;
           console.log(x);
         });
+
       },
       saveProfile(){
 
@@ -127,6 +145,7 @@
           }
           console.log(x);
         });
+
       },
 
     },

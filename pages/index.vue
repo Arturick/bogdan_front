@@ -4,16 +4,8 @@
       <div class="card_main_line">
         <div class="card_main cb_red">
           <div class="c-up">
-            <div class="btn_points">
-              <svg width="20" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 6C8.89543 6 8 5.10457 8 4C8 2.89543 8.89543 2 10 2C11.1046 2 12 2.89543 12 4C12 5.10457 11.1046 6 10 6Z" fill="grey"/>
-                <path d="M10 12C8.89543 12 8 11.1046 8 10C8 8.89543 8.89543 8 10 8C11.1046 8 12 8.89543 12 10C12 11.1046 11.1046 12 10 12Z" fill="grey"/>
-                <path d="M10 18C8.89543 18 8 17.1046 8 16C8 14.8954 8.89543 14 10 14C11.1046 14 12 14.8954 12 16C12 17.1046 11.1046 18 10 18Z" fill="grey"/>
-              </svg>
-            </div>
             <div class="c_name">
               <span class="card_name">Продажи</span>
-              <span class="card_name_ico">&#9432;</span>
             </div>
           </div>
           <div class="c-content">
@@ -35,17 +27,9 @@
         </div>
         <div class="card_main cb_red">
           <div class="c-up c_up_1">
-            <div class="btn_points">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 6C8.89543 6 8 5.10457 8 4C8 2.89543 8.89543 2 10 2C11.1046 2 12 2.89543 12 4C12 5.10457 11.1046 6 10 6Z" fill="grey"/>
-                <path d="M10 12C8.89543 12 8 11.1046 8 10C8 8.89543 8.89543 8 10 8C11.1046 8 12 8.89543 12 10C12 11.1046 11.1046 12 10 12Z" fill="grey"/>
-                <path d="M10 18C8.89543 18 8 17.1046 8 16C8 14.8954 8.89543 14 10 14C11.1046 14 12 14.8954 12 16C12 17.1046 11.1046 18 10 18Z" fill="grey"/>
-              </svg>
-            </div>
             <div class="c_name">
               <span class="card_name" @click="allOrderFlag=0" :class="{ active : allOrderFlag == 0}" >Заказы</span>
               <span class="card_name" @click="allOrderFlag=1" :class="{ active : allOrderFlag == 1}">Незавершенные</span>
-              <span class="card_name_ico">&#9432;</span>
             </div>
           </div>
           <div class="c-content">
@@ -68,16 +52,8 @@
         </div>
         <div class="card_main cb_red">
           <div class="c-up">
-            <div class="btn_points">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 6C8.89543 6 8 5.10457 8 4C8 2.89543 8.89543 2 10 2C11.1046 2 12 2.89543 12 4C12 5.10457 11.1046 6 10 6Z" fill="grey"/>
-                <path d="M10 12C8.89543 12 8 11.1046 8 10C8 8.89543 8.89543 8 10 8C11.1046 8 12 8.89543 12 10C12 11.1046 11.1046 12 10 12Z" fill="grey"/>
-                <path d="M10 18C8.89543 18 8 17.1046 8 16C8 14.8954 8.89543 14 10 14C11.1046 14 12 14.8954 12 16C12 17.1046 11.1046 18 10 18Z" fill="grey"/>
-              </svg>
-            </div>
             <div class="c_name">
               <span class="card_name">Возвраты</span>
-              <span class="card_name_ico">&#9432;</span>
             </div>
           </div>
           <div class="c-content">
@@ -131,18 +107,10 @@
             </div>
           </div>
         </div> -->
-        <div class="card_main">
+        <div class="card_main cb_red">
           <div class="c-up">
-            <div class="btn_points">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 6C8.89543 6 8 5.10457 8 4C8 2.89543 8.89543 2 10 2C11.1046 2 12 2.89543 12 4C12 5.10457 11.1046 6 10 6Z" fill="grey"/>
-                <path d="M10 12C8.89543 12 8 11.1046 8 10C8 8.89543 8.89543 8 10 8C11.1046 8 12 8.89543 12 10C12 11.1046 11.1046 12 10 12Z" fill="grey"/>
-                <path d="M10 18C8.89543 18 8 17.1046 8 16C8 14.8954 8.89543 14 10 14C11.1046 14 12 14.8954 12 16C12 17.1046 11.1046 18 10 18Z" fill="grey"/>
-              </svg>
-            </div>
             <div class="c_name">
               <span class="card_name">Прибыль и комиссия</span>
-              <span class="card_name_ico">&#9432;</span>
             </div>
           </div>
           <div class="c-content">
@@ -213,7 +181,9 @@
               </div>
               <div class="order_left">
                 <div class="btn_more">
-                  Подробнее
+                  <NuxtLink :to="'/sales/sales2/?date=' + product.date_seller + '&article=' + product.article + '&type=0'" class="arrow_r">
+                    Подробнее
+                  </NuxtLink>
                   <NuxtLink :to="'/sales/sales2/?date=' + product.date_seller + '&article=' + product.article + '&type=0'" class="arrow_r">
                     <img src="../assets/images/btn_more.svg" alt="">
                   </NuxtLink>
@@ -229,7 +199,7 @@
       <div class="a_inner">
         <div class="l1_a">
           <div class="a_title">ABC анализ</div>
-          <NuxtLink to="/analyze">
+          <NuxtLink to="/Ueconomy">
             <div class="btn_more_a">
               Подробнее
               <img src="../assets/images/btn_more.svg" alt="">
@@ -245,11 +215,11 @@
             </div>
           </div>
           <div class="a_stat_bl">
-
+            <div class="stat_inner">
               <div class="stat_title">Группа B</div>
               <div class="stat_sup1">Выручка {{ abc["b"]["totalSum"]}} ₽</div>
               <div class="stat_sup2">Товаров {{ abc["b"]["cnt"]}}шт</div>
-
+            </div>
           </div>
           <div class="a_stat_bl">
             <div class="stat_inner">

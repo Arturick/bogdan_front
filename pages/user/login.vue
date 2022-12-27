@@ -4,7 +4,7 @@
     <h2 class="text_auth">Введите пожалуйста ваш логин и пароль для входа</h2>
     <form action="" class="auth_input"></form>
     <input type="text" placeholder="Login" class="input_auth" v-model="login">
-    <input type="text" placeholder="Password" class="input_auth" v-model="password">
+    <input type="password" placeholder="Password" class="input_auth" v-model="password">
     <button @click="loginUser()" type="button" class="auth_btn">Войти</button>
 
   </div>
