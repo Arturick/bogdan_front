@@ -155,7 +155,7 @@
             <span class="ch_gr">Сумма продаж</span>
             <span>{{this.product.total}}₽</span>
           </div>
-          <div class="chart_cont">
+          <div class="graf_a2">
             <ChartSale :categories="chart.categories" :series="chart.series"></ChartSale>
           </div>
         </div>
@@ -253,8 +253,8 @@ export default {
             name: 'Продажи'
           },
         ],
-        abc: false,
       },
+      abc: false,
       product: {count: 0, total: 0, products: {}},
       order: {count: 0, total: 0, products: {}},
       allSeller: {cnt: 0, totalPr: 0},
@@ -334,7 +334,6 @@ export default {
               }
               this.$store.dispatch('request/get_order_data', {userId: this.userId, graph: true, config: this.config, dateFrom: "2022-11-01", flag: '0', type: 3,}).then((x) => {
                 if(x.data.success){
-                  console.log()
                   x.data['product']['products'].map(i => {
                     newChart.series[0].data.push(i['cnt']);
                   })

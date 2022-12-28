@@ -143,13 +143,13 @@
     opacity: 0;
   }
 
-  /* Disabled */
-  /* .checkbox-google input:disabled+.checkbox-google-switch {
+   Disabled
+  .checkbox-google input:disabled+.checkbox-google-switch {
       filter: grayscale(60%);
       border-color: rgba(0, 0, 0, .1);
   }
 
   .checkbox-google input:disabled+.checkbox-google-switch:before {
       background: #eee;
-  } */
+  } 
 </style>
