@@ -169,7 +169,7 @@
         let task1 = +window.localStorage.getItem('task1');
         this.minus.allTime = this.minus.allTime == 'До' ? 1 : 0;
         this.minus.old = this.minus.old == 'Да' ? 1 : 0;
-        this.$store.dispatch('request/addMinus', {task1: task1,  value: this.minus.value, isNumber: 1, allTime: this.minus.allTime, old: this.minus.old, naming: this.minus.naming}).then((x) => {
+        this.$store.dispatch('request/addMinus', {userId: this.userId,  value: this.minus.value, isNumber: 1, allTime: this.minus.allTime, old: this.minus.old, naming: this.minus.naming}).then((x) => {
           this.getMinus();
 
         })
@@ -178,14 +178,14 @@
       },
       getMinus(){
         let task1 = +window.localStorage.getItem('task1');
-        this.$store.dispatch('request/getMinus', {task1: task1}).then((x) => {
+        this.$store.dispatch('request/getMinus', {userId: this.userId}).then((x) => {
           this.minusList = x.data['product'];
           console.log(this.minusList);
         })
         console.log(this.minus);
       },
       deleteMinus(id){
-        this.$store.dispatch('request/deleteMinus', {id: id}).then((x) => {
+        this.$store.dispatch('request/deleteMinus', {userId: this.userId, id: id}).then((x) => {
           console.log(this.minusList);
           this.getMinus();
         })

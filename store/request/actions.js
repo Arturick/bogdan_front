@@ -158,7 +158,7 @@ export default {
   addMinus({commit}, state){
     return new Promise((resolve, reject) => {
       this.$axios
-        .post('addMinus', state)
+        .post('add-minus', state)
         .then((x) => {
           resolve(x)
         })
@@ -167,7 +167,7 @@ export default {
   deleteMinus({commit}, state){
     return new Promise((resolve, reject) => {
       this.$axios
-        .post('deleteMinus', state)
+        .post('delete-minus', state)
         .then((x) => {
           resolve(x)
         })
@@ -209,7 +209,7 @@ export default {
   getMinus({commit}, state){
     return new Promise((resolve, reject) => {
       this.$axios
-        .post('getMinus', state)
+        .post('get-minus', state)
         .then((x) => {
           resolve(x)
         })
