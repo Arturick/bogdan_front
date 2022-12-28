@@ -311,7 +311,7 @@ export default {
             data: [],
             name: 'Продажи'
           },]}
-      let task1 = +window.localStorage.getItem('task1'),
+      let
           token = window.localStorage.getItem('access');
         console.log(token);
       this.$store.dispatch('request/get_all_retail', {userId: this.userId}).then((x) => {
@@ -329,9 +329,19 @@ export default {
                 x.data['product']['products'].map(i => {
                   console.log(i['date_seller']);
                   newChart.categories.push(i['date_seller']);
-                  newChart.series[1].data.push(i['cnt']);
+                  newChart.series[0].data.push(i['cnt']);
                 })
               }
+
+              this.$store.dispatch('request/get_order_data', {userId: this.userId, graph: true, config: this.config, dateFrom: "2022-11-01", flag: '0', type: 3,}).then((x) => {
+                if(x.data.success){
+                  console.log()
+                  x.data['product']['products'].map(i => {
+                    newChart.series[1].data.push(i['cnt']);
+                  })
+                }
+                this.chart = newChart;
+              })
             })
           }
           console.log(this.product);
@@ -347,15 +357,6 @@ export default {
             })
             this.order.count = x.data['product']['count'][0]['cnt'];
             this.order.total = x.data['product']['total'][0]['cnt'];
-            this.$store.dispatch('request/get_order_data', {userId: this.userId, graph: true, config: this.config, dateFrom: "2022-11-01", flag: '0', type: 3,}).then((x) => {
-              if(x.data.success){
-                console.log()
-                x.data['product']['products'].map(i => {
-                  newChart.series[0].data.push(i['cnt']);
-                })
-              }
-              this.chart = newChart;
-            })
           }
           console.log(this.order);
 
