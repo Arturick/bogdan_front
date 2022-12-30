@@ -106,7 +106,7 @@
                       <span>{{pr['com_wb']}}</span>
                     </div>
                     <div class="bl_exp_ues">
-                        <div v-for="i in minusList"> -{{i['value']}}</div>
+                        <div v-for="i in minusList"> -{{i['value']}}{{i['percent'] ? '%' : 'руб'}}</div>
                     </div>
                     <div class="bl_prof_ues">
                         <span>{{pr['totalBuy']  - (pr['cntBuy'] * priceLocal[pr['article']])}}р</span>
@@ -185,7 +185,7 @@
         console.log(this.typeLocal != 1);
         console.log(!this.typeLocal);
 
-        if(!this.typeLocal){
+        if(this.typeLocal != 1){
           this.$store.dispatch('request/get_economy', {userId: this.userId, type: 4, article: this.article}).then((x) => {
             if(x.data.success){
 

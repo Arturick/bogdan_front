@@ -2223,6 +2223,8 @@ color: #00A888;} */
 
 .t_menu_ue span:nth-child(5),
 .tline_ue2_inner span:nth-child(5){width: 125px;}
+.t_menu_ue span:nth-child(6),
+.tline_ue2_inner span:nth-child(6){width: 85px;}
 
 .tline_ue2_inner{
   font-size: 13px;

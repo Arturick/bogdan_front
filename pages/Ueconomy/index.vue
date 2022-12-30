@@ -68,6 +68,7 @@
             <span>Число</span>
             <span>Постоянный</span>
             <span>Когда вычетать</span>
+            <span>Процент</span>
 
           </div>
           <div v-for="i in minusList">
@@ -78,6 +79,7 @@
                 <span>{{i['value']}}</span>
                 <span>{{i['old'] ? 'ДА' : 'Нет'}}</span>
                 <span>{{i['allTime'] ? 'До' : 'После'}}</span>
+                <span style="font-size: 14px; font-weight: bold">{{i['percent'] ? 'ДА' : 'Нет'}}</span>
                 <div @click="deleteMinus(i['id'])">&#215;</div>
               </div>
             </div>
@@ -99,6 +101,13 @@
                                 <select v-model="minus.allTime">
                                     <option>До</option>
                                   <option>После</option>
+                                </select>
+                                <img src="../../assets/images/arr_d.svg" alt="">
+                            </span>
+              <span class="sel_tue2" style="font-size: 14px">
+                                <select v-model="minus.percent">
+                                    <option>Да</option>
+                                  <option>нет</option>
                                 </select>
                                 <img src="../../assets/images/arr_d.svg" alt="">
                             </span>
@@ -132,6 +141,7 @@
           value: '',
           allTime: '',
           old: '',
+          percent: '',
         },
         userId: 0,
       }
@@ -169,7 +179,7 @@
         let task1 = +window.localStorage.getItem('task1');
         this.minus.allTime = this.minus.allTime == 'До' ? 1 : 0;
         this.minus.old = this.minus.old == 'Да' ? 1 : 0;
-        this.$store.dispatch('request/addMinus', {userId: this.userId,  value: this.minus.value, isNumber: 1, allTime: this.minus.allTime, old: this.minus.old, naming: this.minus.naming}).then((x) => {
+        this.$store.dispatch('request/addMinus', {userId: this.userId,  value: this.minus.value, isNumber: 1, allTime: this.minus.allTime, old: this.minus.old, naming: this.minus.naming, percent: this.minus.percent}).then((x) => {
           this.getMinus();
 
         })
